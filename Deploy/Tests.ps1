@@ -1,4 +1,4 @@
-Set-Location ../app
+Set-Location app
 
 # Test react solution
 ($env:CI = "true") -and (yarn test)
