@@ -3,9 +3,7 @@ pipeline {
   stages {
   stage('Tests') {
       steps {
-        script {
-            powershell -File Deploy/Tests.ps1
-        }
+        powershell -File Deploy/Tests.ps1
       }
     }
   stage('Stage 2') {
