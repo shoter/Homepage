@@ -1,11 +1,10 @@
 pipeline {
   agent any
   stages {
-  stage('Stage 1') {
+  stage('Tests') {
       steps {
         script {
-          echo 'Stage 1'
-	  echo 'Stage 1 on branch'
+            powershell -File Deploy/Tests.ps1
         }
       }
     }
