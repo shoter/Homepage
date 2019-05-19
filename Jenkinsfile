@@ -5,6 +5,7 @@ pipeline {
       steps {
         script {
           echo 'Stage 1'
+	  echo 'Stage 1 on branch'
         }
       }
     }
