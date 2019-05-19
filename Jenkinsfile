@@ -1,23 +1,19 @@
-pipeline
-{
-    agent any
-    stages
-    {
-        stage('Build')
-        {
-            steps
-            {
-                echo "Branch name: ${branch_name}"
-                echo "${env.WORKSPACE}"
-            }
+pipeline {
+  agent any
+  stages {
+  stage('Stage 1') {
+      steps {
+        script {
+          echo 'Stage 1'
         }
-
-        stage('Test')
-        {
-            steps
-            {
-
-            }
-        }
+      }
     }
+  stage('Stage 2') {
+      steps {
+        script {
+          echo 'Stage 2'
+        }
+      }
+    }
+  }
 }
