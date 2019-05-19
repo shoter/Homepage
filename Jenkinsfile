@@ -3,10 +3,7 @@ pipeline {
   stages {
   stage('Tests') {
       steps {
-          node
-          {
-        powershell -File Deploy/Tests.ps1
-          }
+          powershell("Deploy/Tests.ps1")
       }
     }
   stage('Stage 2') {
