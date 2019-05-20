@@ -31,5 +31,11 @@ pipeline {
       }
     }
   }
+
+  stage("Deploy") {
+    stage {
+      powershell("Deploy/Deploy.ps1")
+    }
+  }
 }
 }
