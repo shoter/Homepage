@@ -5,7 +5,6 @@ Write-Output (Get-Location)
 echo "Starting tests for react"
 # Test react solution
 $env:CI = "true"
-yarn
 yarn run test
 
 if($? -eq $False) {
