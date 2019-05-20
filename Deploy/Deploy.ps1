@@ -9,6 +9,7 @@ dotnet build
 
 #Goto build location
 Set-Location bin\Debug\netcoreapp2.2
+
 Write-Host $FTP_USR
 #Transfer Files
-dotnet .\FtpDeployCore.dll "E:\Programowanie\TS\Homepage\app\build" $FTP_USR $FTP_PSW
+dotnet .\FtpDeployCore.dll "E:\Programowanie\TS\Homepage\app\build\" $FTP_USR $FTP_PSW
