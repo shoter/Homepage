@@ -34,7 +34,7 @@ pipeline {
 
   stage("Deploy") {
      environment { 
-                FTP = credentials('	WebioFtp') 
+                FTP = credentials('WebioFtp') 
             }
     steps {
       script {
