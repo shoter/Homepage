@@ -37,7 +37,8 @@ pipeline {
                 FTP = credentials('	WebioFtp') 
             }
     steps {
-      powershell("Deploy/Deploy.ps1")
+      msg = powershell(returnStdout: true, script: "Deploy/Deploy.ps1")
+      println msg
     }
   }
 }
