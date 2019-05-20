@@ -12,4 +12,4 @@ Set-Location bin\Debug\netcoreapp2.2
 
 Write-Output "User - " . $ENV:FTP_USR
 #Transfer Files
-dotnet .\FtpDeployCore.dll "E:\Programowanie\TS\Homepage\app\build\" $ENV:FTP_USR $ENV:FTP_PSW
+dotnet .\FtpDeployCore.dll "..\..\..\..\..\app\build\" $ENV:FTP_USR $ENV:FTP_PSW
