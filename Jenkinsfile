@@ -3,30 +3,33 @@ pipeline {
   stages {
   stage('prepare') {
     parallel  {
-      stage('React') {
+      stage('Prepare React') {
         steps {
         powershell("Deploy/Prepare-react.ps1")
         }
       }
 
-      stage('Csharp') {
+      stage('Prepare Csharp') {
         steps {
         powershell("Deploy/Prepare-csharp.ps1")
         }
       }
     }
   }
-  stage('Tests') {
-      steps {
-          powershell("Deploy/Tests.ps1")
+
+  stage('Run Tests') {
+    parallel {
+      stage('Run CSharp Tests') {
+        steps {
+          powershell("Deploy/Test-csharp.ps1")
+        }
       }
-    }
-  stage('Stage 2') {
-      steps {
-        script {
-          echo 'Stage 2'
+      stage('Run React Tests') {
+        steps {
+          powershell("Deploy/Test-react.ps1")
         }
       }
     }
   }
+
 }
