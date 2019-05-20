@@ -34,7 +34,7 @@ pipeline {
 
   stage("Deploy") {
      environment { 
-                AN_ACCESS_KEY = credentials('	WebioFtp') 
+                FTP = credentials('	WebioFtp') 
             }
     steps {
       powershell("Deploy/Deploy.ps1")
