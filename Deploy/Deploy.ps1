@@ -14,4 +14,4 @@ $Path = Resolve-Path "..\..\..\..\..\app\build\"
 Write-Output "User - $($ENV:FTP_USR)"
 Write-Output "Path - $($Path)"
 #Transfer Files
-dotnet .\FtpDeployCore.dll $Path $ENV:FTP_USR $ENV:FTP_PSW
+dotnet .\FtpDeployCore.dll "$($Path)" "$($ENV:FTP_USR)" "$($ENV:FTP_PSW)"
