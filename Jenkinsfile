@@ -33,7 +33,7 @@ pipeline {
   }
 
   stage("Deploy") {
-    stage {
+    steps {
       powershell("Deploy/Deploy.ps1")
     }
   }
