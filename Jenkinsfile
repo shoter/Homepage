@@ -4,11 +4,15 @@ pipeline {
   stage('prepare') {
     parallel  {
       stage('React') {
+        steps {
         powershell("Deploy/Prepare-react.ps1")
+        }
       }
 
       stage('Csharp') {
+        steps {
         powershell("Deploy/Prepare-csharp.ps1")
+        }
       }
     }
   }
