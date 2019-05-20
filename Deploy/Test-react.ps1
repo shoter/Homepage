@@ -1,4 +1,4 @@
-Set-Location ap
+Set-Location app
 Write-Output (Get-Location)
 
 $env:CI = "true"
