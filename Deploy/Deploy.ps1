@@ -5,7 +5,7 @@ Set-Location app
 Set-Location ../Deploy
 
 Set-Location FtpDeployCore
-#dotnet build
+dotnet build
 
 #Goto build location
 Set-Location bin\Debug\netcoreapp2.2
