@@ -1,6 +1,6 @@
 Set-Location app
 
-#yarn build
+yarn build
 
 Set-Location ../Deploy
 
@@ -11,7 +11,6 @@ dotnet build
 Set-Location bin\Debug\netcoreapp2.2
 
 $Path = Resolve-Path "..\..\..\..\..\app\build"
-Write-Output "User - $($ENV:FTP_USR)"
-Write-Output "Path - $($Path)"
+
 #Transfer Files
 dotnet .\FtpDeployCore.dll "path=$($Path)" "login=$($ENV:FTP_USR)" "pass=$($ENV:FTP_PSW)"
