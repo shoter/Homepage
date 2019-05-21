@@ -16,6 +16,11 @@ namespace FtpDeployCore
         private static string buildFolder, login, password;
         static void Main(string[] args)
         {
+            foreach(var arg in args)
+            {
+                Console.WriteLine(arg);
+            }
+
             buildFolder = args[0];
             login = args[1];
             password = args[2];
