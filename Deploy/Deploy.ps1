@@ -1,11 +1,4 @@
-Set-Location app
-
-#yarn build
-
-Set-Location ../Deploy
-
-Set-Location FtpDeployCore
-#dotnet build
+Set-Location Deploy
 
 #Goto build location
 Set-Location bin\Debug\netcoreapp2.2
