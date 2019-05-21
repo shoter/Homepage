@@ -1,4 +1,5 @@
 ﻿using FtpDeployCore.FtpDeploy;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,14 +17,17 @@ namespace FtpDeployCore
         private static string buildFolder, login, password;
         static void Main(string[] args)
         {
-            foreach(var arg in args)
-            {
-                Console.WriteLine(arg);
-            }
+            var config = new ConfigurationBuilder()
+     .AddCommandLine(args)
+     .Build();
 
-            buildFolder = args[0];
-            login = args[1];
-            password = args[2];
+            buildFolder = config["path"];
+            login = config["login"];
+            password = config["pass"];
+
+            Console.WriteLine($"Build folder - {buildFolder}");
+            Console.WriteLine($"Login - {login}");
+            Console.WriteLine($"Pass - {password}");
 
             var files = GetFilesToDeploy(buildFolder);
 
