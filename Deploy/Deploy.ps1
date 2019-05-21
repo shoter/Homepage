@@ -13,6 +13,6 @@ Set-Location bin\Debug\netcoreapp2.2
 $Path = Resolve-Path "..\..\..\..\..\app\build\"
 Write-Output "User - $($ENV:FTP_USR)"
 Write-Output "Path - $($Path)"
-$Path -replace '/','/2f'
+$Path -replace '\','\2f'
 #Transfer Files
 dotnet .\FtpDeployCore.dll "path=$($Path)" "login=$($ENV:FTP_USR)" "pass=$($ENV:FTP_PSW)"
