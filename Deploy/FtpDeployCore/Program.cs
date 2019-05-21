@@ -25,6 +25,9 @@ namespace FtpDeployCore
             login = config["login"];
             password = config["pass"];
 
+            if (buildFolder.EndsWith("/") == false)
+                buildFolder += "/";
+
             Console.WriteLine($"Build folder - {buildFolder}");
             Console.WriteLine($"Login - {login}");
             Console.WriteLine($"Pass - {password}");
