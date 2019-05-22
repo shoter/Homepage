@@ -33,10 +33,8 @@ pipeline {
   }
 
   stage("Build") {
-      
     steps {
       script {
-      sh 'printenv'
       def msg = powershell(returnStdout: true, script: 'Deploy/Build.ps1')
       println msg
       }
@@ -44,7 +42,6 @@ pipeline {
   }
 
   stage("Deploy") {
-       x
      environment { 
                 FTP = credentials('WebioFtp') 
             }
