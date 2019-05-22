@@ -33,12 +33,10 @@ pipeline {
   }
 
   stage("Build") {
-        when {
-      environment name: 'GIT_BRANCH', value 'master' 
-    }
+        when { environment name: 'GIT_BRANCH', value 'master' }
     steps {
       script {
-      echo env.GIT_BRANCH
+      sh 'printenv'
       def msg = powershell(returnStdout: true, script: 'Deploy/Build.ps1')
       println msg
       }
@@ -46,9 +44,7 @@ pipeline {
   }
 
   stage("Deploy") {
-    when {
-      environment name: 'GIT_BRANCH', value 'master' 
-    }
+        when { environment name: 'GIT_BRANCH', value 'master' }
      environment { 
                 FTP = credentials('WebioFtp') 
             }
