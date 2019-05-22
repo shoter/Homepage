@@ -33,7 +33,7 @@ pipeline {
   }
 
   stage("Build") {
-    when { environment name: 'BRANCH_NAME', value: 'master' }
+    when { branch 'master' }
     steps {
       script {
       bat 'set > env.txt' 
@@ -47,6 +47,7 @@ pipeline {
   }
 
   stage("Deploy") {
+        when { branch 'master' }
     steps {
       script {
       def msg = powershell(returnStdout: true, script: 'Deploy/Deploy.ps1')
