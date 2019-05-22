@@ -38,7 +38,7 @@ pipeline {
     }
     steps {
       script {
-      echo $(env.GIT_BRANCH)
+      echo env.GIT_BRANCH
       def msg = powershell(returnStdout: true, script: 'Deploy/Build.ps1')
       println msg
       }
