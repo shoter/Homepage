@@ -35,6 +35,10 @@ pipeline {
   stage("Build") {
     steps {
       script {
+      bat 'set > env.txt' 
+      for (String i : readFile('env.txt').split("\r?\n")) {
+          println i
+      }
       def msg = powershell(returnStdout: true, script: 'Deploy/Build.ps1')
       println msg
       }
