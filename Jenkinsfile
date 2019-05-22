@@ -33,6 +33,7 @@ pipeline {
   }
 
   stage("Build") {
+    when { environment name: 'BRANCH_NAME', value: 'master' }
     steps {
       script {
       bat 'set > env.txt' 
@@ -46,9 +47,6 @@ pipeline {
   }
 
   stage("Deploy") {
-     environment { 
-                FTP = credentials('WebioFtp') 
-            }
     steps {
       script {
       def msg = powershell(returnStdout: true, script: 'Deploy/Deploy.ps1')
