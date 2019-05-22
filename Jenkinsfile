@@ -33,7 +33,7 @@ pipeline {
   }
 
   stage("Build") {
-        when { environment name: 'GIT_BRANCH', value 'master' }
+      
     steps {
       script {
       sh 'printenv'
@@ -44,7 +44,7 @@ pipeline {
   }
 
   stage("Deploy") {
-        when { environment name: 'GIT_BRANCH', value 'master' }
+       x
      environment { 
                 FTP = credentials('WebioFtp') 
             }
