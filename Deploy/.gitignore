@@ -1,8 +1,5 @@
 bin/*
 
-loginInfo.json
-
-Deploy.ps1
 
 
 ## Ignore Visual Studio temporary files, build results, and
