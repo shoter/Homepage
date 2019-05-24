@@ -48,6 +48,9 @@ pipeline {
 
   stage("Deploy") {
         when { branch 'master' }
+        environment { 
+                FTP = credentials('WebioFtp') 
+            }
     steps {
       script {
       def msg = powershell(returnStdout: true, script: 'Deploy/Deploy.ps1')
