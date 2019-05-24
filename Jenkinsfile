@@ -53,7 +53,7 @@ pipeline {
           }
     steps {
       script {
-      def msg = powershell(returnStdout: true, script: 'Deploy/Deploy.ps1 -branch ${env.GIT_BRANCH}')
+      def msg = powershell(returnStdout: true, script: 'Deploy/Deploy.ps1 -branch ${GIT_BRANCH}')
       println msg
       }
     }
