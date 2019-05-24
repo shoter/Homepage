@@ -14,5 +14,16 @@
     &>.work-area {
         background-color: #3A6EA5;
 
+        .InformPeopleAboutNewBlog {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+            font-size: xx-large;
+
+            height:90vh;
+        }
+
     }
 }
