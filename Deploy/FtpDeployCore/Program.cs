@@ -16,7 +16,7 @@ namespace FtpDeployCore
     class Program
     {
         private static List<string> createdDirs = new List<string>();
-        private static string buildFolder, login, password;
+        private static string buildFolder, login, password, folderName;
         private static FtpClient client;
 
         static void Main(string[] args)
@@ -28,6 +28,8 @@ namespace FtpDeployCore
             buildFolder = config["path"];
             login = config["login"];
             password = config["pass"];
+            folderName = config["folder"];
+
 
             if (buildFolder.EndsWith("/") == false)
                 buildFolder += "/";
@@ -44,6 +46,9 @@ namespace FtpDeployCore
 
 
             string basePath = "/damian.laczak.net.pl/wwwroot/Blog/";
+
+            if (string.IsNullOrWhiteSpace(folderName))
+                basePath += folderName + "/";
 
             RemoveRecurse(basePath);
 
