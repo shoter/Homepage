@@ -1,24 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './styles/app.scss';
+import Desktop from './code/desktop/Desktop';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Deployed with Ci/CD using Jenkins. Site is under construction and will come back to life in coming weeks :)
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Desktop />
     </div>
   );
 }

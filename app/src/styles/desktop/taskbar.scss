@@ -1,0 +1,36 @@
+.app .desktop {
+  .taskbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    background-color: #d4d0c8;
+    border-top: 0.1rem solid #ffffff;
+
+    & > .start {
+      border-top: 0.1rem solid #ffffff;
+      border-left: 0.1rem solid #ffffff;
+      border-right: 0.1rem solid #404040;
+      border-bottom: 0.1rem solid #404040;
+      margin: 0.1rem;
+      padding: 0.2rem;
+      display: flex;
+      align-items: center;
+      & > img {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    & > .gl-timer {
+      border-top: 0.1rem solid #808080;
+      border-left: 0.1rem solid #808080;
+      border-bottom: 0.1rem solid #ffffff;
+      border-right: 0.1rem solid #ffffff;
+      margin: 0.1rem;
+      padding: 0.2rem;
+
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+}
