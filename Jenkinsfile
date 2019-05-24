@@ -47,18 +47,15 @@ pipeline {
   }
 
   stage("Deploy") {
-        when { not {
-          changeRequest()
-        }}
-        environment { 
-                FTP = credentials('WebioFtp') 
-            }
+      when { anyOf { branch 'master'; branch 'dev' } }
+      environment { 
+            FTP = credentials('WebioFtp') 
+          }
     steps {
       script {
-      def msg = powershell(returnStdout: true, script: 'Deploy/Deploy.ps1')
+      def msg = powershell(returnStdout: true, script: 'Deploy/Deploy.ps1 -branch ${env.GIT_BRANCH}')
       println msg
       }
-    }
   }
 }
 }
