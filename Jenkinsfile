@@ -47,7 +47,9 @@ pipeline {
   }
 
   stage("Deploy") {
-        when { branch 'master' }
+        when { not {
+          changeRequest()
+        }}
         environment { 
                 FTP = credentials('WebioFtp') 
             }
