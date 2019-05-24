@@ -56,6 +56,7 @@ pipeline {
       def msg = powershell(returnStdout: true, script: 'Deploy/Deploy.ps1 -branch ${env.GIT_BRANCH}')
       println msg
       }
+    }
   }
 }
 }
