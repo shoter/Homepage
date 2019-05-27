@@ -1,7 +1,12 @@
 pipeline {
   agent any
   stages {
-  stage('prepare') {
+    stage('test') {
+      steps {
+        env.getEnvironment().each { name, value -> println "Name: $name -> Value $value" }
+      }
+    }
+  /*stage('prepare') {
     parallel  {
       stage('Prepare React') {
         steps {
@@ -57,6 +62,6 @@ pipeline {
       println msg
       }
     }
-  }
+  }*/
 }
 }
