@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        echo 'Branch to ${GIT_BRANCH}'
-        echo GIT_BRANCH
+        println  'Branch to ${GIT_BRANCH}'
+        println  GIT_BRANCH
       }
     }
   /*stage('prepare') {
