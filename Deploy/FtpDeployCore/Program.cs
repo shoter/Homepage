@@ -68,6 +68,8 @@ namespace FtpDeployCore
 
         public static void RemoveRecurse(string dirPath)
         {
+            if (client.DirectoryExists(dirPath) == false)
+                return;
 
             var files = client.GetListing(dirPath);
             foreach (var file in files.ToList().Skip(2))
