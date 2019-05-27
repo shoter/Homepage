@@ -48,7 +48,7 @@ namespace FtpDeployCore
 
             string basePath = "/damian.laczak.net.pl/wwwroot/Blog/";
 
-            if (string.IsNullOrWhiteSpace(folderName))
+            if (!string.IsNullOrWhiteSpace(folderName))
                 basePath += folderName + "/";
 
             RemoveRecurse(basePath);
