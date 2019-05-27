@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        sh 'printenv'
+        echo 'Branch to $GIT_BRANCH'
       }
     }
   /*stage('prepare') {
