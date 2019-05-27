@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        env.getEnvironment().each { name, value -> println "Name: $name -> Value $value" }
+        sh 'printenv'
       }
     }
   /*stage('prepare') {
