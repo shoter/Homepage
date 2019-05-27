@@ -1,13 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('test') {
-      steps {
-        println  "Branch to ${GIT_BRANCH}"
-        println  GIT_BRANCH
-      }
-    }
-  /*stage('prepare') {
+  stage('prepare') {
     parallel  {
       stage('Prepare React') {
         steps {
@@ -59,10 +53,10 @@ pipeline {
           }
     steps {
       script {
-      def msg = powershell(returnStdout: true, script: 'Deploy/Deploy.ps1 -branch ${GIT_BRANCH}')
+      def msg = powershell(returnStdout: true, script: "Deploy/Deploy.ps1 -branch ${GIT_BRANCH}")
       println msg
       }
     }
-  }*/
+  }
 }
 }
