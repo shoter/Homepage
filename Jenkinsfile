@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        println  'Branch to ${GIT_BRANCH}'
+        println  "Branch to ${GIT_BRANCH}"
         println  GIT_BRANCH
       }
     }
