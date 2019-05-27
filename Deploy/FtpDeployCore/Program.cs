@@ -37,6 +37,7 @@ namespace FtpDeployCore
             Console.WriteLine($"Build folder - {buildFolder}");
             Console.WriteLine($"Login - {login}");
             Console.WriteLine($"Pass - {password}");
+            Console.WriteLine($"Folder name - {folderName}");
 
 
 
