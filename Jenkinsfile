@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        echo 'Branch to $GIT_BRANCH'
+        echo 'Branch to ${GIT_BRANCH}'
       }
     }
   /*stage('prepare') {
