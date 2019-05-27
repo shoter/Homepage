@@ -33,7 +33,7 @@ pipeline {
   }
 
   stage("Build") {
-    when { branch 'master' }
+      when { anyOf { branch 'master'; branch 'dev' } }
     steps {
       script {
       bat 'set > env.txt' 
@@ -47,7 +47,7 @@ pipeline {
   }
 
   stage("Deploy") {
-     // when { anyOf { branch 'master'; branch 'dev' } }
+      when { anyOf { branch 'master'; branch 'dev' } }
       environment { 
             FTP = credentials('WebioFtp') 
           }
