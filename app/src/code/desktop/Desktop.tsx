@@ -1,15 +1,23 @@
 import React, { Component } from "react"
 import TaskBar from "./TaskBar";
+import DesktopIcon from "./DesktopIcon";
+import Icon from "../../resources/icancode.png";
 
 export default class Desktop extends Component 
 {
     render()
     {
+        var icons = [];
+
+        for(var i = 0; i < 15; ++ i)
+        {
+            icons.push(<DesktopIcon imgUrl={Icon} title="I can code"/>)
+        }
+
         return ( <div className="desktop">
             <div className="work-area">
-                <div className="InformPeopleAboutNewBlog">
-                    My homepage is under construction. It will come to completion shortly. 
-                    Deployed using Ci/CD with Jenkins.
+                <div className="icon-area">
+                    {icons}
                 </div>
             </div>
             <TaskBar />
