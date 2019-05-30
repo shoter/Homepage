@@ -15,6 +15,7 @@
 
   & > .work-area {
     background-color: #3a6ea5;
+    position: relative;
 
 
 
@@ -59,6 +60,14 @@
           text-shadow: 0px 7px 20px rgba(0, 0, 0, 0.34);
         }
       }
+    }
+
+    & .windows-area {
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
     }
   }
 }

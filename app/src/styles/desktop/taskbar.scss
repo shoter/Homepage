@@ -1,5 +1,6 @@
 .app .desktop {
   .taskbar {
+    z-index:9999;
     display: grid;
     grid-template-columns: auto 1fr auto;
     background-color: #d4d0c8;
