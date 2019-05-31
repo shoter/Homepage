@@ -31,11 +31,30 @@ class WindowManager extends Component<WindowManagerProps, WindowManagerState> {
     onWindowClick = (windowId : number) => {
         var window = this.findWindowById(windowId);
 
-    }
+        console.log(window)
+        console.log(this.state.windows);
+
+        var newWindows = [];
+
+        for(let w of this.state.windows)
+        {
+            if(window.id !== w.id)
+            newWindows.push(w);
+        }
+
+        newWindows.push(window);
+
+        console.log(newWindows);
+        console.log("---");
+
+        this.setState({
+            windows: newWindows
+        });
+   }
 
     render() {
 
-        var windows = this.state.windows.map(w => (<Window title={w.title} iconUrl={w.iconUrl}/>));
+        var windows = this.state.windows.map(w => (<Window key={w.id} title={w.title} iconUrl={w.iconUrl} onClick={() =>this.onWindowClick(w.id)}/>));
 
         return (<div className="windows-area">
             {windows}
