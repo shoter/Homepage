@@ -3,6 +3,7 @@ import TaskBar from "./TaskBar";
 import DesktopIcon from "./DesktopIcon";
 import Icon from "../../resources/icancode.png";
 import Window from "../Windows/Window";
+import WindowManager from "../Windows/WindowManager";
 
 export default class Desktop extends Component 
 {
@@ -20,9 +21,7 @@ export default class Desktop extends Component
                 <div className="icon-area">
                     {icons}
                 </div>
-                <div className="windows-area">
-                    <Window title="I can code" iconUrl={Icon} />
-                </div>
+                <WindowManager />
             </div>
             <TaskBar />
         </div>

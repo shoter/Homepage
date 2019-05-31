@@ -3,6 +3,10 @@ import { Rnd } from "react-rnd";
 export interface WindowProps {
   title: string;
   iconUrl: string;
+  onMinimalize? : () => void,
+  onMaximalize?: () => void,
+  onClose?: () => void,
+  onClick?: () => void,
 }
 
 export default class Window extends Component<WindowProps> {
@@ -22,25 +26,25 @@ export default class Window extends Component<WindowProps> {
         bounds="parent"
         dragHandleClassName="title-bar"
       >
-        <div className="gl-window">
+        <div className="gl-window" onClick={this.props.onClick}>
           <div className="title-bar">
             <div className="icon-container">
               <img src={this.props.iconUrl} className="title-icon" />
             </div>
             <span className="title">{this.props.title}</span>
             <div className="buttons">
-              <div className="title-button">
+              <div className="title-button" onClick={this.props.onMinimalize}>
                 <svg viewBox="0 0 100 100" className="minimalize">
                   <line x1="30" y1="80" x2="70" y2="80" />
                 </svg>
               </div>
-              <div className="title-button">
+              <div className="title-button" onClick={this.props.onMaximalize}>
                 <svg viewBox="0 0 100 100" className="maximalize">
                   <rect className="box" width="80" height="80" x="10" y="10" />
                   <rect x="10" width="80" y="10" height="10" />
                 </svg>
               </div>
-              <div className="title-button">
+              <div className="title-button" onClick={this.props.onClose}>
                 <svg viewBox="0 0 100 100">
                   <line x1="20" x2="80" y1="80" y2="20" />
                   <line x1="20" x2="80" y1="20" y2="80" />

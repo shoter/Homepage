@@ -1,0 +1,46 @@
+import React, { Component } from "react";
+import { WindowState } from "../state/windows/windowsReducer";
+import { ApplicationState } from './../state/store';
+import Icon from "../../resources/icancode.png";
+import Window from "./Window";
+import { connect } from 'react-redux';
+
+export interface WindowManagerProps {
+    windows : WindowState[]
+}
+
+export interface WindowManagerState {
+    windows : WindowState[]
+}
+
+const mapStateToProps = (state : ApplicationState) : WindowManagerProps => ({
+    windows: state.windows.windows
+})
+
+class WindowManager extends Component<WindowManagerProps, WindowManagerState> {
+    constructor(props: WindowManagerProps) {
+        super(props);
+
+        this.state = {
+            windows: props.windows
+        }
+    }
+
+    findWindowById = (windowId : number ) : WindowState => this.state.windows.find(w => w.id === windowId) as WindowState;
+
+    onWindowClick = (windowId : number) => {
+        var window = this.findWindowById(windowId);
+
+    }
+
+    render() {
+
+        var windows = this.state.windows.map(w => (<Window title={w.title} iconUrl={w.iconUrl}/>));
+
+        return (<div className="windows-area">
+            {windows}
+        </div>)
+    }
+}
+
+export default connect(mapStateToProps)(WindowManager);
