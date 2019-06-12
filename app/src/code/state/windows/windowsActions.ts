@@ -1,11 +1,14 @@
 import BaseAction from './../baseAction';
 import { WindowVisibility } from './WindowVisibility';
-import { WindowChangeVisibilityAction } from './windowsActions';
+import { WindowChangeVisibilityAction, WindowAction } from './windowsActions';
 import { WindowState } from './windowState';
 
 export interface WindowAction extends BaseAction {
-    windowId: number;
 };
+
+export interface ParticularWindowAction extends WindowAction {
+    windowId: number
+}
 
 export interface WindowCreateAction extends WindowAction {
     title: string,
@@ -13,24 +16,25 @@ export interface WindowCreateAction extends WindowAction {
     render: () => JSX.Element | null;
 };
 
-export interface WindowUpdatePositionAction extends WindowAction {
+export interface WindowUpdatePositionAction extends ParticularWindowAction {
     x: number,
     y: number,
     width: number,
     height: number
 };
 
-export interface WindowChangeVisibilityAction extends WindowAction {
+export interface WindowChangeVisibilityAction extends ParticularWindowAction {
     newVisibility: WindowVisibility
 };
 
-export interface UpdateAllWindows extends WindowAction {
-    windows : WindowState[]
-}
+export interface WindowUpdateAllAction extends WindowAction {
+    windows: WindowState[]
+};
+
+export interface WindowPutOnFrontAction extends ParticularWindowAction {};
 
 export function WindowCreateActionMaker(title: string, iconUrl: string, render: () => JSX.Element | null): WindowCreateAction {
     return {
-        windowId: -1,
         type: WindowCreateActionMaker.name,
         title: title,
         iconUrl: iconUrl,
@@ -57,10 +61,16 @@ export function WindowChangeVisibilityActionMaker(windowId: number, visibility: 
     };
 }
 
-export function UpdateAllWindowsMaker(windows: WindowState[]) : UpdateAllWindows {
+export function WindowPutOnFrontActionMaker(windowId: number) : WindowPutOnFrontAction {
     return {
-        windowId: -1,
-        type: UpdateAllWindowsMaker.name,
+        windowId: windowId,
+        type: WindowPutOnFrontActionMaker.name
+    };
+}
+
+export function WindowUpdateAllActionMaker(windows: WindowState[]) : WindowUpdateAllAction {
+    return {
+        type: WindowUpdateAllActionMaker.name,
         windows: windows
     };
 }

@@ -1,9 +1,10 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import desktopReducer, { DesktopState } from "./desktop/desktopReducer";
 import BaseAction from "./baseAction";
 import windowsReducer, { WindowsState } from "./windows/windowsReducer";
 import { WindowCreateAction, WindowCreateActionMaker } from "./windows/windowsActions";
 import Icon from "../../resources/icancode.png";
+import { WindowsLogic } from "./windows/windowsMiddleware";
 
 export interface ApplicationState {
     desktop: DesktopState,
@@ -15,7 +16,9 @@ const applicationReducer = combineReducers<ApplicationState>({
     windows: windowsReducer
 });
 
-const store = createStore(applicationReducer);
+const store = createStore(applicationReducer, applyMiddleware(
+    WindowsLogic
+));
 
 store.dispatch(WindowCreateActionMaker("Window created dynamically", Icon, () => null));
 store.dispatch(WindowCreateActionMaker("I like pineapples", Icon, () => null));

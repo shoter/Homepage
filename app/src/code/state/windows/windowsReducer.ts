@@ -1,5 +1,5 @@
 import { WindowVisibility } from "./WindowVisibility";
-import { WindowAction, WindowCreateAction, WindowUpdatePositionAction, WindowChangeVisibilityAction, WindowCreateActionMaker, WindowUpdatePositionActionMaker, WindowChangeVisibilityActionMaker } from "./windowsActions";
+import { WindowAction, WindowUpdateAllAction, WindowUpdateAllActionMaker, WindowCreateAction, WindowUpdatePositionAction, WindowChangeVisibilityAction, WindowCreateActionMaker, WindowUpdatePositionActionMaker, WindowChangeVisibilityActionMaker } from "./windowsActions";
 import { WindowState } from "./windowState";
 
 export interface WindowsState {
@@ -21,10 +21,10 @@ export default function windowsReducer(state: WindowsState = initialState, actio
     switch (action.type) {
         case WindowCreateActionMaker.name:
             {
-                var createAction = action as WindowCreateAction;
+                let createAction = action as WindowCreateAction;
 
                 var window: WindowState = {
-                    title: createAction.title,
+                title: createAction.title,
                     iconUrl: createAction.iconUrl,
                     x: 0,
                     y: 0,
@@ -41,7 +41,7 @@ export default function windowsReducer(state: WindowsState = initialState, actio
             }
         case WindowUpdatePositionActionMaker.name:
             {
-                var updateAction = action as WindowUpdatePositionAction;
+                let updateAction = action as WindowUpdatePositionAction;
                 var window = findById(state, updateAction.windowId);
 
                 window = {
@@ -56,12 +56,23 @@ export default function windowsReducer(state: WindowsState = initialState, actio
             }
         case WindowChangeVisibilityActionMaker.name:
             {
-                var changeAction = action as WindowChangeVisibilityAction;
+                let changeAction = action as WindowChangeVisibilityAction;
 
                 var window = findById(state, changeAction.windowId);
                 window.visibility = changeAction.newVisibility;
 
                 return state;
+            }
+        case WindowUpdateAllActionMaker.name:
+            {
+                let updateAction = action as WindowUpdateAllAction;
+
+                var newState : WindowsState = {
+                    windows: updateAction.windows,
+                    ...state
+                }
+
+                return newState;
             }
     }
     return state;
