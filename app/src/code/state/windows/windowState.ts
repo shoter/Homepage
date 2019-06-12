@@ -2,6 +2,7 @@ import { WindowVisibility } from "./WindowVisibility";
 
 export interface WindowState {
     id: number,
+    active: boolean,
     title: string,
     iconUrl: string,
     x: number,

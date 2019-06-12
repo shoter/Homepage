@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import TaskBar from "./TaskBar";
 import DesktopIcon from "./DesktopIcon";
 import Icon from "../../resources/icancode.png";
 import Window from "../Windows/Window";
@@ -7,6 +6,7 @@ import WindowManager from "../Windows/WindowManager";
 import { WindowCreateAction, WindowCreateActionMaker } from './../state/windows/windowsActions';
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
+import TaskBar from "./TaskBar";
 
 interface DispatchProps {
     createWindow : (windowName: string, iconUrl: string, windowContent: () => JSX.Element | null) => WindowCreateAction
@@ -23,6 +23,8 @@ class Desktop extends Component <DesktopProps>
     constructor(props: DesktopProps) {
         super(props);
     }
+
+    
 
     onClick = () => {
         console.log("Creating window");

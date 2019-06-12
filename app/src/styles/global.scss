@@ -1,13 +1,18 @@
-@mixin unpressed {
-    border-top: 1px solid white;
-    border-left: 1px solid white;
-    border-right: 1px solid #424142;
-    border-bottom: 1px solid #424142
+@mixin unpressed($size) {
+    border-top: $size solid white;
+    border-left: $size solid white;
+    border-right: $size solid #424142;
+    border-bottom: $size solid #424142
 }
 
-@mixin pressed {
-    border-right: 1px solid white;
-    border-bottom: 1px solid white;
-    border-top: 1px solid #424142;
-    border-left: 1px solid #424142
+@mixin pressed($size) {
+    border-right: $size solid white;
+    border-bottom: $size solid white;
+    border-top: $size solid #424142;
+    border-left: $size solid #424142
+}
+
+@mixin horizontal-padding($padding) {
+    padding-left: $padding;
+    padding-right: $padding;
 }

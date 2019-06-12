@@ -3,7 +3,7 @@
 $iconSize: 1.2rem;
 
 .gl-window {
-  @include unpressed;
+  @include unpressed(1px);
   padding: 0.2rem;
 
   background-color: #d6d3ce;
@@ -14,30 +14,51 @@ $iconSize: 1.2rem;
     grid-template-columns: auto 1fr auto;
 
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#08246b+0,a5cbf7+100 */
-    background: #08246b; /* Old browsers */
+    background: #848284; /* Old browsers */
     background: -moz-linear-gradient(
       left,
-      #08246b 0%,
-      #a5cbf7 100%
+      #848284 0%,
+      #c6c3c6 100%
     ); /* FF3.6-15 */
     background: -webkit-linear-gradient(
       left,
-      #08246b 0%,
-      #a5cbf7 100%
+      #848284 0%,
+      #c6c3c6 100%
     ); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(
       to right,
-      #08246b 0%,
-      #a5cbf7 100%
+      #848284 0%,
+      #c6c3c6 100%
     ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#08246b', endColorstr='#a5cbf7',GradientType=1 ); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#848284', endColorstr='#C6C3C6',GradientType=1 ); /* IE6-9 */
+
+    &.active {
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#08246b+0,a5cbf7+100 */
+      background: #08246b; /* Old browsers */
+      background: -moz-linear-gradient(
+        left,
+        #08246b 0%,
+        #a5cbf7 100%
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        left,
+        #08246b 0%,
+        #a5cbf7 100%
+      ); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(
+        to right,
+        #08246b 0%,
+        #a5cbf7 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#08246b', endColorstr='#a5cbf7',GradientType=1 ); /* IE6-9 */
+    }
 
     .icon-container {
-        width: 1rem;
-        height: 100%;
-        display: flex;
-        align-items:center;
-        margin-right: 0.1rem;
+      width: 1rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-right: 0.1rem;
       .title-icon {
         width: 1rem;
         height: 1rem;
@@ -57,7 +78,7 @@ $iconSize: 1.2rem;
         height: $iconSize;
         background-color: #d6d3ce;
         margin-left: 0.25rem;
-        @include unpressed;
+        @include unpressed(1px);
         .maximalize-button {
           border: 1px solid black;
           border-top: 3px solid black;
@@ -80,7 +101,7 @@ $iconSize: 1.2rem;
         }
 
         &:active {
-          @include pressed;
+          @include pressed(1px);
         }
       }
     }

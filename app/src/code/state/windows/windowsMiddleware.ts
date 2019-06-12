@@ -23,9 +23,13 @@ export const WindowsLogic: Middleware =
 
                         for (let w of windows) {
                             if (window.id !== w.id)
+                            {
+                                w.active = false;
                                 newWindows.push(w);
+                            }
                         }
                         newWindows.push(window);
+                        window.active = true;
                         return next(WindowUpdateAllActionMaker(newWindows));
                     }
                 }

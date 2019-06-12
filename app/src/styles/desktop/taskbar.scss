@@ -1,3 +1,8 @@
+@import "../global.scss";
+
+$program-margin : 0.2rem;
+$taskbar-margin: 0.15rem;
+
 .app .desktop {
   .taskbar {
     z-index:9999;
@@ -7,11 +12,10 @@
     border-top: 0.1rem solid #ffffff;
 
     & > .start {
-      border-top: 0.1rem solid #ffffff;
-      border-left: 0.1rem solid #ffffff;
-      border-right: 0.1rem solid #404040;
-      border-bottom: 0.1rem solid #404040;
-      margin: 0.1rem;
+
+      @include unpressed(0.1rem);
+
+      margin: $taskbar-margin;
       padding: 0.2rem;
       display: flex;
       align-items: center;
@@ -21,12 +25,56 @@
       }
     }
 
+    & > .programs {
+
+      display: flex;
+
+      .opened-program {
+        user-select: none;
+        display: inline-flex;
+        cursor:pointer;
+
+        margin-left: $program-margin;
+        margin-right: $program-margin;
+        margin-top: $taskbar-margin;
+        margin-bottom: $taskbar-margin;
+
+        @include horizontal-padding(0.2rem);
+
+      @include unpressed(0.1rem);
+      &.active {
+        @include pressed(0.1rem);
+      }
+        .icon-container {
+          width: 1rem;
+          height: 100%;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &>img {
+            width: 1rem;
+            height: 1rem;
+          }
+          
+
+        }
+
+        .title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          white-space: pre;
+          word-wrap: break;
+        }
+      }
+    }
+
     & > .gl-timer {
-      border-top: 0.1rem solid #808080;
-      border-left: 0.1rem solid #808080;
-      border-bottom: 0.1rem solid #ffffff;
-      border-right: 0.1rem solid #ffffff;
-      margin: 0.1rem;
+      @include pressed(0.1rem);
+      margin: $taskbar-margin;
       padding: 0.2rem;
 
       display: flex;

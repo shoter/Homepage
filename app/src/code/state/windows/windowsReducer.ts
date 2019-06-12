@@ -33,12 +33,19 @@ export default function windowsReducer(state: WindowsState = initialState, actio
                     visibility: WindowVisibility.Maximalized,
                     render: createAction.render,
                     id: state.lastWindowId++,
+                    active: true
                 }
 
                 let newState : WindowsState = {
                     windows: state.windows.concat(window),
                     lastWindowId: state.lastWindowId
                 };
+
+                for(let w of newState.windows) {
+                    if(w.id !== window.id) {
+                        w.active = false;
+                    }
+                }
 
                 return newState;
             }

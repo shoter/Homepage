@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Rnd } from "react-rnd";
 export interface WindowProps {
+  id: number;
   title: string;
   iconUrl: string;
+  active: boolean;
   content: () => JSX.Element | null,
   onMinimalize? : () => void,
   onMaximalize?: () => void,
@@ -13,22 +15,32 @@ export interface WindowProps {
 export default class Window extends Component<WindowProps> {
   constructor(props: WindowProps) {
     super(props);
-  }
+  } 
 
   render() {
+    let content : JSX.Element | null = null;
+    if(this.props.content)
+    {
+      content = this.props.content();
+    }
+    var n = (this.props.id * 5) % 200;
     return (
       <Rnd
         default={{
-          x: 0,
-          y: 0,
+          x: n,
+          y: n, 
           height: 640,
           width: 800
         }}
+        minWidth={400}
+        minHeight={300}
         bounds="parent"
         dragHandleClassName="title-bar"
+        onDragStart={this.props.onClick}
+        onResizeStart={this.props.onClick}
       >
         <div className="gl-window" onClick={this.props.onClick}>
-          <div className="title-bar">
+          <div className={"title-bar " + (this.props.active ? "active":"")}>
             <div className="icon-container">
               <img src={this.props.iconUrl} className="title-icon" />
             </div>
@@ -41,8 +53,8 @@ export default class Window extends Component<WindowProps> {
               </div>
               <div className="title-button" onClick={this.props.onMaximalize}>
                 <svg viewBox="0 0 100 100" className="maximalize">
-                  <rect className="box" width="80" height="80" x="10" y="10" />
-                  <rect x="10" width="80" y="10" height="10" />
+                  <rect className="box" width="70" height="70" x="15" y="15" />
+                  <rect x="15" width="70" y="15" height="10" />
                 </svg>
               </div>
               <div className="title-button" onClick={this.props.onClose}>
@@ -54,7 +66,7 @@ export default class Window extends Component<WindowProps> {
             </div>
           </div>
           <div className="content">
-            {this.props.content}
+            {content}
           </div>
         </div>
       </Rnd>
