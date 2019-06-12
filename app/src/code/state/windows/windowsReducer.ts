@@ -36,7 +36,7 @@ export default function windowsReducer(state: WindowsState = initialState, actio
                 }
 
                 let newState : WindowsState = {
-                    windows: [window].concat(state.windows),
+                    windows: state.windows.concat(window),
                     lastWindowId: state.lastWindowId
                 };
 

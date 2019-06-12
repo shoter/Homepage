@@ -71,6 +71,9 @@
 
         //It makes this area transparent to pointer clicks. icons on desktop will be clickable.
         pointer-events: none;
+        &>*{
+          pointer-events: all;
+        }
     }
   }
 }

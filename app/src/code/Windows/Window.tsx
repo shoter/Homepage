@@ -3,6 +3,7 @@ import { Rnd } from "react-rnd";
 export interface WindowProps {
   title: string;
   iconUrl: string;
+  content: () => JSX.Element | null,
   onMinimalize? : () => void,
   onMaximalize?: () => void,
   onClose?: () => void,
@@ -51,6 +52,9 @@ export default class Window extends Component<WindowProps> {
                 </svg>
               </div>
             </div>
+          </div>
+          <div className="content">
+            {this.props.content}
           </div>
         </div>
       </Rnd>

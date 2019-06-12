@@ -47,6 +47,7 @@ class WindowManager extends Component<WindowManagerProps> {
         
 
         var windows = this.props.windows.map(w => (<Window key={w.id} title={w.title} iconUrl={w.iconUrl} 
+            content={w.render}
             onClick={() =>this.onWindowClick(w.id)}
             onClose={() => this.onWindowClose(w.id)}
 
