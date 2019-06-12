@@ -4,7 +4,7 @@ import Icon from "../../resources/icancode.png";
 import Window from "./Window";
 import { connect } from 'react-redux';
 import { WindowState } from "../state/windows/windowState";
-import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction } from './../state/windows/windowsActions';
+import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowCloseAction, WindowCloseActionMaker } from './../state/windows/windowsActions';
 import { Dispatch } from 'redux';
 
 export interface WindowManagerStateProps {
@@ -12,7 +12,8 @@ export interface WindowManagerStateProps {
 }
 
 export interface WindowManagerDispatchProps {
-    putWindowOnFront: (windowId: number) => WindowPutOnFrontAction
+    putWindowOnFront: (windowId: number) => WindowPutOnFrontAction,
+    closeWindow: (windowId: number) => WindowCloseAction,
 }
 
 type WindowManagerProps = WindowManagerStateProps & WindowManagerDispatchProps;
@@ -23,12 +24,15 @@ const mapStateToProps = (state : ApplicationState) : WindowManagerStateProps => 
 
 
 const mapDispatchToProps = (dispatch : Dispatch) : WindowManagerDispatchProps => ({
-    putWindowOnFront: (windowId: number) => dispatch(WindowPutOnFrontActionMaker(windowId))
+    putWindowOnFront: (windowId: number) => dispatch(WindowPutOnFrontActionMaker(windowId)),
+    closeWindow: (windowId) => dispatch(WindowCloseActionMaker(windowId))
 });
 
 class WindowManager extends Component<WindowManagerProps> {
     constructor(props: WindowManagerProps) {
         super(props);
+
+        console.log("Construcor!");
     }
 
     onWindowClick = (windowId: number) => {
@@ -36,26 +40,8 @@ class WindowManager extends Component<WindowManagerProps> {
     }
 
     onWindowClose = (windowId: number) => {
-
+        this.props.closeWindow(windowId);
     }
-
-
-
-//    onWindowClose = (windowId : number) => {
-//        var newWindows : WindowState[] = [];
-//        for(let w of this.state.windows) {
-//            if(windowId !== w.id)
-//             newWindows.push(w);
-//        }
-
-//        this.setState(() => {
-//         console.log(newWindows);
-        
-//         return   {
-//            windows: newWindows
-//            }
-//        });
-//    }
 
     render() {
         

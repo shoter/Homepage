@@ -35,9 +35,12 @@ export default function windowsReducer(state: WindowsState = initialState, actio
                     id: state.lastWindowId++,
                 }
 
-                state.windows.push(window);
+                let newState : WindowsState = {
+                    windows: [window].concat(state.windows),
+                    lastWindowId: state.lastWindowId
+                };
 
-                return state;
+                return newState;
             }
         case WindowUpdatePositionActionMaker.name:
             {
@@ -52,7 +55,19 @@ export default function windowsReducer(state: WindowsState = initialState, actio
                     ...window
                 }
 
-                return state;
+                let newState = {
+                    ...state
+                };
+
+                for(let i = 0;i < newState.windows.length; ++i)
+                {
+                    let w = newState.windows[i];
+
+                    if(w.id === updateAction.windowId)
+                        newState.windows[i] = window
+                };
+
+                return newState;
             }
         case WindowChangeVisibilityActionMaker.name:
             {
@@ -67,9 +82,9 @@ export default function windowsReducer(state: WindowsState = initialState, actio
             {
                 let updateAction = action as WindowUpdateAllAction;
 
-                var newState : WindowsState = {
+                let newState : WindowsState = {
                     windows: updateAction.windows,
-                    ...state
+                    lastWindowId: state.lastWindowId
                 }
 
                 return newState;

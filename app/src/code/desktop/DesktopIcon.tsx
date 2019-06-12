@@ -14,7 +14,7 @@ export default class DesktopIcon extends Component<DesktopIconProps>
 
     render() {
         return (
-       <div className="icon">
+       <div className="icon" onClick={this.props.onClick}>
            <img src={this.props.imgUrl}/>
            <span>{this.props.title}</span>
        </div> 

@@ -33,6 +33,8 @@ export interface WindowUpdateAllAction extends WindowAction {
 
 export interface WindowPutOnFrontAction extends ParticularWindowAction {};
 
+export interface WindowCloseAction extends ParticularWindowAction {};
+
 export function WindowCreateActionMaker(title: string, iconUrl: string, render: () => JSX.Element | null): WindowCreateAction {
     return {
         type: WindowCreateActionMaker.name,
@@ -72,5 +74,12 @@ export function WindowUpdateAllActionMaker(windows: WindowState[]) : WindowUpdat
     return {
         type: WindowUpdateAllActionMaker.name,
         windows: windows
+    };
+}
+
+export function WindowCloseActionMaker(windowId: number) : WindowCloseAction {
+    return {
+        type: WindowCloseActionMaker.name,
+        windowId: windowId
     };
 }

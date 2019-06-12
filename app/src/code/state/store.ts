@@ -20,9 +20,6 @@ const store = createStore(applicationReducer, applyMiddleware(
     WindowsLogic
 ));
 
-store.dispatch(WindowCreateActionMaker("Window created dynamically", Icon, () => null));
-store.dispatch(WindowCreateActionMaker("I like pineapples", Icon, () => null));
-
 
 export default store;
 

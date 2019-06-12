@@ -1,7 +1,7 @@
 import { Middleware, MiddlewareAPI, Dispatch } from "redux";
 import BaseAction from './../baseAction';
 import { ApplicationState } from './../store';
-import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowUpdateAllActionMaker } from './windowsActions';
+import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowUpdateAllActionMaker, WindowCloseActionMaker, WindowCloseAction } from './windowsActions';
 import { WindowState } from "./windowState";
 
 
@@ -13,22 +13,28 @@ export const WindowsLogic: Middleware =
                 if (action.type === WindowPutOnFrontActionMaker.name) {
                     let a = action as WindowPutOnFrontAction;
 
-                    var windows = api.getState().windows.windows;
+                    let windows = api.getState().windows.windows;
 
-                    var window = windows.find(w => w.id === a.windowId) as WindowState;
+                    let window = windows.find(w => w.id === a.windowId);
 
-                    var newWindows = [];
+                    if(window)
+                    {
+                        let newWindows = [];
 
-                    for (let w of windows) {
-                        if (window.id !== w.id)
-                            newWindows.push(w);
+                        for (let w of windows) {
+                            if (window.id !== w.id)
+                                newWindows.push(w);
+                        }
+                        newWindows.push(window);
+                        return next(WindowUpdateAllActionMaker(newWindows));
                     }
+                }
+                else if(action.type === WindowCloseActionMaker.name) {
+                    let a = action as WindowCloseAction;
+                    let newWindows : WindowState[] = api.getState().windows.windows.filter(w => w.id != a.windowId);
 
-                    newWindows.push(window);
-                    return WindowUpdateAllActionMaker(newWindows);
+                    return next(WindowUpdateAllActionMaker(newWindows));
                 }
-                else
-                {
-                    return next(action);
-                }
+
+                return next(action);
             }
