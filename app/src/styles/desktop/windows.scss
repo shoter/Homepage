@@ -5,6 +5,8 @@ $iconSize: 1.2rem;
 .gl-window {
   @include unpressed(1px);
   padding: 0.2rem;
+  display: flex;
+  flex-direction: column;
 
   background-color: #d6d3ce;
   height: 100%;
@@ -106,4 +108,12 @@ $iconSize: 1.2rem;
       }
     }
   }
+
+  &>.content {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 0.2rem 0.4rem;
+  }
+
+
 }

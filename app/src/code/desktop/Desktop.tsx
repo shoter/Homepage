@@ -7,6 +7,8 @@ import { WindowCreateAction, WindowCreateActionMaker } from './../state/windows/
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import TaskBar from "./TaskBar";
+import ReactMarkdown from "react-markdown";
+const path = require( "../posts/test.txt");
 
 interface DispatchProps {
     createWindow : (windowName: string, iconUrl: string, windowContent: () => JSX.Element | null) => WindowCreateAction
@@ -16,12 +18,25 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
     createWindow: (windowName: string, iconUrl: string, windowContent: () => JSX.Element | null) => dispatch(WindowCreateActionMaker(windowName, iconUrl, windowContent)),
 });
 
-export type DesktopProps = DispatchProps;
+export type DesktopProps = DispatchProps; 
 
-class Desktop extends Component <DesktopProps>
+interface DesktopState 
+{ 
+    markdown: string
+}
+
+class Desktop extends Component <DesktopProps, DesktopState>
 {
     constructor(props: DesktopProps) {
         super(props);
+
+        this.state = {
+            markdown: ""
+        }
+    }
+
+    componentDidMount = () => {
+        fetch(path).then(res => res.text()).then(text => this.setState({markdown: text}))
     }
 
     
@@ -29,7 +44,9 @@ class Desktop extends Component <DesktopProps>
     onClick = () => {
         console.log("Creating window");
         this.props.createWindow("I Can Code - Damian Laczak's blog", Icon, () => (<div>
-            My homepage is under construction. It will come to completion shortly. Deployed using Ci/CD with Jenkins.
+
+            <ReactMarkdown source={this.state.markdown} />
+            
         </div>));
     }
 
