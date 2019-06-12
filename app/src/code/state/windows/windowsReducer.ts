@@ -1,17 +1,6 @@
 import { WindowVisibility } from "./WindowVisibility";
 import { WindowAction, WindowCreateAction, WindowUpdatePositionAction, WindowChangeVisibilityAction, WindowCreateActionMaker, WindowUpdatePositionActionMaker, WindowChangeVisibilityActionMaker } from "./windowsActions";
-
-export interface WindowState {
-    id: number,
-    title: string,
-    iconUrl: string,
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    visibility: WindowVisibility,
-    render: () => JSX.Element | null
-}
+import { WindowState } from "./windowState";
 
 export interface WindowsState {
     windows: WindowState[]

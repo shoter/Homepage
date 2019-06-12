@@ -1,6 +1,7 @@
 import BaseAction from './../baseAction';
 import { WindowVisibility } from './WindowVisibility';
 import { WindowChangeVisibilityAction } from './windowsActions';
+import { WindowState } from './windowState';
 
 export interface WindowAction extends BaseAction {
     windowId: number;
@@ -22,6 +23,10 @@ export interface WindowUpdatePositionAction extends WindowAction {
 export interface WindowChangeVisibilityAction extends WindowAction {
     newVisibility: WindowVisibility
 };
+
+export interface UpdateAllWindows extends WindowAction {
+    windows : WindowState[]
+}
 
 export function WindowCreateActionMaker(title: string, iconUrl: string, render: () => JSX.Element | null): WindowCreateAction {
     return {
@@ -49,5 +54,13 @@ export function WindowChangeVisibilityActionMaker(windowId: number, visibility: 
         windowId: windowId,
         type: WindowChangeVisibilityActionMaker.name,
         newVisibility: visibility
+    };
+}
+
+export function UpdateAllWindowsMaker(windows: WindowState[]) : UpdateAllWindows {
+    return {
+        windowId: -1,
+        type: UpdateAllWindowsMaker.name,
+        windows: windows
     };
 }
