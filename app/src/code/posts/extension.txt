@@ -12,6 +12,8 @@ It’s worth noting that we can use * wildcard in the query and it makes the who
 
 ## Solution file browser ( ALT + U )
 
+![Solution file browser](https://raw.githubusercontent.com/shoter/Homepage/master/media/SolutionExplorer-300x168.gif)
+
 Used to search for the given file in solution. It has 3 modifiers:
 
 - Show all files ( ALT + A ) – if disabled it will show only files that contains source code. If enabled all solution files will be used in search.
@@ -21,6 +23,8 @@ Used to search for the given file in solution. It has 3 modifiers:
 You can also open this window while holding SHIFT. Then you will only search through opened files.
 
 ## Code browser ( ALT + G )
+
+![Code Browser](https://raw.githubusercontent.com/shoter/Homepage/master/media/CodeExplorer-300x168.gif)
 
 Code browser is used to search through a file to find a field in the class that we are looking for. (It’s working also in C++ so it can be used to find methods in it. It’s a little clunky in C++ though and not always find all methods in the file). It has several search modifiers :
 
@@ -32,6 +36,8 @@ Code browser is used to search through a file to find a field in the class that 
 We can open code browser in specialized mode where we will look only for given things. There are 4 specialized modes:
 
 ## Method browser ( ALT + M )
+
+![Method Browser](https://raw.githubusercontent.com/shoter/Homepage/master/media/MethodExplorer-300x168.gif)
 
 We will look only through methods in given file. Very usefull and I use it very often.
 ### Class browser ( ALT + C)
@@ -46,15 +52,25 @@ We will look only through events. Also never used that.
 
 ## Solution browser ( ALT + S )
 
+![Solution browser](https://raw.githubusercontent.com/shoter/Homepage/master/media/Statistics-1.png)
+
 It’s very similar to Code Browser but it is not limited only to one file. It searches the whole solution to find given type definition (class, enum, struct, interface, delegate). I stumbled across it when writing this article. I think it will be very helpfull in future for me. Another good tool to have!
 
 ## Problems with shared projects
+
+![Shared project problem](https://raw.githubusercontent.com/shoter/Homepage/master/media/SharedProject-300x168.gif)
+
 DPack unfortunately is not compatible with everything. You cannot use code browser inside file which is part of shared project. That’s sad :(.
 
 ## Solution statistics
+
+![How many lines of code were written for my project](https://raw.githubusercontent.com/shoter/Homepage/master/media/Statistics-300x183.png)
+
 It just shows how much code you wrote. Nice if you like numbers :P.
 
 ## Solution backup
+
+![Backup settings](https://raw.githubusercontent.com/shoter/Homepage/master/media/backup-300x184.png)
 
 You can configure DPack in a way that it will automatically save the backup of your solution. I never used that because VS provides very good support for situations that would harm our solution ( power outage, VS crashes etc ).
 
