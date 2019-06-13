@@ -2,7 +2,9 @@ import start from "./resources/start.png";
 import githubIcon from "./resources/github.svg";
 import stackIcon from "./resources/stack.png";
 import blogIcon from "./resources/blog.png";
-
+import shutdownIcon from "./resources/Shutdown.png";
+import enlarge from "./resources/enlarge.png";
+import downsize from "./resources/downsize.png";
 import CanIcon from "./resources/icancode.png";
 
 export default class Resources {
@@ -11,4 +13,7 @@ export default class Resources {
     static stackIcon = stackIcon;
     static blogIcon = blogIcon;
     static can = CanIcon;
+    static shutdownIcon = shutdownIcon;
+    static enlarge = enlarge;
+    static downsize = downsize;
 }

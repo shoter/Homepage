@@ -6,6 +6,7 @@ import { ApplicationState } from "../state/store";
 import Timer from "./Timer";
 import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction } from "../state/windows/windowsActions";
 import { Dispatch } from "redux";
+import Start from "../start/start";
 
 interface OpenedProgram {
   id: number;
@@ -71,11 +72,7 @@ class TaskBar extends Component<TaskBarProps> {
 
     return (
       <div className="taskbar">
-        <div className="start"> 
-          <img src={Resources.startButton} alt="Start logo" />
-          Start
-        </div>
-
+        <Start />
         <div className="programs">{opened}</div>
         <Timer />
       </div>
