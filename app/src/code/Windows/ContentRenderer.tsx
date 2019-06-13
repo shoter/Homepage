@@ -4,6 +4,8 @@ export default abstract class ContentRenderer
 {
 
     abstract renderContent() : JSX.Element | null;
+
+    
     
 
 }

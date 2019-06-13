@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown";
 import CodeBlock from "../utility/codeBlock";
 import WebBrowser from "../Windows/WebBrowser";
 import Resources from "../../Resources";
+import BlogPosts from "../Windows/BlogPosts";
 
 
 const path = require( "../posts/test.txt");
@@ -48,19 +49,11 @@ class Desktop extends Component <DesktopProps, DesktopState>
     
 
     onClick = () => {
-        console.log("Creating window");
-        this.props.createWindow("I Can Code - Damian Laczak's blog", Resources.blogIcon, () => (<div>
+        let bp = new BlogPosts();
 
+   
 
-            <ReactMarkdown source={this.state.markdown} 
-            renderers={{
-                code: CodeBlock
-    }}
-            
-            />
-            
-        </div>));
-
+        this.props.createWindow("Blog Posts", Resources.can, bp.renderContent);
     }
 
     openWebiste = (url: string) => {

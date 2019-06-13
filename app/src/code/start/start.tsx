@@ -62,7 +62,6 @@ export default class Start extends Component<{}, StartState> {
 
           <div className="items">
             <RibbonItem iconUrl={Resources.shutdownIcon} name="Shutdown" />
-            <RibbonItem iconUrl={Resources.can} name="Blog Posts" />
             <RibbonItem
               iconUrl={Resources.stackIcon}
               name="My SO"
