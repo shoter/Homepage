@@ -4,12 +4,14 @@ import { WindowState } from "./windowState";
 
 export interface WindowsState {
     windows: WindowState[]
-    lastWindowId: number
+    lastWindowId: number,
+    maximalizedId? : number
 }
 
 const initialState: WindowsState = {
     windows: [],
-    lastWindowId: 0
+    lastWindowId: 0,
+    maximalizedId: undefined
 };
 
 function findById(state: WindowsState, id: number): WindowState {
@@ -30,7 +32,7 @@ export default function windowsReducer(state: WindowsState = initialState, actio
                     y: 0,
                     width: 1,
                     height: 1,
-                    visibility: WindowVisibility.Maximalized,
+                    visibility: WindowVisibility.Normal,
                     render: createAction.render,
                     id: state.lastWindowId++,
                     active: true

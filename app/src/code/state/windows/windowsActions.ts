@@ -18,10 +18,13 @@ export interface WindowCreateAction extends WindowAction {
 
 export interface WindowUpdatePositionAction extends ParticularWindowAction {
     x: number,
-    y: number,
-    width: number,
-    height: number
+    y: number
 };
+
+export interface WindowUpdateSizeAction extends ParticularWindowAction {
+    width : number,
+    height: number
+}
 
 export interface WindowChangeVisibilityAction extends ParticularWindowAction {
     newVisibility: WindowVisibility
@@ -50,6 +53,13 @@ export function WindowUpdatePositionActionMaker(windowId:number, x: number, y:nu
         type: WindowUpdatePositionActionMaker.name,
         x: x,
         y: y,
+    };
+}
+
+export function WindowUpdateSizeActionMaker(windowId : number, width: number, height: number) : WindowUpdateSizeAction  {
+    return {
+        type: WindowUpdateSizeActionMaker.name,
+        windowId : windowId,
         width: width,
         height: height
     };
