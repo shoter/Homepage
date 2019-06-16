@@ -52,12 +52,12 @@ export default class Window extends Component<WindowProps> {
 
   onPositionChanged = (el: Element) => {
     if (this.props.onPositionChanged) {
-      this.props.onPositionChanged(
-        el.clientLeft,
-        el.clientTop,
+     /* this.props.onPositionChanged(
+        el.x,
+        el.y,
         el.clientWidth,
         el.clientHeight
-      );
+      );*/
     }
   };
 

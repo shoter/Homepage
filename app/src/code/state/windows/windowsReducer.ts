@@ -1,6 +1,7 @@
 import { WindowVisibility } from "./WindowVisibility";
-import { WindowAction, WindowUpdateAllAction, WindowUpdateAllActionMaker, WindowCreateAction, WindowUpdatePositionAction, WindowChangeVisibilityAction, WindowCreateActionMaker, WindowUpdatePositionActionMaker, WindowChangeVisibilityActionMaker } from "./windowsActions";
+import { WindowAction, WindowUpdateAllAction, WindowUpdateAllActionMaker, WindowCreateAction, WindowUpdatePositionAction, WindowChangeVisibilityAction, WindowCreateActionMaker, WindowUpdatePositionActionMaker, WindowChangeVisibilityActionMaker, WindowUpdateSizeActionMaker, WindowUpdateSizeAction } from "./windowsActions";
 import { WindowState } from "./windowState";
+import { ApplicationState } from "../store";
 
 export interface WindowsState {
     windows: WindowState[]
@@ -56,13 +57,13 @@ export default function windowsReducer(state: WindowsState = initialState, actio
                 let updateAction = action as WindowUpdatePositionAction;
                 var window = findById(state, updateAction.windowId);
 
-                window = {
+              /*  window = {
                     x: updateAction.x,
                     y: updateAction.y,
                     width: updateAction.width,
                     height: updateAction.height,
                     ...window
-                }
+                }*/
 
                 let newState = {
                     ...state
@@ -77,6 +78,15 @@ export default function windowsReducer(state: WindowsState = initialState, actio
                 };
 
                 return newState;
+            }
+
+            case WindowUpdateSizeActionMaker.name: 
+            {
+                let a = action as WindowUpdateSizeAction;
+                
+               /* let newState : ApplicationState = {
+
+                } */
             }
         case WindowChangeVisibilityActionMaker.name:
             {
