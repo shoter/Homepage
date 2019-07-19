@@ -100,13 +100,13 @@ Console.WriteLine(typeof(HttpContent).Assembly.GetName().Version);
 Yay. We want to use 4.1.1.3!
 ### What Visual Studio is using?
 
-![Is it solution](https://raw.githubusercontent.com/shoter/Homepage/master/media/dependency_hell_wat1.jpg)
+![Is it solution](https://raw.githubusercontent.com/shoter/Homepage/master/media/dependency_hell_wat1.png)
 
 
 That’s not funny. I personally think that Intellisense is using 4.2.0.0 right now.
 ### What program is using?
 
-![Is it solution](https://raw.githubusercontent.com/shoter/Homepage/master/media/dependency_hell_wat2.jpg)
+![Is it solution](https://raw.githubusercontent.com/shoter/Homepage/master/media/dependency_hell_wat2.png)
 
 It was taken from GAC. From what I see .Net framework in 4.7.* is not copying the .net framework assemblies probably.
 
