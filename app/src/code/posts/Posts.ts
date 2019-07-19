@@ -3,7 +3,7 @@ import { string } from "prop-types";
 
 const helloPath = require( "./helloWorld.txt");
 const extension = require("./extension.txt");
-
+const dependencyHell = require("./dependency_hell.txt")
 export interface Post {
     title : string,
     shortTitle : string,
@@ -15,6 +15,14 @@ export interface Post {
 
 
 const Posts : Post[] = [
+    {
+        title: "Dependency hell",
+        shortTitle: "dep_hell",
+        date: new Date(2019, 0, 30),
+        iconUrl: Resources.can,
+        author: "Shoter",
+        path: dependencyHell
+    },
     {
         title: "An extension I cannot live without",
         shortTitle: "ExtensionLiveWithout",
