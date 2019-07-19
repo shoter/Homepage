@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Rnd, DraggableData, ResizableDelta } from "react-rnd";
-import { Size, ResizableDirection } from "re-resizable";
+import { Size, ResizeDirection } from "re-resizable";
 export interface WindowProps {
   id: number;
   title: string;
@@ -44,14 +44,21 @@ export default class Window extends Component<WindowProps> {
     super(props);
   }
 
-  onResizeStop = (
+  onResizeStop = ( 
     e: MouseEvent | TouchEvent,
-    dir: ResizableDirection,
+    dir: ResizeDirection,
     ref: HTMLDivElement,
-    delta: ResizableDelta
+    delta: ResizableDelta,
+    pos: Position
   ) => {
+    if(this.props.onPositionChanged)
+    {
+      this.props.onPositionChanged(pos.x, pos.y);
+    }
     if(this.props.onSizeChanged)
-    this.props.onSizeChanged(ref.clientWidth, ref.clientHeight);
+    {
+      this.props.onSizeChanged(ref.clientWidth, ref.clientHeight);
+    }
   }
 
   onDragStop = (e: DraggableMouseEvent, data: DraggableData) => {
