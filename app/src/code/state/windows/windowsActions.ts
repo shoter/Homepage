@@ -47,7 +47,7 @@ export function WindowCreateActionMaker(title: string, iconUrl: string, render: 
     }
 }
 
-export function WindowUpdatePositionActionMaker(windowId:number, x: number, y:number, width: number, height: number): WindowUpdatePositionAction {
+export function WindowUpdatePositionActionMaker(windowId:number, x: number, y:number): WindowUpdatePositionAction {
     return {
         windowId: windowId,
         type: WindowUpdatePositionActionMaker.name,

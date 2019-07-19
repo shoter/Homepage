@@ -1,13 +1,17 @@
 import { WindowVisibility } from "./WindowVisibility";
-import { WindowAction, WindowUpdateAllAction, WindowUpdateAllActionMaker, WindowCreateAction, WindowUpdatePositionAction, WindowChangeVisibilityAction, WindowCreateActionMaker, WindowUpdatePositionActionMaker, WindowChangeVisibilityActionMaker, WindowUpdateSizeActionMaker, WindowUpdateSizeAction } from "./windowsActions";
+import { WindowAction, WindowCloseActionMaker, WindowUpdateAllAction, WindowUpdateAllActionMaker, WindowCreateAction, WindowUpdatePositionAction, WindowChangeVisibilityAction, WindowCreateActionMaker, WindowUpdatePositionActionMaker, WindowChangeVisibilityActionMaker, WindowUpdateSizeActionMaker, WindowUpdateSizeAction, WindowCloseAction } from "./windowsActions";
 import { WindowState } from "./windowState";
 import { ApplicationState } from "../store";
+import { withStatement } from "@babel/types";
+import produce from "immer";
 
-export interface WindowsState {
+interface WindowsStateMutable  {
     windows: WindowState[]
     lastWindowId: number,
     maximalizedId? : number
 }
+
+export type WindowsState = Readonly<WindowsStateMutable>;
 
 const initialState: WindowsState = {
     windows: [],
@@ -20,6 +24,32 @@ function findById(state: WindowsState, id: number): WindowState {
     return state.windows.find((window: WindowState) => window.id === id) as WindowState;
 }
 
+function findIdById(state: WindowsState, windowId: number) : number{
+    for(let i = 0;i < state.windows.length; ++i)
+    {
+        if(state.windows[i].id === windowId)
+        return i;
+    }
+
+    throw "No number";
+}
+
+function updateWindow(window: WindowState, state : WindowsState) : WindowsState {
+    let newState : WindowsState = {
+        lastWindowId : state.lastWindowId,
+        maximalizedId: state.maximalizedId,
+        windows: state.windows,
+    };
+
+    for(let i = 0; i < newState.windows.length; ++i) {
+        if(newState.windows[i].id === window.id) {
+            newState.windows[i] = window
+        }
+    }
+
+    return newState;
+}
+
 export default function windowsReducer(state: WindowsState = initialState, action: WindowAction): WindowsState {
     switch (action.type) {
         case WindowCreateActionMaker.name:
@@ -29,84 +59,61 @@ export default function windowsReducer(state: WindowsState = initialState, actio
                 var window: WindowState = {
                 title: createAction.title,
                     iconUrl: createAction.iconUrl,
-                    x: 0,
-                    y: 0,
-                    width: 1,
-                    height: 1,
                     visibility: WindowVisibility.Normal,
                     render: createAction.render,
-                    id: state.lastWindowId++,
+                    id: state.lastWindowId + 1,
                     active: true
                 }
 
-                let newState : WindowsState = {
-                    windows: state.windows.concat(window),
-                    lastWindowId: state.lastWindowId
-                };
-
-                for(let w of newState.windows) {
-                    if(w.id !== window.id) {
+                return produce(state, draft => {
+                    draft.lastWindowId = state.lastWindowId + 1;
+                    for(let w of draft.windows)
+                    {
                         w.active = false;
                     }
-                }
-
-                return newState;
+                    draft.windows.push(window);
+                });
             }
         case WindowUpdatePositionActionMaker.name:
             {
                 let updateAction = action as WindowUpdatePositionAction;
-                var window = findById(state, updateAction.windowId);
-
-              /*  window = {
-                    x: updateAction.x,
-                    y: updateAction.y,
-                    width: updateAction.width,
-                    height: updateAction.height,
-                    ...window
-                }*/
-
-                let newState = {
-                    ...state
-                };
-
-                for(let i = 0;i < newState.windows.length; ++i)
-                {
-                    let w = newState.windows[i];
-
-                    if(w.id === updateAction.windowId)
-                        newState.windows[i] = window
-                };
-
-                return newState;
+                return produce(state, draft => {
+                    draft.windows[draft.windows.findIndex(w => w.id === updateAction.windowId)].x = updateAction.x;
+                    draft.windows[draft.windows.findIndex(w => w.id === updateAction.windowId)].y = updateAction.y;
+                });
             }
 
             case WindowUpdateSizeActionMaker.name: 
             {
                 let a = action as WindowUpdateSizeAction;
-                
-               /* let newState : ApplicationState = {
-
-                } */
+                return produce(state, draft => {
+                    draft.windows[draft.windows.findIndex(w => w.id === a.windowId)].width = a.width;
+                    draft.windows[draft.windows.findIndex(w => w.id === a.windowId)].height = a.height;
+                })
             }
         case WindowChangeVisibilityActionMaker.name:
             {
                 let changeAction = action as WindowChangeVisibilityAction;
 
-                var window = findById(state, changeAction.windowId);
-                window.visibility = changeAction.newVisibility;
-
-                return state;
+                return produce(state, draft => {
+                    draft.windows[draft.windows.findIndex(w => w.id === changeAction.windowId)].visibility = changeAction.newVisibility
+                })
             }
         case WindowUpdateAllActionMaker.name:
             {
                 let updateAction = action as WindowUpdateAllAction;
 
-                let newState : WindowsState = {
-                    windows: updateAction.windows,
-                    lastWindowId: state.lastWindowId
-                }
+                return produce(state, draft =>{
+                    draft.windows = updateAction.windows
+                });
+            }
+        case WindowCloseActionMaker.name:
+            {
+                let a = action as WindowCloseAction;
 
-                return newState;
+                return produce(state, draft => {
+                    delete draft.windows[draft.windows.findIndex(w => w.id === a.windowId)];
+                })
             }
     }
     return state;

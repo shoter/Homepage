@@ -20,7 +20,9 @@ const applicationReducer = combineReducers<ApplicationState>({
     app: appReducer
 });
 
-const store = createStore(applicationReducer, applyMiddleware(
+const enhancer = (<any>window)['devToolsExtension'] ? (<any>window)['devToolsExtension']()(createStore) : createStore;
+
+const store = enhancer(applicationReducer, applyMiddleware(
     WindowsLogic
 ));
 

@@ -20,6 +20,9 @@ export interface WindowProps {
   onPositionChanged?: (
     x: number,
     y: number,
+  ) => void;
+
+  onSizeChanged?: (
     width: number,
     height: number
   ) => void;
@@ -46,20 +49,15 @@ export default class Window extends Component<WindowProps> {
     dir: ResizableDirection,
     ref: HTMLDivElement,
     delta: ResizableDelta
-  ) => this.onPositionChanged(ref);
+  ) => {
+    if(this.props.onSizeChanged)
+    this.props.onSizeChanged(ref.clientWidth, ref.clientHeight);
+  }
 
-  onDragStop = (e: DraggableMouseEvent, data: DraggableData) => this.onPositionChanged(data.node);
-
-  onPositionChanged = (el: Element) => {
-    if (this.props.onPositionChanged) {
-     /* this.props.onPositionChanged(
-        el.x,
-        el.y,
-        el.clientWidth,
-        el.clientHeight
-      );*/
-    }
-  };
+  onDragStop = (e: DraggableMouseEvent, data: DraggableData) => {
+    if(this.props.onPositionChanged) 
+    this.props.onPositionChanged(data.x, data.y);
+  }
 
   render() {
     let content: JSX.Element | null = null;

@@ -63,9 +63,9 @@ class Desktop extends Component <DesktopProps, DesktopState>
     render()
     {
         var icons = [
-            (<DesktopIcon onClick={() => this.onClick()} title="Blog Posts" imgUrl={Resources.can} />),
-            (<DesktopIcon onClick={() => this.openWebiste("https://github.com/shoter")} title="My github" imgUrl={Resources.githubIcon} />),
-            (<DesktopIcon onClick={() => this.openWebiste("https://stackoverflow.com/users/2583946/shoter")} title="My SO Profile" imgUrl={Resources.stackIcon} />)
+            (<DesktopIcon key="posts" onClick={() => this.onClick()} title="Blog Posts" imgUrl={Resources.can} />),
+            (<DesktopIcon key="github" onClick={() => this.openWebiste("https://github.com/shoter")} title="My github" imgUrl={Resources.githubIcon} />),
+            (<DesktopIcon key="stack" onClick={() => this.openWebiste("https://stackoverflow.com/users/2583946/shoter")} title="My SO Profile" imgUrl={Resources.stackIcon} />)
             
         ];
 

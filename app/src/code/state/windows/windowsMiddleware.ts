@@ -3,7 +3,7 @@ import BaseAction from './../baseAction';
 import { ApplicationState } from './../store';
 import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowUpdateAllActionMaker, WindowCloseActionMaker, WindowCloseAction } from './windowsActions';
 import { WindowState } from "./windowState";
-
+import produce from "immer";
 
 export const WindowsLogic: Middleware =
     (api: MiddlewareAPI<Dispatch, ApplicationState>) =>
@@ -24,12 +24,15 @@ export const WindowsLogic: Middleware =
                         for (let w of windows) {
                             if (window.id !== w.id)
                             {
-                                w.active = false;
-                                newWindows.push(w);
+                                newWindows.push(produce(w, draft => {
+                                    draft.active = false;
+                                }));
                             }
                         }
-                        newWindows.push(window);
-                        window.active = true;
+                        newWindows.push(produce(window, draft => {
+                            draft.active = true;
+                        }));
+                        
                         return next(WindowUpdateAllActionMaker(newWindows));
                     }
                 }

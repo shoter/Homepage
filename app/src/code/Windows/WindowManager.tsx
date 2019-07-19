@@ -4,7 +4,7 @@ import Icon from "../../resources/icancode.png";
 import Window from "./Window";
 import { connect } from 'react-redux';
 import { WindowState } from "../state/windows/windowState";
-import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowCloseAction, WindowCloseActionMaker, WindowUpdatePositionActionMaker } from './../state/windows/windowsActions';
+import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowCloseAction, WindowCloseActionMaker, WindowUpdatePositionActionMaker, WindowUpdateSizeActionMaker } from './../state/windows/windowsActions';
 import { Dispatch } from 'redux';
 
 export interface WindowManagerStateProps {
@@ -15,7 +15,8 @@ export interface WindowManagerStateProps {
 export interface WindowManagerDispatchProps {
     putWindowOnFront: (windowId: number) => WindowPutOnFrontAction,
     closeWindow: (windowId: number) => WindowCloseAction,
-    updatePosition: (windowId : number, x : number, y : number, width: number, height: number) => any;
+    updatePosition: (windowId : number, x : number, y : number) => any,
+    updateSize : (windowId : number, width: number, height: number) => any,
 }
 
 type WindowManagerProps = WindowManagerStateProps & WindowManagerDispatchProps;
@@ -28,7 +29,8 @@ const mapStateToProps = (state : ApplicationState) : WindowManagerStateProps => 
 const mapDispatchToProps = (dispatch : Dispatch) : WindowManagerDispatchProps => ({
     putWindowOnFront: (windowId: number) => dispatch(WindowPutOnFrontActionMaker(windowId)),
     closeWindow: (windowId) => dispatch(WindowCloseActionMaker(windowId)),
-    updatePosition: (windowId: number, x,y,width,height) => dispatch(WindowUpdatePositionActionMaker(windowId, x, y, width, height)),
+    updatePosition: (windowId: number, x,y) => dispatch(WindowUpdatePositionActionMaker(windowId, x, y)),
+    updateSize: (windowId, width, height) => dispatch(WindowUpdateSizeActionMaker(windowId, width, height)),
 });
 
 class WindowManager extends Component<WindowManagerProps> {
@@ -60,7 +62,7 @@ class WindowManager extends Component<WindowManagerProps> {
         return x;
     }
 
-    onPositionChanged = (windowId: number, x : number, y: number, width: number, height: number) => {
+    onPositionChanged = (windowId: number, x : number, y: number) => {
         if(this.selfRef)
         {
             let maxW = this.selfRef.clientWidth;
@@ -68,22 +70,32 @@ class WindowManager extends Component<WindowManagerProps> {
 
             x /= maxW;
             y /= maxH;
-            width /= maxW;
-            height /= maxH;
 
             x = this.setInNorms(x);
             y = this.setInNorms(y);
+
+            console.log("x = " + x + ", y = " + y);
+
+            this.props.updatePosition(windowId, x, y);
+        }
+    }
+
+    onSizeChanged = (windowId: number, width : number, height: number) => {
+        if(this.selfRef)
+        {
+            let maxW = this.selfRef.clientWidth;
+            let maxH = this.selfRef.clientHeight;
+
+            width /= maxW;
+            height /= maxH;
+
             width = this.setInNorms(width);
             height = this.setInNorms(height);
 
-            console.log("x = " + x + ", y = " + y + ", w = " + width + ", height = " + height);
+            console.log("w = " + width + ", h = " + height);
 
-            if(x + width <= 1 && y + height <= 1)
-            {
-                this.props.updatePosition(windowId, x, y, width, height);
-            }
+            this.props.updateSize(windowId, width, height);
         }
-        
     }
 
     render() {
@@ -106,9 +118,14 @@ class WindowManager extends Component<WindowManagerProps> {
             let width : number | undefined;
             let height : number | undefined;
 
-            if(maxW && maxH) {
+            if(maxW && maxH && w.x && w.y) {
                 x = w.x * maxW;
                 y = w.y * maxH;
+
+            }
+
+            if(maxW && maxH && w.width && w.height)
+            {
                 width = w.width * maxW;
                 height = w.height * maxH;
             }
@@ -123,7 +140,8 @@ class WindowManager extends Component<WindowManagerProps> {
             y={y}
             width={width}
             height={height}
-            onPositionChanged={(x: number, y:number, width: number, height: number) => this.onPositionChanged(w.id, x, y, width, height)}
+            onPositionChanged={(x: number, y:number) => this.onPositionChanged(w.id, x, y)}
+            onSizeChanged={(width, height) => this.onSizeChanged(w.id, width, height)}
 
             />)}
             );
