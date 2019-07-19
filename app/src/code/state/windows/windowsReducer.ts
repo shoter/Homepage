@@ -18,11 +18,12 @@ import { WindowState } from "./windowState";
 import { ApplicationState } from "../store";
 import { withStatement } from "@babel/types";
 import produce from "immer";
+import { BlogRouter } from "../../router/router";
 
 interface WindowsStateMutable {
   windows: WindowState[];
   lastWindowId: number;
-  maximalizedId?: number;
+maximalizedId?: number;
 }
 
 export type WindowsState = Readonly<WindowsStateMutable>;
@@ -78,6 +79,13 @@ export default function windowsReducer(
         isMaximalized = true;
       }
 
+      let routerId : number | undefined;
+
+      if(createAction.data && createAction.data.routerElementId)
+      {
+        routerId = createAction.data.routerElementId;
+      }
+
       var window: WindowState = {
         title: createAction.title,
         iconUrl: createAction.iconUrl,
@@ -85,7 +93,8 @@ export default function windowsReducer(
         id: state.lastWindowId + 1,
         isMaximalized: isMaximalized,
         isMinimalized: false,
-        active: true
+        active: true,
+        routerId: routerId
       };
 
      
@@ -129,6 +138,13 @@ export default function windowsReducer(
     }
     case WindowCloseActionMaker.name: {
       let a = action as WindowCloseAction;
+
+      let w = state.windows.find(w => w.id === a.windowId);
+
+      if(w && w.routerId)
+      {
+        BlogRouter.removeElement(w.routerId);
+      }
 
       return produce(state, draft => {
         draft.windows.splice(

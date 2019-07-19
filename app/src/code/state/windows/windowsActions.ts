@@ -1,5 +1,6 @@
 import BaseAction from './../baseAction';
 import { WindowState } from './windowState';
+import { RouterElement } from '../../router/routerElement';
 
 export interface WindowAction extends BaseAction {
 };
@@ -9,7 +10,8 @@ export interface ParticularWindowAction extends WindowAction {
 }
 
 export interface WindowCreateActionExtraData {
-    isMaximalized? : boolean
+    isMaximalized? : boolean,
+    routerElementId? : number
 }
 
 export interface WindowCreateAction extends WindowAction {

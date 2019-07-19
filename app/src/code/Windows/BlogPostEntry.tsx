@@ -4,6 +4,8 @@ import { Dispatch } from "redux";
 import { WindowCreateActionMaker, WindowCreateActionExtraData } from "../state/windows/windowsActions";
 import { findPost } from "../posts/Posts";
 import BlogPost from "./BlogPost";
+import { BlogRouter } from "../router/router";
+import { BlogElement } from "../router/blogElement";
 
 interface Props {
     id: string,
@@ -35,7 +37,8 @@ class BlogPostEntry extends Component<BlogPostEntryProps> {
             var bp = new BlogPost(post, text);
     
             this.props.createWindow(this.props.name, this.props.iconUrl, bp.renderContent, {
-                isMaximalized: true
+                isMaximalized: true,
+                routerElementId : BlogRouter.addElement(new BlogElement(post))
             });
 
         })

@@ -9,7 +9,8 @@ interface WindowStateMutable {
     height?: number,
     isMaximalized : boolean,
     isMinimalized: boolean,
-    render: () => JSX.Element | null
+    render: () => JSX.Element | null,
+    routerId?: number
 }
 
 export type WindowState = Readonly<WindowStateMutable>;

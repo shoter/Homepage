@@ -1,7 +1,8 @@
 import { RouterElement } from "./routerElement";
 import { number } from "prop-types";
+import { Observer } from "../common/observer";
 
-export class BlogRouterClass {
+export class BlogRouterClass implements Observer<RouterElement> {
     private static _instance: BlogRouterClass;
 
     private _baseUrl : string;
@@ -19,11 +20,15 @@ export class BlogRouterClass {
     addElement(element : RouterElement) : number {
         this._lastId += 1;
         this._elements[this._lastId] = element;
+        element.addObserver(this);
+
+        this.updatePath();
         return this._lastId;
     }
 
     removeElement(id : number) {
         delete this._elements[id];
+        this.updatePath();
     }
 
     getPath() : string {
@@ -49,6 +54,16 @@ export class BlogRouterClass {
         }
 
         return path.substring(0, path.length - 1);;
+    }
+
+    updatePath() {
+        let path = this.getPath();
+        let url = this._baseUrl + path;
+        window.history.replaceState({}, "I can code", url);
+    }
+
+    notify = (el?: RouterElement) : void => {
+        this.updatePath();
     }
 
     public static get Instance()

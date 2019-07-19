@@ -1,6 +1,7 @@
 import { RouterElement } from "./routerElement";
 import { RouterPathElement } from "./routerPathElement";
 import { Post } from "../posts/Posts";
+import { Observer } from "../common/observer";
 
 export class BlogElement extends RouterElement {
 
@@ -18,5 +19,7 @@ export class BlogElement extends RouterElement {
       }]
    }
 
-   getType = () => "bp"; //blog post
+   getType = () => BlogElement.type; //blog post
+
+   static type = "bp";
 }
