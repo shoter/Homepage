@@ -4,7 +4,7 @@ import { connect, DispatchProp } from "react-redux";
 import Resources from "../../Resources";
 import { ApplicationState } from "../state/store";
 import Timer from "./Timer";
-import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction } from "../state/windows/windowsActions";
+import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowMinimalizeActionMaker } from "../state/windows/windowsActions";
 import { Dispatch } from "redux";
 import Start from "../start/start";
 
@@ -21,6 +21,7 @@ interface StateProps {
 
 interface DispatchProps {
   putOnTop: (windowId: number) => WindowPutOnFrontAction;
+  minimalize: (windowId: number) => any;
 }
 
 const mapStateToProps = (state: ApplicationState): StateProps => ({
@@ -33,7 +34,8 @@ const mapStateToProps = (state: ApplicationState): StateProps => ({
 }); 
 
 const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
-  putOnTop: (windowId: number) => dispatch(WindowPutOnFrontActionMaker(windowId))
+  putOnTop: (windowId: number) => dispatch(WindowPutOnFrontActionMaker(windowId)),
+  minimalize: (windowId) => dispatch(WindowMinimalizeActionMaker(windowId)),
 })
  
 export type TaskBarProps = StateProps & DispatchProps;
@@ -52,14 +54,24 @@ class TaskBar extends Component<TaskBarProps> {
     return title;
   }
 
-  onClick = (id: number) => this.props.putOnTop(id);
+  onClick = (id: number, active: boolean) => 
+  {
+    if(active)
+    {
+      this.props.minimalize(id);
+    }
+    else
+    {
+      this.props.putOnTop(id);
+    }
+  }
 
   render() {
     var openedCount = this.props.programs.length;
     var opened = this.props.programs.sort((a,b) => a.id - b.id).map(p => (
       <div key={p.id}
        className={"opened-program " + (p.active ? "active" : "")}
-       onClick={() => this.onClick(p.id)}
+       onClick={() => this.onClick(p.id, p.active)}
        >
         <div className="icon-container">
           <img src={p.iconUrl} />

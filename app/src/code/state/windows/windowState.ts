@@ -1,5 +1,3 @@
-import { WindowVisibility } from "./WindowVisibility";
-
 interface WindowStateMutable {
     id: number,
     active: boolean,
@@ -9,7 +7,8 @@ interface WindowStateMutable {
     y?: number,
     width?: number,
     height?: number,
-    visibility: WindowVisibility,
+    isMaximalized : boolean,
+    isMinimalized: boolean,
     render: () => JSX.Element | null
 }
 

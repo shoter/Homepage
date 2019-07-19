@@ -1,8 +1,7 @@
 import { Middleware, MiddlewareAPI, Dispatch } from "redux";
 import BaseAction from './../baseAction';
 import { ApplicationState } from './../store';
-import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowUpdateAllActionMaker, WindowCloseActionMaker, WindowCloseAction, ParticularWindowAction, WindowAction } from './windowsActions';
-import { WindowState } from "./windowState";
+import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowUpdateAllActionMaker, ParticularWindowAction, WindowAction} from './windowsActions';
 import produce from "immer";
 
 export const WindowsLogic: Middleware =
@@ -43,13 +42,12 @@ export const WindowsLogic: Middleware =
 
                         newWindows.push(produce(window, draft => {
                             draft.active = true;
+                            draft.isMinimalized = false;
                         }));
                         
                         return next(WindowUpdateAllActionMaker(newWindows));
                     }
                 }
-
-
 
                 return next(action);
             }

@@ -4,7 +4,7 @@ import Icon from "../../resources/icancode.png";
 import Window from "./Window";
 import { connect } from 'react-redux';
 import { WindowState } from "../state/windows/windowState";
-import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowCloseAction, WindowCloseActionMaker, WindowUpdatePositionActionMaker, WindowUpdateSizeActionMaker } from './../state/windows/windowsActions';
+import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowCloseAction, WindowCloseActionMaker, WindowUpdatePositionActionMaker, WindowUpdateSizeActionMaker, WindowToggleMaximalizeActionMaker, WindowMinimalizeActionMaker } from './../state/windows/windowsActions';
 import { Dispatch } from 'redux';
 
 export interface WindowManagerStateProps {
@@ -17,6 +17,8 @@ export interface WindowManagerDispatchProps {
     closeWindow: (windowId: number) => WindowCloseAction,
     updatePosition: (windowId : number, x : number, y : number) => any,
     updateSize : (windowId : number, width: number, height: number) => any,
+    toggleMaximalize : (windowId: number) => any,
+    minimalizeWindow : (windowId : number) => any,
 }
 
 type WindowManagerProps = WindowManagerStateProps & WindowManagerDispatchProps;
@@ -31,6 +33,8 @@ const mapDispatchToProps = (dispatch : Dispatch) : WindowManagerDispatchProps =>
     closeWindow: (windowId) => dispatch(WindowCloseActionMaker(windowId)),
     updatePosition: (windowId: number, x,y) => dispatch(WindowUpdatePositionActionMaker(windowId, x, y)),
     updateSize: (windowId, width, height) => dispatch(WindowUpdateSizeActionMaker(windowId, width, height)),
+    toggleMaximalize : (windowId) => dispatch(WindowToggleMaximalizeActionMaker(windowId)),
+    minimalizeWindow : (windowId) => dispatch(WindowMinimalizeActionMaker(windowId))
 });
 
 class WindowManager extends Component<WindowManagerProps> {
@@ -49,6 +53,7 @@ class WindowManager extends Component<WindowManagerProps> {
     onWindowClose = (windowId: number) => {
         this.props.closeWindow(windowId);
     }
+    
 
     setRef = (ref: HTMLDivElement) => {
         this.selfRef = ref;
@@ -111,7 +116,9 @@ class WindowManager extends Component<WindowManagerProps> {
     
         
 
-        var windows = this.props.windows.map(w =>{ 
+        var windows = this.props.windows
+        .filter(w => w.isMinimalized === false)
+        .map(w =>{ 
 
             let x : number | undefined;
             let y : number | undefined;
@@ -136,6 +143,9 @@ class WindowManager extends Component<WindowManagerProps> {
             content={w.render}
             onClick={() =>this.onWindowClick(w.id)}
             onClose={() => this.onWindowClose(w.id)}
+            onMinimalize={() => this.props.minimalizeWindow(w.id)}
+            onMaximalize={() => this.props.toggleMaximalize(w.id)}
+            isMaximalized={w.isMaximalized}
             x={x}
             y={y}
             width={width}

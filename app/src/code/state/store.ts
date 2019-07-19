@@ -1,12 +1,10 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import desktopReducer, { DesktopState } from "./desktop/desktopReducer";
-import BaseAction from "./baseAction";
 import windowsReducer, { WindowsState } from "./windows/windowsReducer";
-import { WindowCreateAction, WindowCreateActionMaker } from "./windows/windowsActions";
-import Icon from "../../resources/icancode.png";
 import { WindowsLogic } from "./windows/windowsMiddleware";
 import appReducer, { AppState } from "./app/appReducer";
 import { FullscrenChangeActionMaker } from "./app/appActions";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 export interface ApplicationState {
     desktop: DesktopState,
@@ -20,11 +18,11 @@ const applicationReducer = combineReducers<ApplicationState>({
     app: appReducer
 });
 
-const enhancer = (<any>window)['devToolsExtension'] ? (<any>window)['devToolsExtension']()(createStore) : createStore;
+//const enhancer = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ '] ? (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ']()(compose) : compose;
 
-const store = enhancer(applicationReducer, applyMiddleware(
+const store = createStore(applicationReducer, composeWithDevTools(applyMiddleware(
     WindowsLogic
-));
+)));
 
 document.onfullscreenchange = (e: Event) => {
     store.dispatch(FullscrenChangeActionMaker(document.fullscreenElement === e.target)); 
@@ -33,4 +31,4 @@ document.onfullscreenchange = (e: Event) => {
 
 export default store;
 
-(<any>window).store = store;
+(window as any).store = store;

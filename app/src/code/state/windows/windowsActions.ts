@@ -1,6 +1,4 @@
 import BaseAction from './../baseAction';
-import { WindowVisibility } from './WindowVisibility';
-import { WindowChangeVisibilityAction, WindowAction } from './windowsActions';
 import { WindowState } from './windowState';
 
 export interface WindowAction extends BaseAction {
@@ -26,10 +24,6 @@ export interface WindowUpdateSizeAction extends ParticularWindowAction {
     height: number
 }
 
-export interface WindowChangeVisibilityAction extends ParticularWindowAction {
-    newVisibility: WindowVisibility
-};
-
 export interface WindowUpdateAllAction extends WindowAction {
     windows: WindowState[]
 };
@@ -37,6 +31,10 @@ export interface WindowUpdateAllAction extends WindowAction {
 export interface WindowPutOnFrontAction extends ParticularWindowAction {};
 
 export interface WindowCloseAction extends ParticularWindowAction {};
+
+export interface WindowMinimalizeAction extends ParticularWindowAction {};
+
+export interface WindowToggleMaximalizeAction extends ParticularWindowAction {};
 
 export function WindowCreateActionMaker(title: string, iconUrl: string, render: () => JSX.Element | null): WindowCreateAction {
     return {
@@ -65,14 +63,6 @@ export function WindowUpdateSizeActionMaker(windowId : number, width: number, he
     };
 }
 
-export function WindowChangeVisibilityActionMaker(windowId: number, visibility: WindowVisibility) : WindowChangeVisibilityAction {
-    return {
-        windowId: windowId,
-        type: WindowChangeVisibilityActionMaker.name,
-        newVisibility: visibility
-    };
-}
-
 export function WindowPutOnFrontActionMaker(windowId: number) : WindowPutOnFrontAction {
     return {
         windowId: windowId,
@@ -90,6 +80,20 @@ export function WindowUpdateAllActionMaker(windows: WindowState[]) : WindowUpdat
 export function WindowCloseActionMaker(windowId: number) : WindowCloseAction {
     return {
         type: WindowCloseActionMaker.name,
+        windowId: windowId
+    };
+}
+
+export function WindowMinimalizeActionMaker(windowId: number) : WindowMinimalizeAction {
+    return {
+        type: WindowMinimalizeActionMaker.name,
+        windowId: windowId
+    };
+}
+
+export function WindowToggleMaximalizeActionMaker(windowId: number) : WindowToggleMaximalizeAction {
+    return {
+        type: WindowToggleMaximalizeActionMaker.name,
         windowId: windowId
     };
 }

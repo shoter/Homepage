@@ -10,6 +10,16 @@ $iconSize: 1.2rem;
 
   background-color: #d6d3ce;
   height: 100%;
+
+  &.maximalized
+  {
+    position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+  }
+  
   .title-bar {
     padding: 0.2rem;
     display: grid;
@@ -114,6 +124,7 @@ $iconSize: 1.2rem;
     overflow: auto;
     padding: 0.2rem 0.4rem;
     position: relative;
+    background-color: #d6d3ce;
   }
 
 
