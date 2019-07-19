@@ -15,8 +15,7 @@ export type WindowsState = Readonly<WindowsStateMutable>;
 
 const initialState: WindowsState = {
     windows: [],
-    lastWindowId: 0,
-    maximalizedId: undefined
+    lastWindowId: 0
 };
 
 function findById(state: WindowsState, id: number): WindowState {
@@ -112,7 +111,7 @@ export default function windowsReducer(state: WindowsState = initialState, actio
                 let a = action as WindowCloseAction;
 
                 return produce(state, draft => {
-                    delete draft.windows[draft.windows.findIndex(w => w.id === a.windowId)];
+                    draft.windows.splice(draft.windows.findIndex(w => w.id === a.windowId), 1);
                 })
             }
     }
