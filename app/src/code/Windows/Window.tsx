@@ -18,6 +18,9 @@ export interface WindowProps {
   width?: number;
   height?: number;
 
+  screenWidth? : number;
+  screenHeight? : number;
+
   onPositionChanged?: (x: number, y: number) => void;
 
   onSizeChanged?: (width: number, height: number) => void;
@@ -183,13 +186,22 @@ export default class Window extends Component<WindowProps> {
     else
     {
 
+      let height = 640;
+      let width = 800;
+
+      if(this.props.screenHeight && this.props.screenWidth)
+      {
+        height = (this.props.screenHeight - 200) ;
+        width = (this.props.screenWidth - 200);
+      }
+
     return (
       <Rnd
         default={{
           x: n,
           y: n,
-          height: 640,
-          width: 800
+          height: height,
+          width: width,
         }}
         position={position}
         size={size}

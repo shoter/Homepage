@@ -8,11 +8,17 @@ export interface ParticularWindowAction extends WindowAction {
     windowId: number
 }
 
+export interface WindowCreateActionExtraData {
+    isMaximalized? : boolean
+}
+
 export interface WindowCreateAction extends WindowAction {
     title: string,
     iconUrl: string,
     render: () => JSX.Element | null;
+    data? : WindowCreateActionExtraData
 };
+
 
 export interface WindowUpdatePositionAction extends ParticularWindowAction {
     x: number,
@@ -36,12 +42,13 @@ export interface WindowMinimalizeAction extends ParticularWindowAction {};
 
 export interface WindowToggleMaximalizeAction extends ParticularWindowAction {};
 
-export function WindowCreateActionMaker(title: string, iconUrl: string, render: () => JSX.Element | null): WindowCreateAction {
+export function WindowCreateActionMaker(title: string, iconUrl: string, render: () => JSX.Element | null, data? : WindowCreateActionExtraData): WindowCreateAction {
     return {
         type: WindowCreateActionMaker.name,
         title: title,
         iconUrl: iconUrl,
-        render: render
+        render: render,
+        data: data
     }
 }
 

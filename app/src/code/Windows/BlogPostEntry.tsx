@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { WindowCreateActionMaker } from "../state/windows/windowsActions";
+import { WindowCreateActionMaker, WindowCreateActionExtraData } from "../state/windows/windowsActions";
 import { findPost } from "../posts/Posts";
 import BlogPost from "./BlogPost";
 
@@ -14,11 +14,11 @@ interface Props {
 }
 
 interface DispatchProps {
-    createWindow: (name: string, icon: string, content : () => JSX.Element) => any;
+    createWindow: (name: string, icon: string, content : () => JSX.Element, data : WindowCreateActionExtraData) => any;
 }
 
 const mapDispatchToProps = (d: Dispatch) : DispatchProps => ({
-    createWindow : (name: string, icon: string, c: () => JSX.Element) => d(WindowCreateActionMaker(name, icon, c))
+    createWindow : (name: string, icon: string, c: () => JSX.Element, data : WindowCreateActionExtraData) => d(WindowCreateActionMaker(name, icon, c, data))
 });
 
 type BlogPostEntryProps = Props & DispatchProps;
@@ -34,7 +34,9 @@ class BlogPostEntry extends Component<BlogPostEntryProps> {
 
             var bp = new BlogPost(post, text);
     
-            this.props.createWindow(this.props.name, this.props.iconUrl, bp.renderContent);
+            this.props.createWindow(this.props.name, this.props.iconUrl, bp.renderContent, {
+                isMaximalized: true
+            });
 
         })
 

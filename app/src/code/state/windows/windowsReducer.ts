@@ -71,15 +71,24 @@ export default function windowsReducer(
     case WindowCreateActionMaker.name: {
       let createAction = action as WindowCreateAction;
 
+      let isMaximalized = false;
+
+      if(createAction.data && createAction.data.isMaximalized)
+      {
+        isMaximalized = true;
+      }
+
       var window: WindowState = {
         title: createAction.title,
         iconUrl: createAction.iconUrl,
         render: createAction.render,
         id: state.lastWindowId + 1,
-        isMaximalized: false,
+        isMaximalized: isMaximalized,
         isMinimalized: false,
         active: true
       };
+
+     
 
       return produce(state, draft => {
         draft.lastWindowId = state.lastWindowId + 1;

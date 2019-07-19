@@ -148,6 +148,8 @@ class WindowManager extends Component<WindowManagerProps> {
             isMaximalized={w.isMaximalized}
             x={x}
             y={y}
+            screenHeight={maxH}
+            screenWidth={maxW}
             width={width}
             height={height}
             onPositionChanged={(x: number, y:number) => this.onPositionChanged(w.id, x, y)}
