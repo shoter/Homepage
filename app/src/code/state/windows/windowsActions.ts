@@ -17,7 +17,7 @@ export interface WindowCreateActionExtraData {
 export interface WindowCreateAction extends WindowAction {
     title: string,
     iconUrl: string,
-    render: () => JSX.Element | null;
+    content: JSX.Element,
     data? : WindowCreateActionExtraData
 };
 
@@ -44,12 +44,12 @@ export interface WindowMinimalizeAction extends ParticularWindowAction {};
 
 export interface WindowToggleMaximalizeAction extends ParticularWindowAction {};
 
-export function WindowCreateActionMaker(title: string, iconUrl: string, render: () => JSX.Element | null, data? : WindowCreateActionExtraData): WindowCreateAction {
+export function WindowCreateActionMaker(title: string, iconUrl: string, content: JSX.Element, data? : WindowCreateActionExtraData): WindowCreateAction {
     return {
         type: WindowCreateActionMaker.name,
         title: title,
         iconUrl: iconUrl,
-        render: render,
+        content: content,
         data: data
     }
 }

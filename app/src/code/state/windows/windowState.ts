@@ -9,7 +9,7 @@ interface WindowStateMutable {
     height?: number,
     isMaximalized : boolean,
     isMinimalized: boolean,
-    render: () => JSX.Element | null,
+    content: JSX.Element,
     routerId?: number
 }
 

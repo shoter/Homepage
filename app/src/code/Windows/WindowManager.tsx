@@ -140,7 +140,7 @@ class WindowManager extends Component<WindowManagerProps> {
             return (<Window key={w.id} title={w.title} iconUrl={w.iconUrl} 
             id={w.id}
             active={w.active}
-            content={w.render}
+            content={w.content}
             onClick={() =>this.onWindowClick(w.id)}
             onClose={() => this.onWindowClose(w.id)}
             onMinimalize={() => this.props.minimalizeWindow(w.id)}

@@ -16,11 +16,11 @@ interface Props {
 }
 
 interface DispatchProps {
-    createWindow: (name: string, icon: string, content : () => JSX.Element, data : WindowCreateActionExtraData) => any;
+    createWindow: (name: string, icon: string, content : JSX.Element, data : WindowCreateActionExtraData) => any;
 }
 
 const mapDispatchToProps = (d: Dispatch) : DispatchProps => ({
-    createWindow : (name: string, icon: string, c: () => JSX.Element, data : WindowCreateActionExtraData) => d(WindowCreateActionMaker(name, icon, c, data))
+    createWindow : (name: string, icon: string, c: JSX.Element, data : WindowCreateActionExtraData) => d(WindowCreateActionMaker(name, icon, c, data))
 });
 
 type BlogPostEntryProps = Props & DispatchProps;
@@ -34,9 +34,7 @@ class BlogPostEntry extends Component<BlogPostEntryProps> {
         var post = findPost(this.props.id);
         fetch(post.path).then(res => res.text()).then(text => {
 
-            var bp = new BlogPost(post, text);
-    
-            this.props.createWindow(this.props.name, this.props.iconUrl, bp.renderContent, {
+            this.props.createWindow(this.props.name, this.props.iconUrl, <BlogPost post={post} markdown={text} />, { 
                 isMaximalized: true,
                 routerElementId : BlogRouter.addElement(new BlogElement(post))
             });

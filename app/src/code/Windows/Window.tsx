@@ -7,7 +7,7 @@ export interface WindowProps {
   iconUrl: string;
   active: boolean;
   isMaximalized: boolean;
-  content: () => JSX.Element | null;
+  content: JSX.Element;
   onMinimalize?: () => void;
   onMaximalize?: () => void;
   onClose?: () => void;
@@ -151,11 +151,6 @@ export default class Window extends Component<WindowProps> {
   };
 
   render() {
-    let content: JSX.Element | null = null;
-    if (this.props.content) {
-      content = this.props.content();
-    }
-
     let position: Position | undefined;
     let size: Size | undefined;
 
@@ -180,7 +175,7 @@ export default class Window extends Component<WindowProps> {
     {
       return (<div className="gl-window maximalized" onClick={this.props.onClick}>
       {this.createTitleBar()}
-      <div className="content">{content}</div>
+      <div className="content">{this.props.content}</div>
     </div>);
     }
     else
@@ -216,7 +211,7 @@ export default class Window extends Component<WindowProps> {
       >
         <div className="gl-window" onClick={this.props.onClick}>
           {this.createTitleBar()}
-          <div className="content">{content}</div>
+          <div className="content">{this.props.content}</div>
         </div>
       </Rnd>
     );

@@ -89,7 +89,7 @@ export default function windowsReducer(
       var window: WindowState = {
         title: createAction.title,
         iconUrl: createAction.iconUrl,
-        render: createAction.render,
+        content: createAction.content,
         id: state.lastWindowId + 1,
         isMaximalized: isMaximalized,
         isMinimalized: false,

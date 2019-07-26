@@ -13,7 +13,7 @@ import Posts from "../posts/Posts";
 import { WindowCreateActionMaker } from "./windows/windowsActions";
 import BlogPost from "../Windows/BlogPost";
 import { BlogElement } from "../router/blogElement";
-
+import React from "react";
 
 export interface ApplicationState {
     desktop: DesktopState,
@@ -64,11 +64,7 @@ if(search.length > 1 && search.includes("="))
         if(search == post.shortTitle)
         {
             fetch(post.path).then(res => res.text()).then(text => {
-
-                var bp = new BlogPost(post, text);
-    
-    
-                store.dispatch(WindowCreateActionMaker(post.title, post.iconUrl, bp.renderContent, {
+                store.dispatch(WindowCreateActionMaker(post.title, post.iconUrl, <BlogPost post={post} markdown={text} />, {
                     routerElementId: BlogRouter.addElement(new BlogElement(post)),
                     isMaximalized: true
                 }));

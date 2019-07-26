@@ -8,22 +8,21 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import TaskBar from "./TaskBar";
 import ReactMarkdown from "react-markdown";
-import CodeBlock from "../utility/codeBlock";
-import WebBrowser from "../Windows/WebBrowser";
+import CodeBlock from "../utility/codeBlock"; 
 import Resources from "../../Resources";
 import BlogPosts from "../Windows/BlogPosts";
-import ProjectsRenderer from "../projects/projectsRenderer";
+import { ProjectsContent } from "../projects/ProjectsContent";
 
 
 const path = require( "../posts/test.txt");
 
 
 interface DispatchProps {
-    createWindow : (windowName: string, iconUrl: string, windowContent: () => JSX.Element | null) => WindowCreateAction
+    createWindow : (windowName: string, iconUrl: string, windowContent: JSX.Element) => any
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
-    createWindow: (windowName: string, iconUrl: string, windowContent: () => JSX.Element | null) => dispatch(WindowCreateActionMaker(windowName, iconUrl, windowContent)),
+    createWindow: (windowName: string, iconUrl: string, windowContent) => dispatch(WindowCreateActionMaker(windowName, iconUrl, windowContent)),
 });
 
 export type DesktopProps = DispatchProps; 
@@ -50,11 +49,7 @@ class Desktop extends Component <DesktopProps, DesktopState>
     
 
     onClick = () => {
-        let bp = new BlogPosts();
-
-   
-
-        this.props.createWindow("Blog Posts", Resources.can, bp.renderContent);
+        this.props.createWindow("Blog Posts", Resources.can, <BlogPosts />);
     }
 
     openWebiste = (url: string) => {
@@ -62,11 +57,7 @@ class Desktop extends Component <DesktopProps, DesktopState>
     }
 
     openProjects = () => {
-
-        let pp = new ProjectsRenderer();
-
-        this.props.createWindow("Projects", Resources.project, pp.renderContent);
-
+        this.props.createWindow("Projects", Resources.project, <ProjectsContent />);
     }
 
     render()

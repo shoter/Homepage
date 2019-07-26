@@ -1,11 +1,10 @@
 import React from "react";
-import ContentRenderer from "./ContentRenderer";
 import Posts from "../posts/Posts";
 import BlogPostEntry from "./BlogPostEntry";
 
 
-export default class BlogPosts extends ContentRenderer {
-  renderContent = () => {
+export default class BlogPosts extends React.Component {
+  render = () => {
     var posts = Posts.map(p => (
       <BlogPostEntry
         id={p.shortTitle}

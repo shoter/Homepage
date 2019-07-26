@@ -1,3 +1,4 @@
+import React from "react";
 import { ParsedUrlQuery } from "querystring";
 import { BlogElement } from "./blogElement";
 import { findPost } from "../posts/Posts";
@@ -22,10 +23,8 @@ export class RouterActionFactory {
             let post = findPost(title);
             return fetch(post.path).then(res => res.text()).then(text => {
 
-            var bp = new BlogPost(post, text);
 
-
-            return WindowCreateActionMaker(post.title, post.iconUrl, bp.renderContent, {
+            return WindowCreateActionMaker(post.title, post.iconUrl, <BlogPost post={post} markdown={text} />, {
                 routerElementId: BlogRouter.addElement(new BlogElement(post)),
                 isMaximalized: true
             });

@@ -1,28 +1,29 @@
 import React from "react";
-import ContentRenderer from "./ContentRenderer";
 import { Post } from "../posts/Posts";
 import ReactMarkdown from "react-markdown";
 import CodeBlock from "../utility/codeBlock";
 
-export default class BlogPost extends ContentRenderer {
+export interface BlogPostProps {
+    post : Post,
+    markdown: string
+};
 
-    post : Post;
-    markdown: string;
-    constructor(post : Post, markdown: string) {
-        super();
+export default class BlogPost extends React.Component<BlogPostProps> {
 
-        this.post = post;
-        this.markdown = markdown;
+    constructor(props : BlogPostProps) {
+        super(props);
     }
 
-    renderContent = () : JSX.Element => {
-        let url = `${window.location.origin + window.location.pathname}?${this.post.shortTitle}`;
+    render = () : JSX.Element => {
+        const {post, markdown} = this.props;
+
+        let url = `${window.location.origin + window.location.pathname}?${post.shortTitle}`;
 
         let source = `\`\`\`${url}\`\`\`\n\n
-        ${this.markdown}`
+        ${markdown}`
 
         return (<div className="blog-post">
-            <ReactMarkdown source={this.markdown}
+            <ReactMarkdown source={markdown}
             renderers={{
                 code: CodeBlock
             }} />

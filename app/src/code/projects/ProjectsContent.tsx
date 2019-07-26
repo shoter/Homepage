@@ -1,15 +1,15 @@
-import React, {Component} from "react";
 import { Project, Projects, findProject } from "./Projects";
 import { ProjectListProps, ProjectListItemProps, ProjectList } from "./ProjectList";
-import CodeBlock from "../utility/codeBlock";
+import React, {Component} from "react";
 import ReactMarkdown from "react-markdown";
+import CodeBlock from "../utility/codeBlock";
 
-export interface ProjectComponentState {
+export interface ProjectsContentState {
     markdown? : string,
     project? : Project
 }
 
-export class ProjectComponent extends Component<{}, ProjectComponentState>
+export class ProjectsContent extends Component<{}, ProjectsContentState>
 {
     constructor(props : {})
     {
