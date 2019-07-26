@@ -9,6 +9,10 @@ import { BlogRouter } from "../router/router";
 import { RouterActionFactory } from "../router/routerActionFactory";
 import {parse} from "querystring"
 import { produce } from "immer";
+import Posts from "../posts/Posts";
+import { WindowCreateActionMaker } from "./windows/windowsActions";
+import BlogPost from "../Windows/BlogPost";
+import { BlogElement } from "../router/blogElement";
 
 
 export interface ApplicationState {
@@ -36,7 +40,7 @@ document.onfullscreenchange = (e: Event) => {
 let search = window.location.search;
 window.history.replaceState({}, "I can code", window.location.origin + window.location.pathname);
 
-if(search.length > 1)
+if(search.length > 1 && search.includes("="))
 {
     let fac = new RouterActionFactory(parse(search.substr(1))); 
     for(let i = 0; ; ++i)
@@ -51,8 +55,26 @@ if(search.length > 1)
         else
         break;
     }
+} else 
+{
+    search = search.substr(1);
 
+    for(let post of Posts)
+    {
+        if(search == post.shortTitle)
+        {
+            fetch(post.path).then(res => res.text()).then(text => {
 
+                var bp = new BlogPost(post, text);
+    
+    
+                store.dispatch(WindowCreateActionMaker(post.title, post.iconUrl, bp.renderContent, {
+                    routerElementId: BlogRouter.addElement(new BlogElement(post)),
+                    isMaximalized: true
+                }));
+                });
+        }
+    }
 }
 
 

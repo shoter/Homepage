@@ -12,6 +12,7 @@ import CodeBlock from "../utility/codeBlock";
 import WebBrowser from "../Windows/WebBrowser";
 import Resources from "../../Resources";
 import BlogPosts from "../Windows/BlogPosts";
+import ProjectsRenderer from "../projects/projectsRenderer";
 
 
 const path = require( "../posts/test.txt");
@@ -60,12 +61,21 @@ class Desktop extends Component <DesktopProps, DesktopState>
         window.open(url, "_blank")
     }
 
+    openProjects = () => {
+
+        let pp = new ProjectsRenderer();
+
+        this.props.createWindow("Projects", Resources.project, pp.renderContent);
+
+    }
+
     render()
     {
         var icons = [
             (<DesktopIcon key="posts" onClick={() => this.onClick()} title="Blog Posts" imgUrl={Resources.can} />),
             (<DesktopIcon key="github" onClick={() => this.openWebiste("https://github.com/shoter")} title="My github" imgUrl={Resources.githubIcon} />),
-            (<DesktopIcon key="stack" onClick={() => this.openWebiste("https://stackoverflow.com/users/2583946/shoter")} title="My SO Profile" imgUrl={Resources.stackIcon} />)
+            (<DesktopIcon key="stack" onClick={() => this.openWebiste("https://stackoverflow.com/users/2583946/shoter")} title="My SO Profile" imgUrl={Resources.stackIcon} />),
+            (<DesktopIcon key="projects" onClick={() => this.openProjects()} title="My projects" imgUrl={Resources.project} />)
             
         ];
 

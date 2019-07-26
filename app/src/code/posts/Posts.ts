@@ -19,7 +19,7 @@ const Posts : Post[] = [
         title: "Dependency hell",
         shortTitle: "dep_hell",
         date: new Date(2019, 0, 30),
-        iconUrl: Resources.can,
+        iconUrl: Resources.notebook,
         author: "Shoter",
         path: dependencyHell
     },
@@ -27,7 +27,7 @@ const Posts : Post[] = [
         title: "An extension I cannot live without",
         shortTitle: "ExtensionLiveWithout",
         date: new Date(2018, 11, 23),
-        iconUrl: Resources.can,
+        iconUrl: Resources.notebook,
         author: "Shoter",
         path: extension
     },
@@ -35,7 +35,7 @@ const Posts : Post[] = [
         title: "Hello World",
         shortTitle: "HelloWorld",
         date : new Date(2018, 1, 1),
-        iconUrl : Resources.can,
+        iconUrl : Resources.notebook,
         author: "Shoter",
         path: helloPath
     }

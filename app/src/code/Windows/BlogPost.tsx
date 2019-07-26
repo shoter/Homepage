@@ -16,6 +16,10 @@ export default class BlogPost extends ContentRenderer {
     }
 
     renderContent = () : JSX.Element => {
+        let url = `${window.location.origin + window.location.pathname}?${this.post.shortTitle}`;
+
+        let source = `\`\`\`${url}\`\`\`\n\n
+        ${this.markdown}`
 
         return (<div className="blog-post">
             <ReactMarkdown source={this.markdown}

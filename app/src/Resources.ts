@@ -6,6 +6,8 @@ import shutdownIcon from "./resources/Shutdown.png";
 import enlarge from "./resources/enlarge.png";
 import downsize from "./resources/downsize.png";
 import CanIcon from "./resources/icancode.png";
+import Notebook from "./resources/notebook.png";
+import Project from "./resources/project.png";
 
 export default class Resources {
     static startButton = start;
@@ -16,4 +18,6 @@ export default class Resources {
     static shutdownIcon = shutdownIcon;
     static enlarge = enlarge;
     static downsize = downsize;
+    static notebook = Notebook;
+    static project = Project;
 }
