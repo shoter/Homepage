@@ -11,7 +11,7 @@ import ReactMarkdown from "react-markdown";
 import CodeBlock from "../utility/codeBlock"; 
 import Resources from "../../Resources";
 import BlogPosts from "../Windows/BlogPosts";
-import { ProjectsContent } from "../projects/ProjectsContent";
+import ProjectsContent from "../projects/ProjectsContent";
 
 
 const path = require( "../posts/test.txt");

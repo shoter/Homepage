@@ -3,31 +3,48 @@ import { ProjectListProps, ProjectListItemProps, ProjectList } from "./ProjectLi
 import React, {Component} from "react";
 import ReactMarkdown from "react-markdown";
 import CodeBlock from "../utility/codeBlock";
+import { ApplicationState } from "../state/store";
+import { ChangeProjectActionMaker } from "../state/projects/projectsAction";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
 
-export interface ProjectsContentState {
-    markdown? : string,
-    project? : Project
+export interface ProjectContentStateProps {
+    project? : Project,
+    markdown? : string
+};
+
+export interface ProjectContentDispatchProps {
+    changeProjectId: (projectId: string) => any
 }
 
-export class ProjectsContent extends Component<{}, ProjectsContentState>
+type ProjectContentProps = ProjectContentStateProps & ProjectContentDispatchProps;
+
+const mapStateToProps = (state: ApplicationState) : ProjectContentStateProps => 
 {
-    constructor(props : {})
+    let project : Project | undefined;
+    if(state.project.currentProjectId)
+        project = findProject(state.project.currentProjectId);
+    return {
+        project : project,
+        markdown: state.project.markdown
+    }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch) : ProjectContentDispatchProps => ({
+    changeProjectId : (projectId: string) => dispatch(ChangeProjectActionMaker(projectId))
+})
+
+
+
+class ProjectsContent extends Component<ProjectContentProps>
+{
+    constructor(props : ProjectContentProps)
     {
         super(props);
-
-        this.state = {};
     }
 
     onProjectClick= (id : string) => {
-
-        let project = findProject(id);
-
-        fetch(project.path).then(res => res.text()).then(text => {
-            this.setState({
-                markdown : text,
-                project : project
-            })
-        });
+        this.props.changeProjectId(id);
     }
 
     render() {
@@ -42,22 +59,30 @@ export class ProjectsContent extends Component<{}, ProjectsContentState>
 
         let projectRender : JSX.Element | undefined;
         let images : JSX.Element[] | undefined;
+        let repo : JSX.Element | undefined;
 
-        if(this.state.project && this.state.markdown)
+        if(this.props.project && this.props.markdown)
         {
             projectRender = (
-        <ReactMarkdown source={this.state.markdown}
+        <ReactMarkdown source={this.props.markdown}
             renderers={{
                 code: CodeBlock
             }} />
             )
 
-            images = this.state.project.photosPaths.map(p => (<div className="photo"><img src={p}/></div>));
+            images = this.props.project.photosPaths.map(p => (<div className="photo"><img src={p}/></div>));
+            repo = (<div className="repo">
+                <a href="#" onClick={() => window.open(this.props.project!.repository, "_blank")}>
+                    Repository
+                </a>
+                
+                </div>);
         }
 
         return (<div className="projects">
             <ProjectList {...prop} />
             <div className="project-renderer">
+                {repo}
                 {projectRender}
                 <div className="photos">
                     {images}
@@ -67,3 +92,5 @@ export class ProjectsContent extends Component<{}, ProjectsContentState>
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsContent);

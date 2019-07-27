@@ -14,9 +14,12 @@ import { WindowCreateActionMaker } from "./windows/windowsActions";
 import BlogPost from "../Windows/BlogPost";
 import { BlogElement } from "../router/blogElement";
 import React from "react";
+import thunk from 'redux-thunk';
+import projectsReducer, { ProjectState } from "./projects/projectsReducer";
 
 export interface ApplicationState {
     desktop: DesktopState,
+    project: ProjectState,
     windows : WindowsState,
     app: AppState
 };
@@ -24,13 +27,15 @@ export interface ApplicationState {
 const applicationReducer = combineReducers<ApplicationState>({
     desktop: desktopReducer,
     windows: windowsReducer,
-    app: appReducer
+    app: appReducer,
+    project: projectsReducer
 });
 
 //const enhancer = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ '] ? (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ']()(compose) : compose;
 
 const store = createStore(applicationReducer, composeWithDevTools(applyMiddleware(
-    WindowsLogic
+    WindowsLogic,
+    thunk
 )));
 
 document.onfullscreenchange = (e: Event) => {
