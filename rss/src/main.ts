@@ -46,8 +46,8 @@ feed.item({
     title: p.title,
     description: p.description,
     date: p.date,
-    url:`http://damian.laczak.net.pl/blog/${p.id}`,
-    guid:`http://damian.laczak.net.pl/blog/${p.id}`
+    url:`http://damian.laczak.net.pl/blog/?${p.id}`,
+    guid:`http://damian.laczak.net.pl/blog/?${p.id}`
 })
 
 console.log(feed.xml());
