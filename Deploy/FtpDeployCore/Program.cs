@@ -67,9 +67,8 @@ namespace FtpDeployCore
                 Console.WriteLine($"Uploaded {file.RelativePath.OriginalString}");
             }
 
-            var rssDeployFile = new DeployFile(rssFile, buildFolder);
             content = File.ReadAllBytes(rssFile);
-             client.Upload(content, Path.Combine(basePath, rssDeployFile.RelativePath.OriginalString), FtpExists.Overwrite, createRemoteDir: true);
+             client.Upload(content, Path.Combine(basePath, "feed.xml"), FtpExists.Overwrite, createRemoteDir: true);
         }
 
 
