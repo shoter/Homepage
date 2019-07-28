@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "es2015",
+        "moduleResolution": "classic",
+        "target": "es5",
+        "noImplicitAny": true,
+        "allowSyntheticDefaultImports": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "/build",
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+    },
+
+
+    "include": [
+        "src/**/*"
+    ]
+}
