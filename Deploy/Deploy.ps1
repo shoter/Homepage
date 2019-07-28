@@ -16,5 +16,6 @@ Set-Location FtpDeployCore
 Set-Location bin\Debug\netcoreapp2.2
 
 $Path = Resolve-Path "..\..\..\..\..\app\build"
+$RssFile = Resolve-Path "..\..\..\..\..\rss\feed.xml"
 #Transfer Files
-dotnet .\FtpDeployCore.dll "path=$($Path)" "login=$($ENV:FTP_USR)" "pass=$($ENV:FTP_PSW)" "folder=$($additonalFolder)"
+dotnet .\FtpDeployCore.dll "path=$($Path)" "login=$($ENV:FTP_USR)" "pass=$($ENV:FTP_PSW)" "folder=$($additonalFolder)" "rss=$($RssFile)"

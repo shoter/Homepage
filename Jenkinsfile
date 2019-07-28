@@ -46,6 +46,16 @@ pipeline {
     }
   }
 
+  stage("create RSS") {
+      when { anyOf { branch 'master' } }
+    steps {
+      script {
+      def msg = powershell(returnStdout: true, script: 'Deploy/rss.ps1')
+      println msg
+      }
+    }
+  }
+
   stage("Deploy") {
       when { anyOf { branch 'master'; branch 'dev' } }
       environment { 

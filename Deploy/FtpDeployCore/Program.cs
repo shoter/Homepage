@@ -16,7 +16,7 @@ namespace FtpDeployCore
     class Program
     {
         private static List<string> createdDirs = new List<string>();
-        private static string buildFolder, login, password, folderName;
+        private static string buildFolder, login, password, folderName, rssFile;
         private static FtpClient client;
 
         static void Main(string[] args)
@@ -29,6 +29,7 @@ namespace FtpDeployCore
             login = config["login"];
             password = config["pass"];
             folderName = config["folder"];
+            rssFile = config["rss"];
 
 
             if (buildFolder.EndsWith("/") == false)
@@ -53,16 +54,22 @@ namespace FtpDeployCore
 
             RemoveRecurse(basePath);
 
+            byte[] content;
+
             foreach (var file in files)
             {
                 string destinationPath = Path.Combine(basePath, file.RelativePath.OriginalString);
 
-                var content = File.ReadAllBytes(file.AbsolutePath.LocalPath);
+                content = File.ReadAllBytes(file.AbsolutePath.LocalPath);
                 client.Upload(content, destinationPath, FtpExists.Overwrite, createRemoteDir: true);
 
 
                 Console.WriteLine($"Uploaded {file.RelativePath.OriginalString}");
             }
+
+            var rssDeployFile = new DeployFile(rssFile, buildFolder);
+            content = File.ReadAllBytes(rssFile);
+             client.Upload(content, Path.Combine(basePath, rssDeployFile.RelativePath.OriginalString), FtpExists.Overwrite, createRemoteDir: true);
         }
 
 
