@@ -1,7 +1,7 @@
 import { Middleware, MiddlewareAPI, Dispatch } from "redux";
 import BaseAction from './../baseAction';
 import { ApplicationState } from './../store';
-import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowUpdateAllActionMaker, ParticularWindowAction, WindowAction} from './windowsActions';
+import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowUpdateAllActionMaker, ParticularWindowAction, WindowAction, WindowCreateActionMaker, WindowCreateAction} from './windowsActions';
 import produce from "immer";
 
 export const WindowsLogic: Middleware =
@@ -46,6 +46,18 @@ export const WindowsLogic: Middleware =
                         }));
                         
                         return next(WindowUpdateAllActionMaker(newWindows));
+                    }
+                }
+
+                if(action.type === WindowCreateActionMaker.name)
+                {
+                    let a = action as WindowCreateAction;
+
+                    if(api.getState().app.isMobile)
+                    {
+                        // Mobile version can only have 1 window at a time. It's not really a window this time.
+                        next(WindowUpdateAllActionMaker([]));
+                        return next(action);
                     }
                 }
 
