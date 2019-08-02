@@ -97,8 +97,6 @@ export default function windowsReducer(
         routerId: routerId
       };
 
-     
-
       return produce(state, draft => {
         draft.lastWindowId = state.lastWindowId + 1;
         for (let w of draft.windows) {

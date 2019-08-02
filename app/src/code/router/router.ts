@@ -24,7 +24,7 @@ export class BlogRouterClass implements Observer<RouterElement> {
 
         this.updatePath();
         return this._lastId;
-    }
+    }    
 
     removeElement(id : number) {
         delete this._elements[id];
@@ -32,11 +32,15 @@ export class BlogRouterClass implements Observer<RouterElement> {
     }
 
     getPath() : string {
+
         if(Object.keys(this._elements).length === 0)
+        {
             return "";
+        }
 
         let number = 0;
         let path = "?";
+
         for(let key in this._elements)
         {
             let el = this._elements[key];
@@ -59,7 +63,7 @@ export class BlogRouterClass implements Observer<RouterElement> {
     updatePath() {
         let path = this.getPath();
         let url = this._baseUrl + path;
-        window.history.replaceState({}, "I can code", url);
+        window.history.pushState({}, "I can code", url);
     }
 
     notify = (el?: RouterElement) : void => {

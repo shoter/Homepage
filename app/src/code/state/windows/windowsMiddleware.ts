@@ -1,7 +1,7 @@
 import { Middleware, MiddlewareAPI, Dispatch } from "redux";
 import BaseAction from './../baseAction';
 import { ApplicationState } from './../store';
-import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowUpdateAllActionMaker, ParticularWindowAction, WindowAction, WindowCreateActionMaker, WindowCreateAction} from './windowsActions';
+import { WindowPutOnFrontActionMaker, WindowPutOnFrontAction, WindowUpdateAllActionMaker, ParticularWindowAction, WindowAction, WindowCreateActionMaker, WindowCreateAction, WindowCloseTopAction, WindowCloseTopActionMaker, WindowCloseActionMaker} from './windowsActions';
 import produce from "immer";
 
 export const WindowsLogic: Middleware =
@@ -59,6 +59,19 @@ export const WindowsLogic: Middleware =
                         next(WindowUpdateAllActionMaker([]));
                         return next(action);
                     }
+                }
+                else if(action.type === WindowCloseTopActionMaker.name)
+                {
+                    let a = action as WindowCloseTopAction;
+
+                    let windows = api.getState().windows.windows;
+
+                    if(windows.length > 0)
+                    {
+                       return next(WindowCloseActionMaker(windows[windows.length -1 ].id)); 
+                    }
+
+                    
                 }
 
                 return next(action);

@@ -44,6 +44,8 @@ export interface WindowMinimalizeAction extends ParticularWindowAction {};
 
 export interface WindowToggleMaximalizeAction extends ParticularWindowAction {};
 
+export interface WindowCloseTopAction extends WindowAction {};
+
 export function WindowCreateActionMaker(title: string, iconUrl: string, content: JSX.Element, data? : WindowCreateActionExtraData): WindowCreateAction {
     return {
         type: WindowCreateActionMaker.name,
@@ -105,4 +107,10 @@ export function WindowToggleMaximalizeActionMaker(windowId: number) : WindowTogg
         type: WindowToggleMaximalizeActionMaker.name,
         windowId: windowId
     };
+}
+
+export function WindowCloseTopActionMaker() : WindowCloseTopAction {
+    return {
+        type: WindowCloseTopActionMaker.name,
+    }
 }
