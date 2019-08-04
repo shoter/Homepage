@@ -16,6 +16,7 @@ import { BlogElement } from "../router/blogElement";
 import React from "react";
 import thunk from 'redux-thunk';
 import projectsReducer, { ProjectState } from "./projects/projectsReducer";
+import { RouteFactory } from "../Windows/RouteFactory";
 
 export interface ApplicationState {
     desktop: DesktopState,
@@ -43,40 +44,12 @@ document.onfullscreenchange = (e: Event) => {
 }
 
 let search = window.location.search;
+
+let routeFactory = new RouteFactory(search, store);
+
+routeFactory.createWindowsFromQuery();
+
 window.history.replaceState({}, "I can code", window.location.origin + window.location.pathname);
-
-if(search.length > 1 && search.includes("="))
-{
-    let fac = new RouterActionFactory(parse(search.substr(1))); 
-    for(let i = 0; ; ++i)
-    {
-        if(fac.exists(i))
-        {
-            fac.create(i)
-            .then(a => {
-                store.dispatch(a);
-            })
-        }
-        else
-        break;
-    }
-} else 
-{
-    search = search.substr(1);
-
-    for(let post of Posts)
-    {
-        if(search == post.shortTitle)
-        {
-            fetch(post.path).then(res => res.text()).then(text => {
-                store.dispatch(WindowCreateActionMaker(post.title, post.iconUrl, <BlogPost post={post} markdown={text} />, {
-                    routerElementId: BlogRouter.addElement(new BlogElement(post)),
-                    isMaximalized: true
-                }));
-                });
-        }
-    }
-}
 
 var isMobile = false; //initiate as false
 // device detection
