@@ -15,7 +15,7 @@ function ReactIsInDevelomentMode(){
 
 let analytics : JSX.Element | undefined;
 
-if(ReactIsInDevelomentMode())
+if(!ReactIsInDevelomentMode())
 {
     analytics = <GoogleAnalytics />;
 }
