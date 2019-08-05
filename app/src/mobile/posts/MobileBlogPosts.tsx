@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import Posts from "../../code/posts/Posts";
-import MobileGlosPostEntry from "./MobileBlogPostEntry";
+import MobileBlogPostEntry from "./MobileBlogPostEntry";
 
 export default class MobileBlogPosts extends Component
 {
     render = () => {
         var posts = Posts.map(p => (
-          <MobileGlosPostEntry
+          <MobileBlogPostEntry
             id={p.shortTitle}
             key={p.shortTitle}
             iconUrl={p.iconUrl}

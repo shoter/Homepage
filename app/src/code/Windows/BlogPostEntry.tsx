@@ -40,7 +40,6 @@ class BlogPostEntry extends Component<BlogPostEntryProps> {
             });
 
         })
-
     }
 
     render() {
