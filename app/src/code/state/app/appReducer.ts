@@ -1,14 +1,16 @@
-import { AppAction, FullscrenChangeActionMaker, FullscrenChangeAction, MobileChangeActionMaker, MobileChangeAction } from "./appActions";
+import { AppAction, FullscrenChangeActionMaker, FullscrenChangeAction, MobileChangeActionMaker, MobileChangeAction, ShutdownActionMaker } from "./appActions";
 import produce from "immer";
 
 export interface AppState {
     isFullscreen: boolean,
-    isMobile: boolean
+    isMobile: boolean,
+    isShutdown: boolean
 };
 
 const initialState : AppState = {
     isFullscreen : false,
-    isMobile : false
+    isMobile : false,
+    isShutdown: false
 }
 
 export default function appReducer(state : AppState = initialState, action: AppAction) : AppState {
@@ -28,6 +30,12 @@ export default function appReducer(state : AppState = initialState, action: AppA
             return produce(state, draft =>{
                 draft.isMobile = a.isMobile
             })
+        }
+
+        case ShutdownActionMaker.name: {
+            return produce(state, draft => {
+                draft.isShutdown = true
+            });
         }
     }
 

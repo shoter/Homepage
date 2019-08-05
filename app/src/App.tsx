@@ -9,9 +9,11 @@ import { WindowState } from './code/state/windows/windowState';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import BackArrow from './mobile/common/BackArrow';
+import Shutdown from './code/funny/shutdown';
 
 interface AppStateProps {
   isMobile : boolean,
+  isShutdown : boolean,
   currentWindow? : WindowState
 }
 
@@ -19,15 +21,20 @@ export type AppProps = AppStateProps;
 
 const mapStateToProps = (state : ApplicationState) : AppStateProps => ({
   isMobile : state.app.isMobile,
-  currentWindow : state.windows.windows.length > 0 ? state.windows.windows[state.windows.windows.length - 1]  : undefined
+  currentWindow : state.windows.windows.length > 0 ? state.windows.windows[state.windows.windows.length - 1]  : undefined,
+  isShutdown : state.app.isShutdown
 });
 
 class App extends React.Component<AppProps> {
-  constructor(props : AppProps) {
+  constructor(props : AppProps) { 
     super(props)
   }
 
   render() {
+    if(this.props.isShutdown)
+    {
+      return <Shutdown />
+    }
     if(this.props.isMobile === false)
     {
     return (

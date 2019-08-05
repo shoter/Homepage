@@ -2,15 +2,29 @@ import React, { Component } from "react";
 import Resources from "../../Resources";
 import RibbonItem from "./RibbonItem";
 import ResizeItem from "./ResizeItem";
+import { any } from "prop-types";
+import { Dispatch } from "redux";
+import { ShutdownActionMaker } from "../state/app/appActions";
+import { connect } from "react-redux";
+
+interface DispatchProps {
+  shutdown : () => any;
+}
+
+const mapDispatchToProps = (d:  Dispatch) : DispatchProps => ({
+shutdown: () => d(ShutdownActionMaker())
+});
+
+export type StartProps = DispatchProps;
 
 export interface StartState {
   active: boolean;
 }
 
-export default class Start extends Component<{}, StartState> {
+class Start extends Component<StartProps, StartState> {
   selfRef?: HTMLDivElement;
 
-  constructor(props: {}) {
+  constructor(props: StartProps) {
     super(props);
 
     this.state = {
@@ -47,6 +61,10 @@ export default class Start extends Component<{}, StartState> {
     this.selfRef = node;
   };
 
+  shutdown = () => {
+    this.props.shutdown();
+  }
+
   render() {
     var ribbon: JSX.Element | null = null;
     var buttonClass = "";
@@ -61,7 +79,7 @@ export default class Start extends Component<{}, StartState> {
           </div>
 
           <div className="items">
-            <RibbonItem iconUrl={Resources.shutdownIcon} name="Shutdown" />
+            <RibbonItem onClick={this.shutdown} iconUrl={Resources.shutdownIcon} name="Shutdown" />
             <RibbonItem
               iconUrl={Resources.stackIcon}
               name="My SO"
@@ -98,3 +116,5 @@ export default class Start extends Component<{}, StartState> {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(Start); 

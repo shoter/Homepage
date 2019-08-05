@@ -11,6 +11,10 @@ export interface MobileChangeAction extends AppAction {
     isMobile: boolean
 }
 
+export interface ShutdownAction extends AppAction {
+
+}
+
 export function FullscrenChangeActionMaker(isFullscreen: boolean)  : FullscrenChangeAction {
     return {
         isFullscreen: isFullscreen,
@@ -23,4 +27,10 @@ export function MobileChangeActionMaker(isMobile: boolean) : MobileChangeAction 
         type: MobileChangeActionMaker.name,
         isMobile : isMobile
     }
+}
+
+export function ShutdownActionMaker() : ShutdownAction {
+    return {
+        type: ShutdownActionMaker.name
+    };
 }
