@@ -6,10 +6,22 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from "react-redux";
 import store from "./code/state/store";
+import { GoogleAnalytics } from './code/external/GoogleAnalytics';
 
+function ReactIsInDevelomentMode(){ 
+    return '_self' in React.createElement('div'); 
+}
+
+let analytics : JSX.Element | undefined;
+
+if(ReactIsInDevelomentMode())
+{
+    analytics = <GoogleAnalytics />;
+}
 
 ReactDOM.render(
 (<Provider store={store}>
+    {analytics}
     <App></App>
 </Provider>)
 , document.getElementById('root'));
