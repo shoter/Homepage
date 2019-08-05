@@ -9,6 +9,7 @@ import store from "./code/state/store";
 import { GoogleAnalytics } from './code/external/GoogleAnalytics';
 
 function ReactIsInDevelomentMode(){ 
+    console.log('_self' in React.createElement('div'));
     return '_self' in React.createElement('div'); 
 }
 
