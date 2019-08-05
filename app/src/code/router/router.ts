@@ -1,6 +1,7 @@
 import { RouterElement } from "./routerElement";
 import { number } from "prop-types";
 import { Observer } from "../common/observer";
+import ReactGA from 'react-ga';
 
 export class BlogRouterClass implements Observer<RouterElement> {
     private static _instance: BlogRouterClass;
@@ -64,6 +65,7 @@ export class BlogRouterClass implements Observer<RouterElement> {
         let path = this.getPath();
         let url = this._baseUrl + path;
         window.history.pushState({}, "I can code", url);
+        ReactGA.pageview(path)
     }
 
     notify = (el?: RouterElement) : void => {
