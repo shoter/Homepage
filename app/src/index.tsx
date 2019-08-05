@@ -9,6 +9,7 @@ import store from "./code/state/store";
 import { loadAnalytics } from './code/external/GoogleAnalytics';
 
 function ReactIsInDevelomentMode(){ 
+    // https://stackoverflow.com/questions/52702466/detect-react-reactdom-development-production-build
     console.log('_self' in React.createElement('div'));
     return '_self' in React.createElement('div'); 
 }
