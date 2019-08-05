@@ -8,6 +8,7 @@ import MobileDesktop from './mobile/desktop/MobileDesktop';
 import { WindowState } from './code/state/windows/windowState';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import BackArrow from './mobile/common/BackArrow';
 
 interface AppStateProps {
   isMobile : boolean,
@@ -18,7 +19,7 @@ export type AppProps = AppStateProps;
 
 const mapStateToProps = (state : ApplicationState) : AppStateProps => ({
   isMobile : state.app.isMobile,
-  currentWindow : state.windows.windows.length > 0 ? state.windows.windows[0] : undefined
+  currentWindow : state.windows.windows.length > 0 ? state.windows.windows[state.windows.windows.length - 1]  : undefined
 });
 
 class App extends React.Component<AppProps> {
@@ -40,12 +41,7 @@ class App extends React.Component<AppProps> {
     {
       return (
         <div className="mobile-app">
-          <div className="back">
-          <FontAwesomeIcon icon={faArrowLeft} />
-          <div className="shadow">
-
-          </div>
-          </div>
+          <BackArrow />
           {this.props.currentWindow.content}
         </div>
       )

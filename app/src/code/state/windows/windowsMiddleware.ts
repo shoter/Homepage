@@ -48,19 +48,7 @@ export const WindowsLogic: Middleware =
                         return next(WindowUpdateAllActionMaker(newWindows));
                     }
                 }
-
-                if(action.type === WindowCreateActionMaker.name)
-                {
-                    let a = action as WindowCreateAction;
-
-                    if(api.getState().app.isMobile)
-                    {
-                        // Mobile version can only have 1 window at a time. It's not really a window this time.
-                        next(WindowUpdateAllActionMaker([]));
-                        return next(action);
-                    }
-                }
-                else if(action.type === WindowCloseTopActionMaker.name)
+                else if(action.type === WindowCloseTopActionMaker.name) 
                 {
                     let a = action as WindowCloseTopAction;
 
