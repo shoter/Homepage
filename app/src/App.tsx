@@ -52,7 +52,6 @@ class App extends React.Component<AppProps> {
         <MobileDesktop />
       </div>
     );
-
   }
 }
 

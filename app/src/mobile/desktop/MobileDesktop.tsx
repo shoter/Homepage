@@ -7,6 +7,7 @@ import BlogPosts from "../../code/Windows/BlogPosts";
 import ProjectsContent from "../../code/projects/ProjectsContent";
 import { connect } from "react-redux";
 import MobileBlogPosts from "../posts/MobileBlogPosts";
+import MobileProjects from "../projects/MobileProjects";
 
 interface DispatchProps {
     createWindow : (windowName: string, iconUrl: string, windowContent: JSX.Element) => any
@@ -34,7 +35,7 @@ export class MobileDesktop extends Component<MobileDesktopProps> {
     }
 
     openProjects = () => {
-        this.props.createWindow("Projects", Resources.project, <ProjectsContent />);
+        this.props.createWindow("Projects", Resources.project, <MobileProjects />);
     }
 
 

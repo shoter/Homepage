@@ -40,7 +40,6 @@ export class MobileBlogPostEntry extends Component<MobileBlogPostEntryProps> {
                 isMaximalized: true,
                 routerElementId : BlogRouter.addElement(new BlogElement(post))
             });
-
         })
     }
 
