@@ -11,7 +11,7 @@ export function GoogleAnalytics() {
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106497042-1"></script>
         <script>
         window.dataLayer = window.dataLayer || [];
-        gtag('js', new Date());
+        window.gtag('js', new Date());
 
         gtag('config', 'UA-106497042-1');
         </script>
