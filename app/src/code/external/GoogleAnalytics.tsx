@@ -12,8 +12,7 @@ export function GoogleAnalytics() {
         <script>
         window.dataLayer = window.dataLayer || [];
         window.gtag('js', new Date());
-
-        gtag('config', 'UA-106497042-1');
+        window.gtag('config', 'UA-106497042-1');
         </script>
     </div>)
 }
