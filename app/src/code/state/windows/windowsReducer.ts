@@ -12,7 +12,8 @@ import {
   WindowCloseAction,
   WindowMinimalizeActionMaker,
   WindowMinimalizeAction,
-  WindowToggleMaximalizeActionMaker
+  WindowToggleMaximalizeActionMaker,
+  WindowToggleMaximalizeAction
 } from "./windowsActions";
 import { WindowState } from "./windowState";
 import { ApplicationState } from "../store";
@@ -173,7 +174,7 @@ export default function windowsReducer(
       });
     }
     case WindowToggleMaximalizeActionMaker.name: {
-      let a = action as WindowMinimalizeAction;
+      let a = action as WindowToggleMaximalizeAction;
 
       return produce(state, draft => {
         let i = draft.windows.findIndex(w => w.id === a.windowId);
