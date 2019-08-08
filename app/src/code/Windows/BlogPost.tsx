@@ -2,7 +2,7 @@ import React from "react";
 import { Post } from "../posts/Posts";
 import ReactMarkdown from "react-markdown";
 import CodeBlock from "../utility/codeBlock";
-import { DisqusFactory } from "../external/DisqusFactory";
+import { DisqusFactory } from "../external/CommentFactory";
 
 export interface BlogPostProps {
     post : Post,
