@@ -57,6 +57,7 @@ class App extends React.Component<AppProps> {
         <div className="mobile-app">
           <BackArrow />
           {this.props.currentWindow.content}
+          {commentArea}
         </div>
       )
     }
