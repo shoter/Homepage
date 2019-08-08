@@ -1,12 +1,12 @@
 import { Post } from "../posts/Posts";
 import { UrlCreator } from "../common/urlCreator";
-import { DisqusComponent } from "./DisqusComponent";
+import { CommentArea } from "./CommentArea";
 
 export class DisqusFactory {
 
     create(post : Post) : JSX.Element {
         let url =  UrlCreator.createUrl(post.shortTitle);
 
-       return DisqusComponent(post.title, post.shortTitle, url);
+       return CommentArea({id: post.shortTitle, title: post.title, url: url});
     }
 }
