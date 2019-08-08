@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import BackArrow from './mobile/common/BackArrow';
 import Shutdown from './code/funny/shutdown';
+import { CommentFactory } from './code/external/CommentFactory';
 
 interface AppStateProps {
   isMobile : boolean,
@@ -46,6 +47,12 @@ class App extends React.Component<AppProps> {
 
     if(this.props.currentWindow)
     {
+      let commentArea : JSX.Element | undefined;
+      if(this.props.currentWindow.disqusEntity)
+      {
+        commentArea = new CommentFactory().create(this.props.currentWindow.disqusEntity);
+      }
+
       return (
         <div className="mobile-app">
           <BackArrow />
