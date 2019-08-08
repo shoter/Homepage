@@ -5,7 +5,7 @@ const helloPath = require( "./helloWorld.txt");
 const extension = require("./extension.txt");
 const dependencyHell = require("./dependency_hell.txt")
 export interface Post {
-    title : string,
+    postTitle : string,
     shortTitle : string,
     iconUrl: string,
     date : Date,
@@ -13,10 +13,19 @@ export interface Post {
     path: string
 }
 
+export function findPost(id: string) {
+    return Posts.find(p => p.shortTitle === id) as Post;
+}
+
+export function instanceOfPost(any : any)
+{
+    return "postTitle" in any;
+}
+
 
 const Posts : Post[] = [
     {
-        title: "Dependency hell",
+        postTitle: "Dependency hell",
         shortTitle: "dep_hell",
         date: new Date(2019, 0, 30),
         iconUrl: Resources.notebook,
@@ -24,7 +33,7 @@ const Posts : Post[] = [
         path: dependencyHell
     },
     {
-        title: "An extension I cannot live without",
+        postTitle: "An extension I cannot live without",
         shortTitle: "ExtensionLiveWithout",
         date: new Date(2018, 11, 23),
         iconUrl: Resources.notebook,
@@ -32,7 +41,7 @@ const Posts : Post[] = [
         path: extension
     },
     {
-        title: "Hello World",
+        postTitle: "Hello World",
         shortTitle: "HelloWorld",
         date : new Date(2018, 1, 1),
         iconUrl : Resources.notebook,
@@ -41,8 +50,6 @@ const Posts : Post[] = [
     }
 ]
 
-export function findPost(id: string) {
-    return Posts.find(p => p.shortTitle === id) as Post;
-}
+
 
 export default Posts;

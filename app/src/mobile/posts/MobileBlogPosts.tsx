@@ -10,7 +10,7 @@ export default class MobileBlogPosts extends Component
             id={p.shortTitle}
             key={p.shortTitle}
             iconUrl={p.iconUrl}
-            name={p.title}
+            name={p.postTitle}
             date={p.date}
             author={p.author}
             

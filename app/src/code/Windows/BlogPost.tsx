@@ -2,7 +2,6 @@ import React from "react";
 import { Post } from "../posts/Posts";
 import ReactMarkdown from "react-markdown";
 import CodeBlock from "../utility/codeBlock";
-import { DisqusFactory } from "../external/CommentFactory";
 
 export interface BlogPostProps {
     post : Post,
@@ -23,14 +22,12 @@ export default class BlogPost extends React.Component<BlogPostProps> {
         let source = `\`\`\`${url}\`\`\`\n\n
         ${markdown}`
 
-        let disqus = new DisqusFactory().create(post);
 
         return (<div className="blog-post">
             <ReactMarkdown source={markdown} 
             renderers={{
                 code: CodeBlock
             }} />
-            {disqus}
             </div>);
 
     }

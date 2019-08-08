@@ -36,7 +36,8 @@ class BlogPostEntry extends Component<BlogPostEntryProps> {
 
             this.props.createWindow(this.props.name, this.props.iconUrl, <BlogPost post={post} markdown={text} />, { 
                 isMaximalized: true,
-                routerElementId : BlogRouter.addElement(new BlogElement(post))
+                routerElementId : BlogRouter.addElement(new BlogElement(post)),
+                disqusEntity: post
             });
 
         })

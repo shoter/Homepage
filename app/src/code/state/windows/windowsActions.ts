@@ -1,6 +1,9 @@
 import BaseAction from './../baseAction';
 import { WindowState } from './windowState';
 import { RouterElement } from '../../router/routerElement';
+import { Post } from '../../posts/Posts';
+import { Project } from '../../projects/Projects';
+import { DisqusEntity } from '../../external/DisqusEntity';
 
 export interface WindowAction extends BaseAction {
 };
@@ -11,7 +14,8 @@ export interface ParticularWindowAction extends WindowAction {
 
 export interface WindowCreateActionExtraData {
     isMaximalized? : boolean,
-    routerElementId? : number
+    routerElementId? : number,
+    disqusEntity?: DisqusEntity,
 }
 
 export interface WindowCreateAction extends WindowAction {

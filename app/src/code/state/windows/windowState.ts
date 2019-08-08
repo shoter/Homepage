@@ -1,3 +1,7 @@
+import { Post } from "../../posts/Posts";
+import { Project } from "../../projects/Projects";
+import { DisqusEntity } from "../../external/DisqusEntity";
+
 interface WindowStateMutable {
     id: number,
     active: boolean,
@@ -10,7 +14,8 @@ interface WindowStateMutable {
     isMaximalized : boolean,
     isMinimalized: boolean,
     content: JSX.Element,
-    routerId?: number
+    routerId?: number,
+    disqusEntity? : DisqusEntity
 }
 
 export type WindowState = Readonly<WindowStateMutable>;

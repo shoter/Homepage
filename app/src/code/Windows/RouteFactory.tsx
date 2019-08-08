@@ -46,9 +46,10 @@ export class RouteFactory
                 if(search == post.shortTitle)
                 {
                     fetch(post.path).then(res => res.text()).then(text => {
-                        this._store.dispatch(WindowCreateActionMaker(post.title, post.iconUrl, <BlogPost post={post} markdown={text} />, {
+                        this._store.dispatch(WindowCreateActionMaker(post.postTitle, post.iconUrl, <BlogPost post={post} markdown={text} />, {
                             routerElementId: BlogRouter.addElement(new BlogElement(post)),
-                            isMaximalized: true
+                            isMaximalized: true,
+                            disqusEntity: post
                         }));
                         });
                 }

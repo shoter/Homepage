@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Rnd, DraggableData, ResizableDelta } from "react-rnd";
 import { Size, ResizeDirection } from "re-resizable";
+import { DisqusEntity } from "../external/DisqusEntity";
+import { CommentFactory } from "../external/CommentFactory";
 export interface WindowProps {
   id: number;
   title: string;
@@ -24,6 +26,8 @@ export interface WindowProps {
   onPositionChanged?: (x: number, y: number) => void;
 
   onSizeChanged?: (width: number, height: number) => void;
+
+  disqusEntity? : DisqusEntity;
 }
 
 interface Position {
@@ -153,6 +157,7 @@ export default class Window extends Component<WindowProps> {
   render() {
     let position: Position | undefined;
     let size: Size | undefined;
+    let commentArea : JSX.Element | undefined;
 
     if (this.props.x && this.props.y) {
       position = {
@@ -167,6 +172,11 @@ export default class Window extends Component<WindowProps> {
         height: this.props.height,
         width: this.props.width
       };
+    }
+
+    if(this.props.disqusEntity && this.props.active)
+    {
+      commentArea = new CommentFactory().create(this.props.disqusEntity);
     }
 
     var n = (this.props.id * 5) % 200;
@@ -211,7 +221,9 @@ export default class Window extends Component<WindowProps> {
       >
         <div className="gl-window" onClick={this.props.onClick}>
           {this.createTitleBar()}
-          <div className="content">{this.props.content}</div>
+          <div className="content">
+          {this.props.content}
+          {commentArea}</div>
         </div>
       </Rnd>
     );

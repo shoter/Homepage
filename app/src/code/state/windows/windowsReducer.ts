@@ -19,6 +19,9 @@ import { ApplicationState } from "../store";
 import { withStatement } from "@babel/types";
 import produce from "immer";
 import { BlogRouter } from "../../router/router";
+import { Post } from "../../posts/Posts";
+import { Project } from "../../projects/Projects";
+import { DisqusEntity } from "../../external/DisqusEntity";
 
 interface WindowsStateMutable {
   windows: WindowState[];
@@ -86,6 +89,13 @@ export default function windowsReducer(
         routerId = createAction.data.routerElementId;
       }
 
+      let disqusEntity : DisqusEntity | undefined;
+
+      if(createAction.data && createAction.data.disqusEntity)
+      {
+        disqusEntity = createAction.data!.disqusEntity;
+      }
+
       var window: WindowState = {
         title: createAction.title,
         iconUrl: createAction.iconUrl,
@@ -94,7 +104,8 @@ export default function windowsReducer(
         isMaximalized: isMaximalized,
         isMinimalized: false,
         active: true,
-        routerId: routerId
+        routerId: routerId,
+        disqusEntity : disqusEntity
       };
 
       return produce(state, draft => {

@@ -155,6 +155,8 @@ class WindowManager extends Component<WindowManagerProps> {
             onPositionChanged={(x: number, y:number) => this.onPositionChanged(w.id, x, y)}
             onSizeChanged={(width, height) => this.onSizeChanged(w.id, width, height)}
 
+            disqusEntity={w.disqusEntity}
+
             />)}
             );
 

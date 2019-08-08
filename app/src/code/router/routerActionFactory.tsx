@@ -24,9 +24,10 @@ export class RouterActionFactory {
             return fetch(post.path).then(res => res.text()).then(text => {
 
 
-            return WindowCreateActionMaker(post.title, post.iconUrl, <BlogPost post={post} markdown={text} />, {
+            return WindowCreateActionMaker(post.postTitle, post.iconUrl, <BlogPost post={post} markdown={text} />, {
                 routerElementId: BlogRouter.addElement(new BlogElement(post)),
-                isMaximalized: true
+                isMaximalized: true,
+                disqusEntity: post,
             });
             });
         }

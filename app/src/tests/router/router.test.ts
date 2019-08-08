@@ -24,7 +24,7 @@ describe("BlogRouter", () =>{
             iconUrl: "",
             path: "",
             shortTitle : title,
-            title : ""
+            postTitle : ""
         }
 
         let el = new BlogElement(post);
@@ -57,7 +57,7 @@ describe("BlogRouter", () =>{
             iconUrl: "",
             path: "",
             shortTitle : title,
-            title : ""
+            postTitle : ""
         }
 
 
@@ -79,13 +79,13 @@ describe("BlogRouter", () =>{
             iconUrl: "",
             path: "",
             shortTitle : title,
-            title : ""
+            postTitle : ""
         }
 
         let el = new BlogElement(post);
         
         let post2 : Post = {
-            title : "Elo",
+            postTitle : "Elo",
             ...post
         };
 
