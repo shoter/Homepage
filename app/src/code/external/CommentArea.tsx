@@ -15,7 +15,7 @@ export function CommentArea(props : CommentAreaProps) {
         };
 
         return (<div className="comment-area">
-            <DiscussionEmbed shortname={disqusConfig.title} config={disqusConfig} />
+            <DiscussionEmbed shortname={"damian-laczak-net-pl"} config={disqusConfig} />
         </div>);
 }
 
