@@ -185,7 +185,9 @@ export default class Window extends Component<WindowProps> {
     {
       return (<div className="gl-window maximalized" onClick={this.props.onClick}>
       {this.createTitleBar()}
-      <div className="content">{this.props.content}</div>
+      <div className="content">{this.props.content}
+      {commentArea}
+      </div>
     </div>);
     }
     else
