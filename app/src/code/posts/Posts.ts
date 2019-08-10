@@ -4,6 +4,8 @@ import { string } from "prop-types";
 const helloPath = require( "./helloWorld.txt");
 const extension = require("./extension.txt");
 const dependencyHell = require("./dependency_hell.txt")
+const awaitasync = require("./awaitasync.txt");
+
 export interface Post {
     postTitle : string,
     shortTitle : string,
@@ -39,6 +41,14 @@ const Posts : Post[] = [
         iconUrl: Resources.notebook,
         author: "Shoter",
         path: extension
+    },
+    {
+        postTitle: "C# - async and await - who are you?",
+        shortTitle: "awaitasync",
+        date: new Date(2018, 10, 2),
+        iconUrl: Resources.notebook,
+        author: "Shoter",
+        path: awaitasync,
     },
     {
         postTitle: "Hello World",
