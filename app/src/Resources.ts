@@ -8,6 +8,7 @@ import downsize from "./resources/downsize.png";
 import CanIcon from "./resources/icancode.png";
 import Notebook from "./resources/notebook.png";
 import Project from "./resources/project.png";
+import Gamepad from "./resources/gamepad.png";
 
 export default class Resources {
     static startButton = start;
@@ -20,4 +21,5 @@ export default class Resources {
     static downsize = downsize;
     static notebook = Notebook;
     static project = Project;
+    static gamepad = Gamepad;
 }

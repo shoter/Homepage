@@ -10,11 +10,27 @@ export interface Project {
     endDate? : string,
     repository?: string,
     path: string,
-    photosPaths: string[]
+    photosPaths: string[],
+    projectCategory : ProjectCategory
 };
+
+export interface ProjectCategory {
+    name : string,
+    iconUrl : string
+}
+
+
+export const ProjectCategories = {
+    games : 
+    {
+        name : "Games",
+        iconUrl : Resources.gamepad
+    },
+}
 
 export const Projects : Project[] = [
     {
+        projectCategory: ProjectCategories.games,
         title: "Turn time strategy game",
         id : "TTSG",
         startDate: "When I was 14 years old",

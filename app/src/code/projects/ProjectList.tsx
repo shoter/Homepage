@@ -1,4 +1,6 @@
 import React, { Component} from "react";
+import { ProjectCategories, ProjectCategory, Projects, Project } from "./Projects";
+import ProjectListCategoryEntry from "./ProjectListCategoryEntry";
 
 export interface ProjectListItemProps {
     title: string,
@@ -7,28 +9,33 @@ export interface ProjectListItemProps {
 }
 
 export interface ProjectListProps {
-    items : ProjectListItemProps[]
+    items : ProjectListItemProps[] 
     onClick? : (projectId: string) => void;
 }
 
 export function ProjectList(props : ProjectListProps) {
 
-    const onClick = (id: string) => {
-        if(props.onClick)
+    let categories : JSX.Element[] = [];
+
+    for(let ck in ProjectCategories)
+    {
+        let projectCategory = Reflect.get(ProjectCategories, ck) as ProjectCategory;
+
+        let projectsInCategory : Project[] = [];
+
+        for(let p of Projects)
         {
-            props.onClick(id);
+            if(p.projectCategory === projectCategory)
+            {
+                projectsInCategory.push(p);
+            }
         }
+
+        categories.push(<ProjectListCategoryEntry category={projectCategory} projects={projectsInCategory} />); 
     }
 
 
-    var items = props.items.map(i => {
-        return (<div className="project-short" onClick={() => onClick(i.id)}>
-            <img src={i.iconUrl} />
-            {i.title}
-        </div>)
-    })
-
     return (<div className="projects-list">
-        {items}
+        {categories}
     </div>)
 }
