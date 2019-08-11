@@ -6,6 +6,11 @@ import { any } from "prop-types";
 import { Dispatch } from "redux";
 import { ShutdownActionMaker } from "../state/app/appActions";
 import { connect } from "react-redux";
+import { ApplicationState } from "../state/store";
+
+interface StateProps {
+  isFullscreen : boolean
+}
 
 interface DispatchProps {
   shutdown : () => any;
@@ -15,7 +20,11 @@ const mapDispatchToProps = (d:  Dispatch) : DispatchProps => ({
 shutdown: () => d(ShutdownActionMaker())
 });
 
-export type StartProps = DispatchProps;
+const mapStateToProps = (state : ApplicationState) : StateProps => ({
+  isFullscreen : state.app.isFullscreen
+});
+
+export type StartProps = DispatchProps & StateProps;
 
 export interface StartState {
   active: boolean;
@@ -62,7 +71,9 @@ class Start extends Component<StartProps, StartState> {
   };
 
   shutdown = () => {
-    this.props.shutdown();
+    this.props.shutdown(); 
+    if(this.props.isFullscreen)
+      document.exitFullscreen();
   }
 
   render() {
@@ -117,4 +128,4 @@ class Start extends Component<StartProps, StartState> {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Start); 
+export default connect(mapStateToProps, mapDispatchToProps)(Start); 

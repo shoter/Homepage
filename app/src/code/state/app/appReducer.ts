@@ -1,4 +1,4 @@
-import { AppAction, FullscrenChangeActionMaker, FullscrenChangeAction, MobileChangeActionMaker, MobileChangeAction, ShutdownActionMaker } from "./appActions";
+import { AppAction, FullscreenChangeActionMaker, FullscreenChangeAction, MobileChangeActionMaker, MobileChangeAction, ShutdownActionMaker } from "./appActions";
 import produce from "immer";
 
 export interface AppState {
@@ -15,8 +15,8 @@ const initialState : AppState = {
 
 export default function appReducer(state : AppState = initialState, action: AppAction) : AppState {
     switch(action.type) {
-        case FullscrenChangeActionMaker.name: {
-            let a = action as FullscrenChangeAction;
+        case FullscreenChangeActionMaker.name: {
+            let a = action as FullscreenChangeAction;
 
             return produce(state, draft => {
                 draft.isFullscreen = a.isFullscreen

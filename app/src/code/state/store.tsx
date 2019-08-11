@@ -3,7 +3,7 @@ import desktopReducer, { DesktopState } from "./desktop/desktopReducer";
 import windowsReducer, { WindowsState } from "./windows/windowsReducer";
 import { WindowsLogic } from "./windows/windowsMiddleware";
 import appReducer, { AppState } from "./app/appReducer";
-import { FullscrenChangeActionMaker, MobileChangeActionMaker } from "./app/appActions";
+import { FullscreenChangeActionMaker, MobileChangeActionMaker } from "./app/appActions";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { BlogRouter } from "../router/router";
 import { RouterActionFactory } from "../router/routerActionFactory";
@@ -17,6 +17,7 @@ import React from "react";
 import thunk from 'redux-thunk';
 import projectsReducer, { ProjectState } from "./projects/projectsReducer";
 import { RouteFactory } from "../Windows/RouteFactory";
+import { getScreenfull } from "../screen/screenfullHelper";
 
 export interface ApplicationState {
     desktop: DesktopState,
@@ -39,9 +40,9 @@ const store = createStore(applicationReducer, composeWithDevTools(applyMiddlewar
     thunk
 )));
 
-document.onfullscreenchange = (e: Event) => {
-    store.dispatch(FullscrenChangeActionMaker(document.fullscreenElement === e.target)); 
-}
+getScreenfull().onchange((event : Event) => {
+    store.dispatch(FullscreenChangeActionMaker(getScreenfull().isFullscreen)); 
+})
 
 let search = window.location.search;
 
