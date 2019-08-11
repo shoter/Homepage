@@ -5,6 +5,7 @@ const helloPath = require( "./helloWorld.txt");
 const extension = require("./extension.txt");
 const dependencyHell = require("./dependency_hell.txt")
 const awaitasync = require("./awaitasync.txt");
+const cve = require("./custom_view_engine.txt");
 
 export interface Post {
     postTitle : string,
@@ -51,9 +52,17 @@ const Posts : Post[] = [
         path: awaitasync,
     },
     {
+        postTitle : "Custom View Engine",
+        shortTitle : "cve",
+        date: new Date(2017,11, 8),
+        iconUrl: Resources.notebook,
+        author: "Shoter",
+        path: cve
+    },
+    {
         postTitle: "Hello World",
         shortTitle: "HelloWorld",
-        date : new Date(2018, 1, 1),
+        date : new Date(2016, 1, 1),
         iconUrl : Resources.notebook,
         author: "Shoter",
         path: helloPath
