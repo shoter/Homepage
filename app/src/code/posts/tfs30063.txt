@@ -12,7 +12,7 @@ First go into credential manager and delete every password that is connected wit
 
 Now you need to open Visual Studio as other user. For example you can open it as adminsitrator.
 
-![login to TFS](https://raw.githubusercontent.com/shoter/Homepage/master/media/tfs_login.png)
+![login to TFS](https://raw.githubusercontent.com/shoter/Homepage/master/media/tfs_cred.png)
 
 Now try to login to your TFS. You should be able to input correct credential and be happy from results.
 Now you can open visual studio in the default way. TFS should work as normal.
