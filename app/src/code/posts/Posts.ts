@@ -12,6 +12,7 @@ const assembly_copy_gac = require("./assembly_copy_gac.txt");
 const ninject_fluent_scheduler = require("./ninject_fluent_scheduler.txt");
 const debugging_ef = require("./debugging_ef.txt");
 const static_code_analyzer_use_it = require("./static_code_analyzer_use_it.txt");
+const tfs30063 = require("./tfs30063.txt");
 
 export interface Post {
     postTitle : string,
@@ -60,7 +61,7 @@ const Posts : Post[] = [
     {
         postTitle: "How to use Ninject with FluentScheduler",
         shortTitle: "ninject_fluent_scheduler",
-        date: new Date(2018, 3, 30),
+        date: new Date(2018, 4, 30),
         iconUrl: Resources.notebook,
         author: "Shoter",
         path: ninject_fluent_scheduler,
@@ -104,6 +105,14 @@ const Posts : Post[] = [
         iconUrl: Resources.notebook,
         author: "Shoter",
         path: debugging_ef
+    },
+    {
+        postTitle: "TFS30063: you are not authorized to access – possible solution",
+        shortTitle: "tfs30063",
+        date: new Date(2017, 10, 14),
+        iconUrl: Resources.notebook,
+        author: "Shoter",
+        path: tfs30063,
     },
     {
         postTitle : "Change z-index property slowly in time",
