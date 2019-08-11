@@ -8,6 +8,9 @@ const awaitasync = require("./awaitasync.txt");
 const cve = require("./custom_view_engine.txt");
 const zindex = require("./zindex.txt");
 const aborted_transaction_cause = require("./aborted_transaction_cause.txt");
+const assembly_copy_gac = require("./assembly_copy_gac.txt");
+const ninject_fluent_scheduler = require("./ninject_fluent_scheduler.txt");
+const debugging_ef = require("./debugging_ef.txt");
 
 export interface Post {
     postTitle : string,
@@ -54,6 +57,22 @@ const Posts : Post[] = [
         path: awaitasync,
     },
     {
+        postTitle: "How to use Ninject with FluentScheduler",
+        shortTitle: "ninject_fluent_scheduler",
+        date: new Date(2018, 3, 30),
+        iconUrl: Resources.notebook,
+        author: "Shoter",
+        path: ninject_fluent_scheduler,
+    },
+    {
+        postTitle : "How to copy assembly from GAC",
+        shortTitle : "assembly_gac_Copy",
+        date: new Date(2017,12, 8),
+        iconUrl: Resources.notebook,
+        author: "Shoter",
+        path: assembly_copy_gac
+    },
+    {
         postTitle : "Determining cause of aborted transaction",
         shortTitle : "aborted_transaction_cause",
         date: new Date(2017,11, 15),
@@ -68,6 +87,14 @@ const Posts : Post[] = [
         iconUrl: Resources.notebook,
         author: "Shoter",
         path: cve
+    },
+    {
+        postTitle : "Seeing produced code and debugging Entity Framework",
+        shortTitle : "debugging_ef",
+        date: new Date(2017,11, 6),
+        iconUrl: Resources.notebook,
+        author: "Shoter",
+        path: debugging_ef
     },
     {
         postTitle : "Change z-index property slowly in time",

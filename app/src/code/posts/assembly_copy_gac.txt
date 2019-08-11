@@ -5,6 +5,7 @@ I’ve just ran into simple problem.  I wanted to decompile Microsoft.ReportView
 Visual Studio shows us where our assembly is. Let’s copy path without filename into explorer!
 
 ![Custom view engine before. Not tidy](https://raw.githubusercontent.com/shoter/Homepage/master/media/gac1.png)
+
 ![Custom view engine before. Not tidy](https://raw.githubusercontent.com/shoter/Homepage/master/media/gac2.png)
 
 Fortunately we have access to the GAC but explorer is stupid. There are 2 simple ways to copy assembly file from GAC to somewhere else:
