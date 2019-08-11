@@ -6,6 +6,8 @@ const extension = require("./extension.txt");
 const dependencyHell = require("./dependency_hell.txt")
 const awaitasync = require("./awaitasync.txt");
 const cve = require("./custom_view_engine.txt");
+const zindex = require("./zindex.txt");
+const aborted_transaction_cause = require("./aborted_transaction_cause.txt");
 
 export interface Post {
     postTitle : string,
@@ -52,12 +54,28 @@ const Posts : Post[] = [
         path: awaitasync,
     },
     {
+        postTitle : "Determining cause of aborted transaction",
+        shortTitle : "aborted_transaction_cause",
+        date: new Date(2017,11, 15),
+        iconUrl: Resources.notebook,
+        author: "Shoter",
+        path: aborted_transaction_cause
+    }, 
+    {
         postTitle : "Custom View Engine",
         shortTitle : "cve",
         date: new Date(2017,11, 8),
         iconUrl: Resources.notebook,
         author: "Shoter",
         path: cve
+    },
+    {
+        postTitle : "Change z-index property slowly in time",
+        shortTitle : "zindex",
+        date: new Date(2017,10, 12),
+        iconUrl: Resources.notebook,
+        author: "Shoter",
+        path: zindex
     },
     {
         postTitle: "Hello World",
