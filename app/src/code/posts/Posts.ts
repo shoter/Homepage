@@ -11,6 +11,7 @@ const aborted_transaction_cause = require("./aborted_transaction_cause.txt");
 const assembly_copy_gac = require("./assembly_copy_gac.txt");
 const ninject_fluent_scheduler = require("./ninject_fluent_scheduler.txt");
 const debugging_ef = require("./debugging_ef.txt");
+const static_code_analyzer_use_it = require("./static_code_analyzer_use_it.txt");
 
 export interface Post {
     postTitle : string,
@@ -71,6 +72,14 @@ const Posts : Post[] = [
         iconUrl: Resources.notebook,
         author: "Shoter",
         path: assembly_copy_gac
+    },
+    {
+        postTitle : "Static Code Analyzer – start using them today",
+        shortTitle : "static_code_analyzer_use_it",
+        date: new Date(2017,12, 4),
+        iconUrl: Resources.notebook,
+        author: "Shoter",
+        path: static_code_analyzer_use_it
     },
     {
         postTitle : "Determining cause of aborted transaction",
