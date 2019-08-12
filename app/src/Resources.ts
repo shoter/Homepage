@@ -9,6 +9,7 @@ import CanIcon from "./resources/icancode.png";
 import Notebook from "./resources/notebook.png";
 import Project from "./resources/project.png";
 import Gamepad from "./resources/gamepad.png";
+import Tree from"./resources/tree.png";
 
 export default class Resources {
     static startButton = start;
@@ -22,4 +23,5 @@ export default class Resources {
     static notebook = Notebook;
     static project = Project;
     static gamepad = Gamepad;
+    static tree = Tree;
 }

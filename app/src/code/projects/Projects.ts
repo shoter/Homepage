@@ -1,6 +1,7 @@
 import Resources from "../../Resources";
 
 const ttsg = require("./ttsg.txt");
+const att = require("./att.txt");
 
 export interface Project {
     title: string,
@@ -40,6 +41,19 @@ export const Projects : Project[] = [
         photosPaths : [
             "https://raw.githubusercontent.com/shoter/Homepage/master/media/ttsg1.jpg",
             "https://raw.githubusercontent.com/shoter/Homepage/master/media/ttsg2.jpg"
+        ]
+    },
+    {
+        projectCategory: ProjectCategories.games,
+        title: "Autumn Apple Tree",
+        id: "ATT",
+        startDate: "August 2013",
+        endDate: "October 2013",
+        iconUrl: Resources.tree,
+        path: att,
+        repository: "https://github.com/shoter/Autumn-Apple-Tree",
+        photosPaths: [
+            "https://raw.githubusercontent.com/shoter/Homepage/master/media/att.png"
         ]
     }
 ];
