@@ -10,6 +10,13 @@ interface Post {
 
 let posts : Post[] = [
     {
+        title: "My First Roslyn Analyzer",
+        id: "first_roslyn",
+        description: "Provides short info about my first Roslyn Analyzer - RequiredMember.Analyzer - that I wrote during weekend.",
+        date: new Date(2019, 9, 31),
+        author: "shoter",
+    },
+    {
         title: "Dependency hell",
         id: "dep_hell",
         date: new Date(2019, 0, 30),
