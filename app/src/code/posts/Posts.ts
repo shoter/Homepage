@@ -13,6 +13,7 @@ const ninject_fluent_scheduler = require("./ninject_fluent_scheduler.txt");
 const debugging_ef = require("./debugging_ef.txt");
 const static_code_analyzer_use_it = require("./static_code_analyzer_use_it.txt");
 const tfs30063 = require("./tfs30063.txt");
+const firstRoslynAnalyzer = require("./first_roslyn_analyzer.txt");
 
 export interface Post {
     postTitle : string,
@@ -34,6 +35,14 @@ export function instanceOfPost(any : any)
 
 
 const Posts : Post[] = [
+    {
+        postTitle: "My First Roslyn Analyzer",
+        shortTitle: "first_roslyn",
+        date: new Date(2019, 9, 31),
+        iconUrl: Resources.notebook,
+        author: "shoter",
+        path: firstRoslynAnalyzer,
+    },
     {
         postTitle: "Dependency hell",
         shortTitle: "dep_hell",
