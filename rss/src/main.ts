@@ -14,7 +14,7 @@ let posts : Post[] = [
         id: "first_roslyn",
         description: "Provides short info about my first Roslyn Analyzer - RequiredMember.Analyzer - that I wrote during weekend.",
         date: new Date(2019, 9, 31),
-        author: "shoter",
+        author: "Shoter",
     },
     {
         title: "Dependency hell",
