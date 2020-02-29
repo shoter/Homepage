@@ -44,7 +44,7 @@ namespace FtpDeployCore
 
             var files = GetFilesToDeploy(buildFolder);
 
-            client = new FtpClient("sociatis.net", 21, login, password);
+            client = new FtpClient("damian.laczak.net.pl", 21, login, password);
 
 
             string basePath = "/damian.laczak.net.pl/wwwroot/Blog/";
