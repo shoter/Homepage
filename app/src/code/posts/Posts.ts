@@ -14,6 +14,7 @@ const debugging_ef = require("./debugging_ef.txt");
 const static_code_analyzer_use_it = require("./static_code_analyzer_use_it.txt");
 const tfs30063 = require("./tfs30063.txt");
 const firstRoslynAnalyzer = require("./first_roslyn_analyzer.txt");
+const dotnet_core_mailna = require("./dotnet_core_mailna.txt");
 
 export interface Post {
     postTitle : string,
@@ -35,6 +36,14 @@ export function instanceOfPost(any : any)
 
 
 const Posts : Post[] = [
+    {
+        postTitle: "How to install .NET Core 3.1 on raspbian 10",
+        shortTitle: "dotnet_core_malina",
+        date: new Date(2020, 2, 29),
+        iconUrl: Resources.notebook,
+        author: "shoter",
+        path: dotnet_core_mailna,
+    },
     {
         postTitle: "My First Roslyn Analyzer",
         shortTitle: "first_roslyn",

@@ -1,0 +1,12 @@
+# How to install .NET Core 3.1 on raspbian 10
+
+Today I was installing .NET Core on Raspbian 10. It was pretty hard process as there was no guide that worked on me on the internet so I will write one :).
+
+
+## Let's install .NET Core!
+
+1. First I download ARM32 binaries from [Microsoft official website](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+2. I unpack everything using `tar -xzf file_that_was_downlaoded`
+3. I moved everything that was unpacked into `/usr/share/dotnet/`
+4. Then I created symbolik link to executable file from that folder`ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet`
+5. Everything is done - you can use .NET Core on raspberry pi! :"D

@@ -10,6 +10,13 @@ interface Post {
 
 let posts : Post[] = [
     {
+        title: "How to install .NET Core 3.1 on raspbian 10",
+        id: "dotnet_core_malina",
+        description: "Full instructions on how to install .NET Core 3.1 manually on Raspberry pi with Raspbian 10 buster.",
+        date: new Date(2020, 2, 29),
+        author: "shoter",
+    },
+    {
         title: "My First Roslyn Analyzer",
         id: "first_roslyn",
         description: "Provides short info about my first Roslyn Analyzer - RequiredMember.Analyzer - that I wrote during weekend.",
