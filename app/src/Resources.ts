@@ -10,6 +10,7 @@ import Notebook from "./resources/notebook.png";
 import Project from "./resources/project.png";
 import Gamepad from "./resources/gamepad.png";
 import Tree from"./resources/tree.png";
+import CV from"./resources/CV.png";
 
 export default class Resources {
     static startButton = start;
@@ -24,4 +25,5 @@ export default class Resources {
     static project = Project;
     static gamepad = Gamepad;
     static tree = Tree;
+    static cv = CV;
 }

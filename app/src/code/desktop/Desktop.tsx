@@ -12,6 +12,7 @@ import CodeBlock from "../utility/codeBlock";
 import Resources from "../../Resources";
 import BlogPosts from "../Windows/BlogPosts";
 import ProjectsContent from "../projects/ProjectsContent";
+import CV from "../Windows/Cv";
 
 
 const path = require( "../posts/test.txt");
@@ -60,13 +61,18 @@ class Desktop extends Component <DesktopProps, DesktopState>
         this.props.createWindow("Projects", Resources.project, <ProjectsContent />);
     }
 
+    openCv = () =>{
+        this.props.createWindow("Resume", Resources.cv, <CV />);
+    }
+
     render()
     {
         var icons = [
             (<DesktopIcon key="posts" onClick={() => this.onClick()} title="Blog Posts" imgUrl={Resources.can} />),
             (<DesktopIcon key="github" onClick={() => this.openWebiste("https://github.com/shoter")} title="My github" imgUrl={Resources.githubIcon} />),
             (<DesktopIcon key="stack" onClick={() => this.openWebiste("https://stackoverflow.com/users/2583946/shoter")} title="My SO Profile" imgUrl={Resources.stackIcon} />),
-            (<DesktopIcon key="projects" onClick={() => this.openProjects()} title="My projects" imgUrl={Resources.project} />)
+            (<DesktopIcon key="projects" onClick={() => this.openProjects()} title="My projects" imgUrl={Resources.project} />),
+            (<DesktopIcon key="cv" onClick={() => this.openCv()} title="Resume" imgUrl={Resources.cv} />)
             
         ];
 
