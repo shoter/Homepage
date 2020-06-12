@@ -1,0 +1,10 @@
+# The library 'hostpolicy.dll' required to execute the application was not found in
+
+I just had following error when building C# project:
+
+```
+    3>Cannot use stream for resource [C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0\Microsoft.NETCore.App.deps.json]: No such file or directory
+    3>A fatal error was encountered. The library 'hostpolicy.dll' required to execute the application was not found in 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0'.
+```
+
+It turned out that folder `C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0` was empty and deleting folder helped.

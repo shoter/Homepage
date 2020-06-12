@@ -10,6 +10,13 @@ interface Post {
 
 let posts : Post[] = [
     {
+        title: "The library 'hostpolicy.dll' required to execute the application was not found in Error",
+        id: "hostpolicy",
+        description: "How to deal with the error in 1 particular situation. More info in post",
+        date: new Date(2020, 6, 10),
+        author: "shoter",
+    }
+    {
         title: "How to install .NET Core 3.1 on raspbian 10",
         id: "dotnet_core_malina",
         description: "Full instructions on how to install .NET Core 3.1 manually on Raspberry pi with Raspbian 10 buster.",
