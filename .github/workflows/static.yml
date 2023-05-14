@@ -37,5 +37,13 @@ jobs:
         run: npm install
         working-directory: ./app
       - name: Build Homepage
-        run: npm run deploy --no-warnings
+        run: npm run build --no-warnings
         working-directory: ./app
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: './app/build'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
