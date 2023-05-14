@@ -1,0 +1,126 @@
+# Dependency Hell
+
+This week I had very interesting problems with non matching assembly versions at my workplace.
+
+## The problem
+
+In my job I tried to run one of the unit tests after I’d done some cleaning. Unfortunately what I saw was that error:
+
+![Exception during unit tests](https://raw.githubusercontent.com/shoter/Homepage/master/media/dependency_hell_excpetion.png)
+
+
+Basically one of the libraries underneath wanted to use assembly 4.0.0.0 of System.Net.Http but because of assembly binding redirect version 4.1.1.0 was suggested. Unfortunatelly 4.1.1.0 was nowhere to be found and therefore exception was thrown.
+
+It was not a simple one to resolve. I quickly started to gather informations about the problem.
+
+## Many different versions of same file
+
+First thing that I noticed is that we are using System.Net.Http Nuget package with version 4.3.0. But this was not a source of a problem. Because Nuget package version is not equal to assembly version. Inside of it was laying nice 4.1.1.0 version that we were expecting to use.
+
+Additionaly I spotted that file version is 4.6.[something]. Probably number indicating version of .NET Framework but I am not sure.
+
+The lessons was learnt:
+Assembly version != Nuget Version != File Version
+
+by != I mean it does not need to be equal. It can but we cannot assume any equality of those three.
+## Configuration files
+
+Let’s take a look inside configuration files. What are they saying?
+### .csproj
+```
+<Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+</Reference>
+```
+	
+### app.config
+```
+<dependentAssembly>
+ <assemblyIdentity name="System.Net.Http" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+ <bindingRedirect oldVersion="0.0.0.0-4.1.1.0" newVersion="4.1.1.0" />
+</dependentAssembly>
+```
+	
+
+
+Some libraries were using older versions of System.Net.Http therefore redirect was created for them to use 4.1.1.0. ( There is great read on Microsoft page about this – https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions)
+
+Everything with the files looks ok. There is nothing wrong with them. Let’s look somewhere else.
+## Reference search order
+
+How does MsBuild look for our references? I found out this on official github by looking into [Microsoft.Common.CurrentVersion.targets].
+```
+<!--
+    The SearchPaths property is set to find assemblies in the following order:
+        (1) Files from current project - indicated by {CandidateAssemblyFiles}
+        (2) $(ReferencePath) - the reference path property, which comes from the .USER file.
+        (3) The hintpath from the referenced item itself, indicated by {HintPathFromItem}.
+        (4) The directory of MSBuild's "target" runtime from GetFrameworkPath.
+            The "target" runtime folder is the folder of the runtime that MSBuild is a part of.
+        (5) Registered assembly folders, indicated by {Registry:*,*,*}
+        (6) Assembly folders from AssemblyFolders.config file (provided by Visual Studio Dev15+).
+        (7) Legacy registered assembly folders, indicated by {AssemblyFolders}
+        (8) Resolve to the GAC.
+        (9) Treat the reference's Include as if it were a real file name.
+        (10) Look in the application's output folder (like bin\debug)
+    -->
+```
+
+(1) – does not apply for me  
+(2) – We have ReferencePath in our project but if I create blank project without ReferencePath problem still exist.  
+(3) – Should work. We have HintPath in .csproj.
+
+It should but it does not
+
+![Is it solution](https://raw.githubusercontent.com/shoter/Homepage/master/media/dependency_hell_solution.jpg)
+
+So I found a solution the problem. But I do not know if this can be treated as one. Issue #29622 on corefx pointed me to not use NuGet package of .NET framework assemblies in my .NET Framework projects.
+
+It can lead to situations where your project does not know what is even using. You cannot guess either. It can even behave differently on different computers because different machines will find different versions of the assemblies. Wow
+## Repository with example behaviour
+
+I really tried hard to find some nice exception-like situation for System.Net.Http in my example project https://github.com/shoter/DependencyHell. Unfortunatelly I could not.
+
+At least I found situation which looks weird. You cannot know what version will be used anymore.
+The project is very simple. It uses 4.3.4 System.Net.Http Nuget package (4.1.1.3 assembly version). And it prints few informations about used assembly.
+```
+Console.WriteLine(typeof(HttpContent).Assembly.Location);
+Console.WriteLine(typeof(HttpContent).Assembly.GetName().FullName);
+Console.WriteLine(typeof(HttpContent).Assembly.GetName().Version);
+```
+	
+
+### What does the ~~fox~~ config file says?
+```
+<Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+  <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+</Reference>
+```
+	
+Yay. We want to use 4.1.1.3!
+### What Visual Studio is using?
+
+![Is it solution](https://raw.githubusercontent.com/shoter/Homepage/master/media/dependency_hell_wat1.png)
+
+
+That’s not funny. I personally think that Intellisense is using 4.2.0.0 right now.
+### What program is using?
+
+![Is it solution](https://raw.githubusercontent.com/shoter/Homepage/master/media/dependency_hell_wat2.png)
+
+It was taken from GAC. From what I see .Net framework in 4.7.* is not copying the .net framework assemblies probably.
+
+
+
+GAC is a global assembly cache. It’s a place for assemblies that are meant to be shared amongst many .NET applications.
+### Behaviour is local
+
+This behaviour may not work or work on your computer. For example on my work laptop the problem exists on 4.6.* version of .NET framework whereas at my computer I could not be able to reproduce the behaviour on that version.
+It worked on 4..7.* though.
+## Conclusion?
+
+Do not use NuGet references in .net framework projects for system packages. Just include them as a normal reference.
+
+This will allow you to avoid errors/exceptions or whatever else you have.
+
+Potentially it could lead to situation where Intellisense will tell you to use something that will be not existent in compiled project.

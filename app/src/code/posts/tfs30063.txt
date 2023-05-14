@@ -1,0 +1,30 @@
+# TFS30063: you are not authorized to access – possible solution
+
+![TFS30063 error](https://raw.githubusercontent.com/shoter/Homepage/master/media/tfs_error.png)
+
+From time to time TFS asks me about password. And sometimes there is a moment that after I input correct credentials then TFS displays again login form and without thinking I am trying to input another password. And what is TFS doing then? Silently accepts wrong password and it is going to keep silent until i want to do check in or something connect to source control. But after I want to do something with TFS then… TFS30063 error appears. I think that I found a way to deal with it.
+
+The solution for this problem will propably (well – Microsoft – never can be sure whether it will work next day) resolve your problem assuming that VS/TFS cached your wrong credential somewhere.
+
+First go into credential manager and delete every password that is connected with TFS server that you want to connect to. Optionally you can also use more raw view for you password by running rundll32.exe keymgr.dll,KRShowKeyMgr  command. There you can also delete password on your computer but also backup/restore them. So you can make a copy before deleting passwords if you think that something might go wrong.
+
+![Open VS as admin](https://raw.githubusercontent.com/shoter/Homepage/master/media/tfs_admin.png)
+
+Now you need to open Visual Studio as other user. For example you can open it as adminsitrator.
+
+![login to TFS](https://raw.githubusercontent.com/shoter/Homepage/master/media/tfs_cred.png)
+
+Now try to login to your TFS. You should be able to input correct credential and be happy from results.
+Now you can open visual studio in the default way. TFS should work as normal.
+
+## important
+
+Important:
+
+* You can also remove Internet explorer and Edge cache from your computer. IE and Edge have indepent caches so you need to remove it from both browsers.
+* Before starting whole process you can remove your TFS server from manage connections menu im Team Explorer.
+* You can also look at this stack overflow answers, they may help you:
+ * [error-tf30063-you-are-not-authorized-to-access-defaultcollection](https://stackoverflow.com/questions/12685111/error-tf30063-you-are-not-authorized-to-access-defaultcollection)
+ * [tf30063-you-are-not-authorized-to-access-xxx-visualstudio-com](https://stackoverflow.com/questions/40651705/tf30063-you-are-not-authorized-to-access-xxx-visualstudio-com)
+
+

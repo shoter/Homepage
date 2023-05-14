@@ -1,0 +1,161 @@
+@import "../global.scss";
+
+$program-margin: 0.2rem;
+$taskbar-margin: 0.15rem;
+
+$taskbar-top-border: 0.1rem;
+
+.app .desktop {
+  .taskbar {
+    z-index: 9999;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    background-color: #d4d0c8;
+    border-top: $taskbar-top-border solid #ffffff;
+
+    & > .start-helper {
+      position: relative;
+      & > .start-ribbon {
+        background-color: #d4d0c8;
+        position: absolute;
+        bottom: calc(100% + 0.1rem);
+        display: flex;
+
+        padding-left: 0.1rem 0.1rem 0 0.1rem;
+        border-left : white 0.1rem solid;
+        border-top: white 0.1rem solid;
+        border-right: #808080 0.1rem solid;
+
+        & > .items {
+          display: flex;
+          flex-direction: column-reverse;
+          
+
+          & > .ribbon-item {
+            display: flex;
+            align-items: center;
+            padding-right: 1rem;
+            margin-top: 0.2rem;
+            cursor:pointer;
+            user-select: none;
+            &:hover {
+              background-color: #0A246A;
+              color: white;
+            }
+
+            & > img {
+              width: 2rem;
+              height: 2rem;
+              padding: 0.5rem;
+            }
+
+            & > span {
+              white-space: pre;
+
+            }
+          }
+        }
+
+        & > .ribbon-os {
+          padding: 0.3rem;
+          display: flex;
+          flex-direction: column;
+          user-select: none;
+          align-items: center;
+
+          /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#8ab2da+0,5b7fb1+100 */
+          background: #8ab2da; /* Old browsers */
+          background: -moz-linear-gradient(top,  #8ab2da 0%, #5b7fb1 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(top,  #8ab2da 0%,#5b7fb1 100%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to bottom,  #8ab2da 0%,#5b7fb1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ab2da', endColorstr='#5b7fb1',GradientType=0 ); /* IE6-9 */
+
+
+          & > img {
+            width: 2rem;
+            margin: 0.5rem 0;
+          }
+
+          & > span {
+            writing-mode: vertical-lr;
+            color:white;
+            font-size: xx-large;
+          }
+        }
+      }
+
+      & > .start-button {
+        @include unpressed(0.1rem);
+
+        &.active {
+          @include pressed(0.1rem);
+        }
+
+        margin: $taskbar-margin;
+        padding: 0.2rem;
+        display: flex;
+        align-items: center;
+        user-select: none;
+        cursor: pointer;
+        & > img {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+
+    & > .programs {
+      display: flex;
+
+      .opened-program {
+        user-select: none;
+        display: inline-flex;
+        cursor: pointer;
+
+        margin-left: $program-margin;
+        margin-right: $program-margin;
+        margin-top: $taskbar-margin;
+        margin-bottom: $taskbar-margin;
+
+        @include horizontal-padding(0.2rem);
+
+        @include unpressed(0.1rem);
+        &.active {
+          @include pressed(0.1rem);
+        }
+        .icon-container {
+          width: 1rem;
+          height: 100%;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          & > img {
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+
+        .title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          white-space: pre;
+          word-wrap: break;
+        }
+      }
+    }
+
+    & > .gl-timer {
+      @include pressed(0.1rem);
+      margin: $taskbar-margin;
+      padding: 0.2rem;
+
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+}

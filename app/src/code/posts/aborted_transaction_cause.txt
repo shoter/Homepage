@@ -1,0 +1,21 @@
+# Determining cause of aborted transaction
+
+I stumbled upon a problem in which my Transaction was being aborted somewhere in the code and I did not know where because there was going a lot of things in this transaction.
+
+When my code hit the exception due to wrong transaction state I did not know where the problem actually lies so I decided to attach function to TransactionCompleted event. Function would notify me when my transaction completed with aborted status. Then i would know exact place and with it a cause of aborted transaction.
+
+
+```csharp
+private static void Transaction_TransactionCompleted(object sender, TransactionEventArgs e)
+        {
+            if (e.Transaction.TransactionInformation.Status == TransactionStatus.Aborted)
+            {
+                if (System.Diagnostics.Debugger.IsAttached)
+                    System.Diagnostics.Debugger.Break();
+            }
+        }
+```
+
+Above is the method which was attached to TransactionCompleted event of System.Transactions.Transaction.Current at the start of TransactionScope.
+
+Maybe there are better ways to debug this case but this one is simple one and shows exact place where status of the transaction changed.

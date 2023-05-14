@@ -1,0 +1,51 @@
+# Change z-index property slowly in time
+
+Recently i stumbled upon very specific problem with displaying enlarged image in HTML. My intention was to enlarge images when i hover my mouse over them. Task seemed very trivial but had one little quirk which was hard to resolve…
+
+The idea behind enlarging was simple: When I hover my mouse over image then it is scalled and placed on top of the website by modifying z-index. But when I move mouse out of image then something bad happens. My image immediately loses z-index when it’s still resized because transition did not end. When image is so big that it can intersect with another image then the second image is on top of our enlarged one. This is creating unpleasant visual effect for user.
+
+You can see example of this behaviour in this [<jsFiddle>](https://jsfiddle.net/h94ss2ec/).
+
+The CSS code is as follow:
+
+```css
+.photo-exp
+{
+position: relative;
+transition: all .9s ease-in-out; 
+/* some properties deleted which have no connection to hovering effect */
+}
+
+.photo-exp:hover
+{
+transform: scale(3.0); 
+z-index : 10;
+}
+```
+
+So we need some kind of solution to prevent placing other images on top of our enlarged ones.
+
+We have 2 choices.
+
+First one is to create javascript solution which will change z-index after 0.9s when our hover effect ended. This idea is ok but some users may disable javascript on your site and they will still see the problem.
+
+And the next one is to find some kind of CSS workaround. We cannot change z-index with simple transition. But there is an [<animation>](https://developer.mozilla.org/en-US/docs/Web/CSS/animation) property which can change slowly any other property in given amount of time. So z-index would work fine here and it works.
+
+We will need to define 2 keyframes. One for nohover z-index and second one for hover z-index. The animations are as follow:
+
+```css
+@keyframes nohovering {
+  0%   { z-index: 1; }
+  100% { z-index: 9; }
+}
+ 
+@keyframes hovering {
+  0%   { z-index: 10; }
+  100% { z-index: 10; }
+  ```
+
+The first animation will always change z-index of our image from 9 to 1. Unhovered images will always be under hovered ones but after we stop hovering then our image will still be above others. Neat!
+
+The second one will just loop with z-index equal to 10.
+
+You can see the effect in this [<fiddle>](https://jsfiddle.net/h94ss2ec/11/). It’s worth noting that i deleted normal z-index properties because now they are not needed.

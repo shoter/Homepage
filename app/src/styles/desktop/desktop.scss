@@ -1,0 +1,129 @@
+@import "./taskbar.scss";
+@import "./windows.scss";
+
+.app .desktop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  display: grid;
+  overflow: hidden;
+
+  grid-template-rows: 1fr auto;
+
+  & > .work-area {
+    background-color: #3a6ea5;
+    position: relative;
+
+
+
+    .InformPeopleAboutNewBlog {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: white;
+      font-size: xx-large;
+
+      height: 90vh;
+    }
+    > .icon-area {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 4.5rem);
+        grid-template-rows: repeat(auto-fill, 6rem);
+        grid-gap: 1rem;
+        margin:1rem;
+
+      > .icon {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        width: 4.5rem;
+        max-width: 4.5rem;
+        overflow-x: hidden;
+        align-items: center;
+        user-select: none;
+        cursor: pointer;
+
+        .iconImage 
+        {
+          width:3rem;
+          height:3rem;
+          img {
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+
+        > span {
+          text-align: center;
+          width: 4.5rem;
+          font-size: 1.05rem;
+          max-width: 4.5rem;
+          color: white;
+          text-shadow: 0px 7px 20px rgba(0, 0, 0, 0.34);
+        }
+      }
+    }
+
+    & .windows-area {
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+
+        //It makes this area transparent to pointer clicks. icons on desktop will be clickable.
+        pointer-events: none;
+        &>*{
+          pointer-events: all;
+        }
+    }
+  }
+}
+
+
+.app .mobile-desktop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #3a6ea5;
+
+    & > .icon-area {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 6rem);
+      grid-template-rows: repeat(auto-fill, 6rem);
+      grid-gap: 1rem;
+      margin:1rem;
+
+    > .icon {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 6rem;
+      overflow-x: hidden;
+      align-items: center;
+      user-select: none;
+      cursor: pointer;
+
+      img {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+
+      > span {
+        text-align: center;
+        width: 6rem;
+        font-size: 1.05rem;
+        max-width: 6rem;
+        color: white;
+        text-shadow: 0px 7px 20px rgba(0, 0, 0, 0.34);
+      }
+    }
+}
+}

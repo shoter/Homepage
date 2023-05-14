@@ -1,0 +1,37 @@
+@import "../global.scss";
+
+.mobile-project-list {
+    .mobile-project-entry {
+        display: grid;
+        grid-template-columns: 4rem 1fr;
+        grid-template-rows: 5rem;
+        padding-right: 1rem;
+    
+        .image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+    
+        .description {
+          padding-top: 1rem;
+          border-bottom: 0.05rem solid gray;
+          .title {
+            font-weight: bold;
+          }
+    
+          .sub {
+            color: gray;
+            font-weight: 100;
+          }
+        }
+      }
+}
+
+.mobile-project {
+  padding: 1rem;
+}
