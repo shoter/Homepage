@@ -1,1 +1,0 @@
-Autumn Apple tree was a game created in Java where main objective of the player was to gather falling apples from the tree. The more apples you got the bigger score you received.

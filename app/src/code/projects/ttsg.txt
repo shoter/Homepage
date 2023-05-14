@@ -1,6 +1,0 @@
-# TTSG - Turn Time Strategy Game
-
-Game that I created when I was in high school. I was using C++ and Allegro library in order to create this game.
-
-
-It was highly inspired by game called [Enemy flag](http://www.enemyflag.net/).

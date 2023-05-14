@@ -1,9 +1,0 @@
-![Custom view engine before. Not tidy](https://raw.githubusercontent.com/shoter/Homepage/master/media/cve1.png)
-
-So much views. So much views to display. By default ASP.NET MVC uses 2 default engines with a lot of searching for all possible language to find a view. It’s nasty to debug because it is increasing the number of entries that are trying to be rendered in glimpse/views tab.
-
-I will not write whole article about how to remove unecessary WebFormViewEngine but I will leave link to article that I used to tidy my project -> Article from c-sharpcorner.com.
-
-![After removing unnecessary view engines. It looks more tidy.](https://raw.githubusercontent.com/shoter/Homepage/master/media/cve2.png)
-
-This is the result. Now my project looks mory tidy and it’s easier to navigate through views.
