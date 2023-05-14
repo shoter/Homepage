@@ -37,8 +37,10 @@ jobs:
         run: npm install
         working-directory: ./app
       - name: Build Homepage
-        run: CI=npm run build
+        run: npm run build
         working-directory: ./app
+        env:
+          CI: false
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
