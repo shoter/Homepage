@@ -37,5 +37,5 @@ jobs:
         run: npm install
         working-directory: ./app
       - name: Build Homepage
-        run: npm run deploy || true
+        run: npm run deploy --no-warnings
         working-directory: ./app
