@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/Homepage/static/css/main.78e44a1a.css",
+    "main.js": "/Homepage/static/js/main.129a28d5.js",
+    "static/media/project.png": "/Homepage/static/media/project.fbe87362a00e7c5842f8.png",
+    "static/media/gamepad.png": "/Homepage/static/media/gamepad.858c31e9d8a0294c522f.png",
+    "static/media/icancode.png": "/Homepage/static/media/icancode.b272662a65064bc0cf2e.png",
+    "static/media/blog.png": "/Homepage/static/media/blog.cb3e5a38a4894fa34f1f.png",
+    "static/media/stack.png": "/Homepage/static/media/stack.3e196ba23ac4d4327529.png",
+    "static/media/awaitasync.txt": "/Homepage/static/media/awaitasync.ca83cb1aed6a448fc627.txt",
+    "static/media/dependency_hell.txt": "/Homepage/static/media/dependency_hell.6d360d3e59de7333236c.txt",
+    "static/media/extension.txt": "/Homepage/static/media/extension.6b43853dbef6750c2088.txt",
+    "static/media/github.svg": "/Homepage/static/media/github.d1bb13ce1a593d82e4c0d821dc7f1b41.svg",
+    "static/media/debugging_ef.txt": "/Homepage/static/media/debugging_ef.83ba5bf1ee9b0508d03d.txt",
+    "static/media/first_roslyn_analyzer.txt": "/Homepage/static/media/first_roslyn_analyzer.6cd030887fe25579bebf.txt",
+    "static/media/zindex.txt": "/Homepage/static/media/zindex.22e8a043ce9134568dd4.txt",
+    "static/media/tfs30063.txt": "/Homepage/static/media/tfs30063.03ff7509019ce3ef713d.txt",
+    "static/media/static_code_analyzer_use_it.txt": "/Homepage/static/media/static_code_analyzer_use_it.d1c863f4db825c7bfbe4.txt",
+    "static/media/assembly_copy_gac.txt": "/Homepage/static/media/assembly_copy_gac.4e861c74356179a9e555.txt",
+    "static/media/ninject_fluent_scheduler.txt": "/Homepage/static/media/ninject_fluent_scheduler.582524f7eb27dbcfb8d1.txt",
+    "static/media/aborted_transaction_cause.txt": "/Homepage/static/media/aborted_transaction_cause.e462ca1c52e05596d4cd.txt",
+    "static/media/custom_view_engine.txt": "/Homepage/static/media/custom_view_engine.2d1d7aca1ccf4d570794.txt",
+    "index.html": "/Homepage/index.html",
+    "static/media/dotnet_core_mailna.txt": "/Homepage/static/media/dotnet_core_mailna.7ea3cd9f34de28d4ec70.txt",
+    "static/media/hostpolicy.txt": "/Homepage/static/media/hostpolicy.e52c682b90e6c69efa8a.txt",
+    "static/media/test.txt": "/Homepage/static/media/test.5f6b831d5b54fa51e864.txt",
+    "static/media/ttsg.txt": "/Homepage/static/media/ttsg.e573cbe1ef0853a403c9.txt",
+    "static/media/att.txt": "/Homepage/static/media/att.b21e09162ca207713530.txt",
+    "static/media/helloWorld.txt": "/Homepage/static/media/helloWorld.5cf346aae890523bf954.txt",
+    "main.78e44a1a.css.map": "/Homepage/static/css/main.78e44a1a.css.map",
+    "main.129a28d5.js.map": "/Homepage/static/js/main.129a28d5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.78e44a1a.css",
+    "static/js/main.129a28d5.js"
+  ]
+}

@@ -1,0 +1,18 @@
+# How to copy assembly from GAC
+
+I’ve just ran into simple problem.  I wanted to decompile Microsoft.ReportViewer.WebForms.dll to know how one particular method works.  I needed to copy that assembly to some other place and I had a little problem with obtaining .dll from GAC. Let’s see the problem and solution.
+
+Visual Studio shows us where our assembly is. Let’s copy path without filename into explorer!
+
+![Custom view engine before. Not tidy](https://raw.githubusercontent.com/shoter/Homepage/master/media/gac1.png)
+
+![Custom view engine before. Not tidy](https://raw.githubusercontent.com/shoter/Homepage/master/media/gac2.png)
+
+Fortunately we have access to the GAC but explorer is stupid. There are 2 simple ways to copy assembly file from GAC to somewhere else:
+
+* You can put link to the directory into your browser. It works. You can navigate easily through folder structure etc.  To copy assembly somewhere else just click on it and you will be able to download it into another place :).
+
+![Custom view engine before. Not tidy](https://raw.githubusercontent.com/shoter/Homepage/master/media/gac3.png)
+
+* You can also use **Copy-Item** from powershell (or some equivalent in cmd) :  
+“Copy-Item C:\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\8.0.0.0__b03f5f7f11d50a3a\Microsoft.ReportViewer.WebForms.dll      D:\webforms.dll”
