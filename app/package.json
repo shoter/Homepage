@@ -1,6 +1,6 @@
 {
   "name": "homepage",
-  "homepage": "https://shoter.github.io/Homepage",
+  "homepage": "https://shoter.github.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
