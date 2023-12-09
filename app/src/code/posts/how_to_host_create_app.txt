@@ -1,12 +1,58 @@
-# How to host create-app react template application on Github Pages
+# How to host create-app react template application on Github Pages with your custom domain
 
-1. Go into settings of your project
+## Deploying application
 
-I just had following error when building C# project:
+I've used following github action code in order to deploy my react application on github pages:
 
+
+```yaml
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./app
+      - name: Build Homepage
+        run: npm run build
+        working-directory: ./app
+        env:
+          CI: false
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: './app/build'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
 ```
-    3>Cannot use stream for resource [C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0\Microsoft.NETCore.App.deps.json]: No such file or directory
-    3>A fatal error was encountered. The library 'hostpolicy.dll' required to execute the application was not found in 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0'.
-```
 
-It turned out that folder `C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0` was empty and deleting folder helped.
+You are free to copy it and use it in your projects. 
+
+Notes:
+- I've turned `CI` for build to `false` to ignore some of the warnings that were turned into errors in CI flow.
+
+## Using custom domain
+
+1. Go into your user settings
