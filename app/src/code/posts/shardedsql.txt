@@ -1,0 +1,11 @@
+# Preface
+
+I was wondering recently what one need to do in order to properly setup sharded SQL instances. 
+I am writing this part of article before I begin my work on understanding how to setup such thing.
+
+My plan is as follows:
+- Have simple SQL schema which consists of 2 tables: `Customers` and `Orders`
+- Each table has `CustomerId` column which is going to serve as a key for sharding SQL servers.
+- Data for given customer should reside only on 1 specific instance of SQL servers
+- I do not plan to write any C# code
+- Everything needs to be dockerized and easy to setup
