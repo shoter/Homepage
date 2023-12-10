@@ -55,7 +55,7 @@ jobs:
           latexmk_use_xelatex: true
       - name: Move Resume PDF
         run: |
-          mv .CV/resume.pdf ./app/build/resume.pdf
+          mv ./CV/resume.pdf ./app/build/resume.pdf
         working-directory: ${{ github.workspace }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
