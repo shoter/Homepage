@@ -49,8 +49,9 @@ jobs:
           CI: false
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
+        working-directory: ./CV
         with:
-          root_file: ./CV/resume.tex
+          root_file: ./resume.tex
           latexmk_use_xelatex: true
       - name: Move Resume PDF
         run: |
