@@ -16,6 +16,8 @@ const tfs30063 = require("./tfs30063.txt");
 const firstRoslynAnalyzer = require("./first_roslyn_analyzer.txt");
 const dotnet_core_mailna = require("./dotnet_core_mailna.txt");
 const hostpolicy = require("./hostpolicy.txt");
+const shardedsql = require("./shardedsql.txt");
+
 
 export interface Post {
     postTitle : string,
@@ -37,6 +39,14 @@ export function instanceOfPost(any : any)
 
 
 const Posts : Post[] = [
+    {
+        postTitle: "Sharded SQL instances - my first try",
+        shortTitle: "shardedsql",
+        date: new Date(2023, 12, 10),
+        iconUrl: Resources.notebook,
+        author: "shoter",
+        path: shardedsql,
+    },
     {
         postTitle: "The library 'hostpolicy.dll' required to execute the application was not found in Error",
         shortTitle: "hostpolicy",
