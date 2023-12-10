@@ -45,7 +45,7 @@ const Posts : Post[] = [
         date: new Date(2023, 12, 10),
         iconUrl: Resources.notebook,
         author: "shoter",
-        path: hostpolicy,
+        path: shardedsql,
     },
     {
         postTitle: "The library 'hostpolicy.dll' required to execute the application was not found in Error",
