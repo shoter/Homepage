@@ -42,7 +42,7 @@ const Posts : Post[] = [
     {
         postTitle: "Sharded SQL instances - my first try",
         shortTitle: "shardedsql",
-        date: new Date(2023, 12, 10),
+        date: new Date(2023, 11, 10),
         iconUrl: Resources.notebook,
         author: "shoter",
         path: shardedsql,
