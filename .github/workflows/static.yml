@@ -54,7 +54,7 @@ jobs:
       - name: Move Resume PDF
         run: |
           mv .CV/resume.pdf ./app/build/resume.pdf
-      working-directory: ${{ github.workspace }}
+        working-directory: ${{ github.workspace }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
