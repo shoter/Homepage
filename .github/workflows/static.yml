@@ -36,7 +36,7 @@ jobs:
           repository: shoter/CV
           path: ./CV
           ref: refs/heads/master
-          token: ${{ secrets.CV_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Install dependencies
