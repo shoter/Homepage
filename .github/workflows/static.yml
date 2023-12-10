@@ -47,15 +47,12 @@ jobs:
         working-directory: ./app
         env:
           CI: false
-      - name: Set working directory
-        run: cd ./CV
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
           root_file: ./resume.tex
+          working_directory: ./CV
           latexmk_use_xelatex: true
-      - name: Set working directory
-        run: cd ..
       - name: Move Resume PDF
         run: |
           mv .CV/resume.pdf ./app/build/resume.pdf
