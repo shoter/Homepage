@@ -1,0 +1,44 @@
+#Akka
+Today I would like to learn some akka. Initially it was only a markdown document for my [Obsidian vault](https://obsidian.md/). Later on I decided to put it on my blog.
+It is very unrefined document in my opinion, however I decided to publish it anyway as maybe someone will get some insight into Akka with it.
+
+## Questions for today:
+- Is it a good pattern to always respond with some `OkResponse` when processing a message?
+- I would like to know some other good practices. 
+- Should service layer be completely eliminated?
+
+## Is it a good pattern to always respond with some `OkResponse` when processing a message?
+
+1. ChatGPT stance on that is not conclusive:
+> In many cases, it's beneficial to follow a request-response pattern. In this pattern, an actor receives a message (request), processes it, and then sends a response message back to the sender with the result. This is useful when you need a direct response to a request, such as querying for information or performing an action and confirming its completion.
+
+2. [Akka docs](https://doc.akka.io/docs/akka/current/typed/interaction-patterns.html) Also dwelves onto this topic
+Well from this article I think that it might be a viable strategy to go this road. 
+
+### Answer
+I think the best way would be to create a generic wrapper for request/response. In Java they have [`StatusReply`](https://doc.akka.io/api/akka/2.8/akka/pattern/StatusReply.html "akka.pattern.StatusReply"). C# does not contain this type and I would need to write my own type to faciliate that.
+
+## Should service layer be eliminated while using Akka?
+1. Let's ask ChatGPT - usually it either contains nice summarized knowledge about topic or it completely hallucinates and spews nonsense.
+It did not gave me a clear answer to this problem. It talked just to talk :V
+2. [StackOverflow Q&A](https://stackoverflow.com/questions/23276623/can-akka-actors-replace-service-layer)
+This is highly rated question and guy answering a question seems to speak from position of Akka knowledge. We can come to the conclusion that we're able to integrate a lot of domain logic within actors and shift a significant portion of service layer logic into them. Some concepts and functionalities, though, may pose challenges in terms of moving them into the actor layer, and they may need to remain as a separate abstraction layer that actors call upon.
+
+### Conclusion
+I did not find any definitive answer as I predicted before starting the search. I think that one should try to put as much domain logic as one can within Akka and have some kind of service layer for logic that is 'unakkable'.
+
+
+##  I would like to know some other good practices. 
+
+Nothing new learned here :(
+
+
+## Other things i learned
+
+https://medium.com/@yuriigorbylov/akka-ask-antipattern-8361e9698b20
+
+It is overally good to use `Tell` instead of ask and i kinda agree with the author. If there is a possibility to avoid `Ask` then we should try to do that.
+
+![[1 7zO6gpSllS0I7cofrr8cfA.webp]]
+
+Example above seems superficial though. Why using asks so many times instead of forward? 

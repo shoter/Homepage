@@ -17,6 +17,7 @@ const firstRoslynAnalyzer = require("./first_roslyn_analyzer.txt");
 const dotnet_core_mailna = require("./dotnet_core_mailna.txt");
 const hostpolicy = require("./hostpolicy.txt");
 const shardedsql = require("./shardedsql.txt");
+const learning20231212 = require("./learning20231212.txt");
 
 
 export interface Post {
@@ -39,6 +40,14 @@ export function instanceOfPost(any : any)
 
 
 const Posts : Post[] = [
+    {
+        postTitle: "Learning Session 12.12.2023",
+        shortTitle: "Learning Session 12.12.2023",
+        date: new Date(2023, 11, 12),
+        iconUrl: Resources.notebook,
+        author: "shoter",
+        path: learning20231212,
+    },
     {
         postTitle: "Sharded SQL instances - my first try",
         shortTitle: "shardedsql",
