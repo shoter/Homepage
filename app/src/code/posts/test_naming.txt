@@ -1,9 +1,10 @@
 
-## Naming structure
-class name:
-`<ClassBeingTested>Should`
-method name:
-`<DoSomething>_<WhenSomething>_<IfSomething>`
+## Naming structure  
+class name:  
+`<ClassBeingTested>Should`  
+
+method name:  
+`<DoSomething>_<WhenSomething>_<IfSomething>`  
 
 ℹ️ Method name does not need to be so strict. It just needs to contain a behavior that is being tested in given test.
 
