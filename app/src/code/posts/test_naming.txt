@@ -25,3 +25,7 @@ Additionaly test names as I said are not automatically renamed when renaming met
 You can see example of such naming strategy in
 [OttdDiscordBot](https://github.com/shoter/OpenttdDiscord/blob/master/OpenttdDiscord.Infrastructure.Tests/AutoReplies/CommandRunners/SetAutoReplyCommandRunnerShould.cs) 
  repository I am managing.
+
+ ## Resources
+
+ This naming strategy is similar (the same?) as [Vladimir Khorikov](https://enterprisecraftsmanship.com/posts/you-naming-tests-wrong/)'s unit test naming strategy
