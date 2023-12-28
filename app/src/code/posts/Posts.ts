@@ -43,7 +43,7 @@ const Posts : Post[] = [
     {
         postTitle: "How I name tests",
         shortTitle: "How I name tests",
-        date: new Date(2023, 28, 12),
+        date: new Date(2023, 11, 28),
         iconUrl: Resources.notebook,
         author: "shoter",
         path: testnaming,
