@@ -28,4 +28,4 @@ You can see example of such naming strategy in
 
  ## Resources
 
- This naming strategy is similar (the same?) as [Vladimir Khorikov](https://enterprisecraftsmanship.com/posts/you-naming-tests-wrong/)'s unit test naming strategy
+ This naming strategy is similar to [Vladimir Khorikov](https://enterprisecraftsmanship.com/posts/you-naming-tests-wrong/)'s unit test naming strategy
