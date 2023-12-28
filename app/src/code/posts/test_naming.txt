@@ -1,0 +1,26 @@
+
+## Naming structure
+class name:
+`<ClassBeingTested>Should`
+method name:
+`<DoSomething>_<WhenSomething>_<IfSomething>`
+
+ℹ️ Method name does not need to be so strict. It just needs to contain a behavior that is being tested in given test.
+
+## Reasoning
+
+This brings following pros:
+- In logs usually tests names are a concatenation of class name and method name. Therefore test with name `EdgeRepositoryShould.DoNothing_WhenDeletingNonExistingEdge` is presented in a form easy to read. 
+- When renaming method name the test name is still valid as it will still describe the behavior we want in the test. Names are not prone to be invalid after name refactors.
+- Whole name of test name contains only necessary parts. There is no word that would bring any kind of noise in the naming.
+- Personally I think it is more natural to describe behaviors which you want from your class instead of describing what each method needs to do.
+
+Only con I can think about:
+- It is harder to find all tests related to given method within a class. I do not see big con here tbh.
+Additionaly test names as I said are not automatically renamed when renaming method, therefore in some cases this con might not even exist.
+
+## Example
+
+You can see example of such naming strategy in
+[OttdDiscordBot](https://github.com/shoter/OpenttdDiscord/blob/master/OpenttdDiscord.Infrastructure.Tests/AutoReplies/CommandRunners/SetAutoReplyCommandRunnerShould.cs) 
+ repository I am managing.

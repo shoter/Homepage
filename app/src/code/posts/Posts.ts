@@ -18,7 +18,7 @@ const dotnet_core_mailna = require("./dotnet_core_mailna.txt");
 const hostpolicy = require("./hostpolicy.txt");
 const shardedsql = require("./shardedsql.txt");
 const learning20231212 = require("./learning20231212.txt");
-
+const testnaming = require("./testnaming.txt");
 
 export interface Post {
     postTitle : string,
@@ -40,6 +40,14 @@ export function instanceOfPost(any : any)
 
 
 const Posts : Post[] = [
+    {
+        postTitle: "How I name tests",
+        shortTitle: "How I name tests",
+        date: new Date(2023, 28, 12),
+        iconUrl: Resources.notebook,
+        author: "shoter",
+        path: testnaming,
+    },
     {
         postTitle: "Learning Session 12.12.2023",
         shortTitle: "Learning Session 12.12.2023",
