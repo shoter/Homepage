@@ -1,0 +1,22 @@
+# Openttd Discord
+
+![GitHub](https://img.shields.io/github/license/shoter/OpenttdDiscord?style=plastic)
+![Test badge](https://github.com/shoter/OpenttdDiscord/actions/workflows/test.yml/badge.svg)
+[![codecov](https://codecov.io/gh/shoter/OpenttdDiscord/branch/master/graph/badge.svg?token=1EC4AKIMD3)](https://codecov.io/gh/shoter/OpenttdDiscord)
+
+Provides ability to integrate Discord with your OpenTTD servers.
+
+## Functionalities
+
+* Connects Discord channel to the Openttd Servers enabling communication between multiple servers and Discord.
+    * Automatically translates ASCII emojis into Discord emojis and vice-versa.
+* Ability to execute rcon commands on server from Discord.
+* Ability to gather short reports from players about malicious behavior of other players
+    * Contains information about connected clients
+    * Contains last chat messages
+    * Contains reason for the report
+    * Some additional information
+* Creating auto-updated messages which can show status of current server.
+    * It contains the same information as OpenTTD client on server browser screen.
+* Auto reply system
+    * Players joining server are going to be welcomed with pre-defined message

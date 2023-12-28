@@ -2,6 +2,7 @@ import Resources from "../../Resources";
 
 const ttsg = require("./ttsg.txt");
 const att = require("./att.txt");
+const ottddiscordbot = require("./ottddiscordbot.txt");
 
 export interface Project {
     title: string,
@@ -22,6 +23,11 @@ export interface ProjectCategory {
 
 
 export const ProjectCategories = {
+    discord : 
+    {
+        name : "Discord Bots",
+        iconUrl : Resources.discord
+    },
     games : 
     {
         name : "Games",
@@ -30,6 +36,18 @@ export const ProjectCategories = {
 }
 
 export const Projects : Project[] = [
+    {
+        projectCategory: ProjectCategories.discord,
+        title: "OpenTTD Discord Bot",
+        id : "OttdDiscord",
+        startDate: "2020",
+        iconUrl: Resources.discord,
+        path: ottddiscordbot,
+        repository: "https://github.com/shoter/OpenttdDiscord",
+        photosPaths : [
+            "https://raw.githubusercontent.com/shoter/Homepage/master/media/OpenttdDiscordBot.png"
+        ]
+    },
     {
         projectCategory: ProjectCategories.games,
         title: "Turn time strategy game",
