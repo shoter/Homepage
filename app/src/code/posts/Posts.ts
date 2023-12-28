@@ -18,7 +18,7 @@ const dotnet_core_mailna = require("./dotnet_core_mailna.txt");
 const hostpolicy = require("./hostpolicy.txt");
 const shardedsql = require("./shardedsql.txt");
 const learning20231212 = require("./learning20231212.txt");
-const testnaming = require("./testnaming.txt");
+const testnaming = require("./test_naming.txt");
 
 export interface Post {
     postTitle : string,
